@@ -14,11 +14,7 @@ import { Form, Formik, FormikHelpers } from 'formik';
 import { CloseOutlined } from '@mui/icons-material';
 import useValidationSchema from './useValidationSchema';
 import { DropdownOption, Option } from '@/Components/FormikDropDown';
-
-interface AddChartDialogProps {
-    open: boolean;
-    onClose: () => void;
-}
+import { useChartContext } from '@/State/useChartContext';
 
 interface FormPlotValues {
     chartType: DropdownOption<Option>;
@@ -34,15 +30,15 @@ const defaultFormValues: FormPlotValues = {
     yAxis: '',
 };
 
-export default function AddChartDialog({ open, onClose }: AddChartDialogProps): JSX.Element {
+export default function AddChartDialog(): JSX.Element {
     const theme = useTheme();
-
+    const { open, closeDialog } = useChartContext();
     const schema = useValidationSchema();
 
     const submit = async (values: FormPlotValues, actions: FormikHelpers<FormPlotValues>) => {};
 
     return (
-        <Dialog open={open} fullWidth maxWidth="sm" onClose={onClose}>
+        <Dialog open={open} fullWidth maxWidth="sm" onClose={closeDialog}>
             <Formik
                 onSubmit={submit}
                 initialValues={defaultFormValues}
