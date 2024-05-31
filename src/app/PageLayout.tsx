@@ -1,15 +1,14 @@
-import AddChartDialog from '@/Dialog/AddChartDialog';
 import { Box, useTheme } from '@mui/material';
 import { useChartContext } from '@/State/useChartContext';
 import AddChartButton from '@/Components/AddChartButton';
+import AddChartDialog from './AddChartDialog';
 
 export default function PageLayout(): JSX.Element {
-    const theme = useTheme();
-    const { open, openDialog, closeDialog } = useChartContext();
+    const { openDialog } = useChartContext();
     return (
         <Box>
             <AddChartButton onClick={openDialog} />
-            <AddChartDialog open={open} onClose={closeDialog} />
+            <AddChartDialog />
 
             {/* <LineChart
                 title={series.title}
