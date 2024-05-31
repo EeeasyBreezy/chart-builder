@@ -4,6 +4,7 @@ import React, { createContext, useContext } from 'react';
 // Define the shape of your chart context
 export interface ChartContextType {
     open: boolean;
+    charts: Array<Chart>;
     openDialog: () => void;
     closeDialog: () => void;
 

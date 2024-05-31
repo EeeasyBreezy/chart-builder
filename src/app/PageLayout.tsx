@@ -1,29 +1,18 @@
-import { Box } from '@mui/material';
+import { Box, Stack, useTheme } from '@mui/material';
 import { useChartContext } from '@/State/useChartContext';
 import AddChartButton from '@/Components/AddChartButton';
 import AddChartDialog from './AddChartDialog';
+import ChartList from './ChartList';
 
 export default function PageLayout(): JSX.Element {
     const { openDialog } = useChartContext();
+    const theme = useTheme();
     return (
-        <Box>
+        <Stack direction="column" spacing={theme.spacing(2)}>
             <AddChartButton onClick={openDialog} />
-            <AddChartDialog />
+            <ChartList />
 
-            {/* <LineChart
-                title={series.title}
-                xLabel="Date"
-                yLabel={series.title}
-                points={observations.map((o) => {
-                    const date = new Date(o.date);
-                    const formattedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-                    const p: Point = { x: formattedDate, y: o.value };
-                    return p;
-                })}
-                xAxisColor="blue"
-                yAxisColor="green"
-                showPoints
-            /> */}
-        </Box>
+            <AddChartDialog />
+        </Stack>
     );
 }

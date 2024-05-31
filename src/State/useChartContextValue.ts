@@ -24,6 +24,7 @@ export  default function useChartContextValue(): ChartContextType {
 
     return {
         open,
+        charts,
         openDialog,
         closeDialog,
         addChart,
