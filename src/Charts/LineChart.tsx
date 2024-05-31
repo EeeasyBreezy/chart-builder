@@ -44,7 +44,7 @@ export default function LineChart(props: LineChartProps): JSX.Element {
                             parser: 'yyyy-mm-dd',
                             unit: 'day',
                             displayFormats: {
-                                day: 'yyyy-MM-dd',
+                                day: 'yyyy-mm-dd',
                             },
                         },
                         title: {
