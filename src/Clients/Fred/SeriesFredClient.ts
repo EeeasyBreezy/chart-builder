@@ -8,6 +8,11 @@ class SeriesFredClient extends BaseFredClient {
         // and node-fred uses "series" in types declaration resulting in underfined property
         return response["seriess"][0]; 
     }
+
+    async getObservations(id: string): Promise<any> {
+        const response = await this.client.series.getObservationsForSeries(id);
+        return response.observations;
+    }
 }
 
 export default SeriesFredClient;
