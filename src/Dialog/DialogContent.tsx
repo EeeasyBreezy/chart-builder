@@ -9,7 +9,7 @@ export default function DialogBody(): JSX.Element {
     return (
         <Stack direction="column" spacing={theme.spacing(2)} paddingY={theme.spacing(2)}>
             <FormikDropdown
-                label={UIStrings.Measurement}
+                label={`${UIStrings.Measurement}*`}
                 name="chartType"
                 options={[
                     {
@@ -18,9 +18,9 @@ export default function DialogBody(): JSX.Element {
                     },
                 ]}
             />
-            <FormikTextField label={UIStrings.Title} name="title" />
-            <FormikTextField label={UIStrings.XAxis} name="xAxis" />
-            <FormikTextField label={UIStrings.YAxis} name="yAxis" />
+            <FormikTextField label={`${UIStrings.Title}*`} name="title" />
+            <FormikTextField label={`${UIStrings.XAxis}*`} name="xAxis" />
+            <FormikTextField label={`${UIStrings.YAxis}*`} name="yAxis" />
         </Stack>
     );
 }

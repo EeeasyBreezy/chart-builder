@@ -8,6 +8,7 @@ export type FormikTextFieldBaseProps = TextFieldProps & {
 
 export default function FormikTextField({ name, commentary, onChange, ...props }: FormikTextFieldBaseProps) {
     const [field, meta, helpers] = useField(name);
+    console.log(meta.error);
 
     return (
         <FormControl fullWidth error={meta.error != null} variant="outlined">
