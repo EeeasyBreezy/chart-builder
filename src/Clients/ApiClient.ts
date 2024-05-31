@@ -1,3 +1,4 @@
+import { SeriesDTO } from "@/DTO/SeriesDTO";
 import axios from "axios";
 
 export default class ApiClient {
