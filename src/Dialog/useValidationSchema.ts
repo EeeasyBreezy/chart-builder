@@ -6,6 +6,7 @@ export default function useValidationSchema() {
     const titleMaxLength = 128;
 
     return yup.object().shape({
+        chartType: yup.string().required(YupCommonErrorMessages.Required),
         title: yup.string().required(YupCommonErrorMessages.Required).max(titleMaxLength, YupCommonErrorMessages.MaxLength(titleMaxLength)),
         xAxis: yup.string().required(YupCommonErrorMessages.Required).max(axisLabelMaxLength, YupCommonErrorMessages.MaxLength(axisLabelMaxLength)),
         yAxis: yup.string().required(YupCommonErrorMessages.Required).max(axisLabelMaxLength, YupCommonErrorMessages.MaxLength(axisLabelMaxLength)),

@@ -14,6 +14,7 @@ import DialogBody from './DialogContent';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { CloseOutlined } from '@mui/icons-material';
 import useValidationSchema from './useValidationSchema';
+import { DropdownOption, Option } from '@/Components/FormikDropDown';
 
 interface AddChartDialogProps {
     open: boolean;
@@ -21,12 +22,14 @@ interface AddChartDialogProps {
 }
 
 interface FormPlotValues {
+    chartType: DropdownOption<Option>;
     title: string;
     xAxis: string;
     yAxis: string;
 }
 
 const defaultFormValues: FormPlotValues = {
+    chartType: { id: '', value: { id: '', name: '', frequencies: [], units: [], aggregations: [] } },
     title: '',
     xAxis: '',
     yAxis: '',
