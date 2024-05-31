@@ -41,11 +41,7 @@ export default function LineChart(props: LineChartProps): JSX.Element {
                     x: {
                         type: 'time',
                         time: {
-                            parser: 'yyyy-mm-dd',
-                            unit: 'day',
-                            displayFormats: {
-                                day: 'yyyy-mm-dd',
-                            },
+                            parser: 'yyyy-MM-dd',
                         },
                         title: {
                             display: hideXLabel,
