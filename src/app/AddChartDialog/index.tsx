@@ -15,19 +15,20 @@ import { CloseOutlined } from '@mui/icons-material';
 import useValidationSchema from './useValidationSchema';
 import { DropdownOption, Option } from '@/Components/FormikDropDown';
 import { useChartContext } from '@/State/useChartContext';
+import { Chart, DefaultChart } from '@/Models/Chart';
 
 interface FormPlotValues {
     chartType: DropdownOption<Option>;
     title: string;
-    xAxis: string;
-    yAxis: string;
+    xLabel: string;
+    yLabel: string;
 }
 
 const defaultFormValues: FormPlotValues = {
     chartType: { id: '', value: { id: '', name: '', frequencies: [], units: [], aggregations: [] } },
     title: '',
-    xAxis: '',
-    yAxis: '',
+    xLabel: '',
+    yLabel: '',
 };
 
 export default function AddChartDialog(): JSX.Element {
@@ -35,7 +36,18 @@ export default function AddChartDialog(): JSX.Element {
     const { open, closeDialog } = useChartContext();
     const schema = useValidationSchema();
 
-    const submit = async (values: FormPlotValues, actions: FormikHelpers<FormPlotValues>) => {};
+    const submit = async (values: FormPlotValues, actions: FormikHelpers<FormPlotValues>) => {
+        const chart: Chart = {
+            ...DefaultChart,
+            id: values.chartType.id,
+            title: values.title,
+            xLabel: values.xLabel,
+            yLabel: values.yLabel,
+            frequencies: values.chartType.value.frequencies,
+            units: values.chartType.value.units,
+            aggregations: values.chartType.value.aggregations,
+        };
+    };
 
     return (
         <Dialog open={open} fullWidth maxWidth="sm" onClose={closeDialog}>
@@ -56,7 +68,7 @@ export default function AddChartDialog(): JSX.Element {
                                     top: theme.spacing(1),
                                     color: theme.palette.grey[500],
                                 }}
-                                onClick={onClose}
+                                onClick={closeDialog}
                             >
                                 <CloseOutlined />
                             </IconButton>

@@ -1,3 +1,4 @@
+import { Chart } from '@/Models/Chart';
 import React, { createContext, useContext } from 'react';
 
 // Define the shape of your chart context
@@ -6,7 +7,7 @@ export interface ChartContextType {
     openDialog: () => void;
     closeDialog: () => void;
 
-    addChart: (title: string, xAxis: string, yAxis: string) => Promise<void>;
+    addChart: (chart: Chart) => Promise<void>;
 }
 
 // Create the chart context

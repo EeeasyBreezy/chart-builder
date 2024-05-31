@@ -8,7 +8,7 @@ export default function useValidationSchema() {
     return yup.object().shape({
         chartType: yup.string().required(YupCommonErrorMessages.Required),
         title: yup.string().required(YupCommonErrorMessages.Required).max(titleMaxLength, YupCommonErrorMessages.MaxLength(titleMaxLength)),
-        xAxis: yup.string().required(YupCommonErrorMessages.Required).max(axisLabelMaxLength, YupCommonErrorMessages.MaxLength(axisLabelMaxLength)),
-        yAxis: yup.string().required(YupCommonErrorMessages.Required).max(axisLabelMaxLength, YupCommonErrorMessages.MaxLength(axisLabelMaxLength)),
+        xLabel: yup.string().required(YupCommonErrorMessages.Required).max(axisLabelMaxLength, YupCommonErrorMessages.MaxLength(axisLabelMaxLength)),
+        yLabel: yup.string().required(YupCommonErrorMessages.Required).max(axisLabelMaxLength, YupCommonErrorMessages.MaxLength(axisLabelMaxLength)),
     });
 }

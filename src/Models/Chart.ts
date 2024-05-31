@@ -8,6 +8,7 @@ export type Units = "raw" | "percentageChange" | "compoundedRateOfChange";
 
 export interface Chart {
     type: ChartType;
+    id: string;
     title: string;
     plotColor: string;
     xAxisColor: string;
@@ -26,6 +27,7 @@ export interface Chart {
 
 export const DefaultChart: Chart = {
     type: "line",
+    id: "",
     title: "",
     plotColor: "red",
     xAxisColor: "black",

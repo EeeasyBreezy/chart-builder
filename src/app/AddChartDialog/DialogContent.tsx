@@ -12,8 +12,8 @@ export default function DialogBody(): JSX.Element {
         <Stack direction="column" spacing={theme.spacing(2)} paddingY={theme.spacing(2)}>
             <FormikDropdown label={`${UIStrings.Measurement}*`} name="chartType" options={options} />
             <FormikTextField label={`${UIStrings.Title}*`} name="title" />
-            <FormikTextField label={`${UIStrings.XAxis}*`} name="xAxis" />
-            <FormikTextField label={`${UIStrings.YAxis}*`} name="yAxis" />
+            <FormikTextField label={`${UIStrings.XAxis}*`} name="xLabel" />
+            <FormikTextField label={`${UIStrings.YAxis}*`} name="yLabel" />
         </Stack>
     );
 }

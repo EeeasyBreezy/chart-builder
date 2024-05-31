@@ -1,4 +1,3 @@
-import BaseChartProps from "@/Charts/ChartProps";
 import { useState } from "react";
 import { ChartContextType } from "./useChartContext";
 import { Chart } from "@/Models/Chart";
@@ -15,19 +14,8 @@ export  default function useChartContextValue(): ChartContextType {
         setOpen(false);
     };
 
-    const addChart = async (title: string, xAxis: string, yAxis: string): Promise<void> => {
-        const response = await fetch('https://api.example.com/charts', {
-            method: 'POST',
-            body: JSON.stringify({ title, xAxis, yAxis }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (response.ok) {
-            const newChart = await response.json();
-            setCharts([...charts, newChart]);
-        }
+    const addChart = async (chart: Chart): Promise<void> => {
+        setCharts([chart, ...charts]);
     };
 
     return {
