@@ -16,6 +16,7 @@ import useValidationSchema from './useValidationSchema';
 import { DropdownOption, Option } from '@/Components/FormikDropDown';
 import { useChartContext } from '@/State/useChartContext';
 import { Chart, DefaultChart } from '@/Models/Chart';
+import { LoadingButton } from '@mui/lab';
 
 interface FormPlotValues {
     chartType: DropdownOption<Option>;
@@ -33,10 +34,12 @@ const defaultFormValues: FormPlotValues = {
 
 export default function AddChartDialog(): JSX.Element {
     const theme = useTheme();
-    const { open, closeDialog } = useChartContext();
+    const { open, closeDialog, addChart } = useChartContext();
     const schema = useValidationSchema();
 
     const submit = async (values: FormPlotValues, actions: FormikHelpers<FormPlotValues>) => {
+        actions.setSubmitting(true);
+
         const chart: Chart = {
             ...DefaultChart,
             id: values.chartType.id,
@@ -47,6 +50,11 @@ export default function AddChartDialog(): JSX.Element {
             units: values.chartType.value.units,
             aggregations: values.chartType.value.aggregations,
         };
+
+        await addChart(chart);
+
+        actions.setSubmitting(false);
+        closeDialog();
     };
 
     return (
@@ -57,7 +65,7 @@ export default function AddChartDialog(): JSX.Element {
                 validationSchema={schema}
                 isInitialValid={false}
             >
-                {({ isValid }) => (
+                {({ isValid, isSubmitting }) => (
                     <Form>
                         <DialogTitle>
                             <Typography>{UIStrings.AddChart}</Typography>
@@ -77,9 +85,9 @@ export default function AddChartDialog(): JSX.Element {
                             <DialogBody />
                         </DialogContent>
                         <DialogActions>
-                            <Button color="primary" size="large" disabled={!isValid}>
+                            <LoadingButton color="primary" size="large" disabled={!isValid} loading={isSubmitting}>
                                 {UIStrings.Save}
-                            </Button>
+                            </LoadingButton>
                         </DialogActions>
                     </Form>
                 )}
