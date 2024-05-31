@@ -17,7 +17,7 @@ export default class ApiClient {
         return series;
     }
 
-    async getObservations(id: string,  unit: Units, frequency: Frequencies, aggregate: Aggregations): Promise<Array<ObservationDTO>> {
+    async getObservations(id: string,  unit: Units, frequency: Frequencies, aggregate?: Aggregations): Promise<Array<ObservationDTO>> {
         const queryString = new ObservationsQueryStringBuilder  ()
             .withUnits(unit)
             .withFrequencies(frequency)

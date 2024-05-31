@@ -22,8 +22,10 @@ export default class ObservationsQueryStringBuilder {
         return this;
     }
 
-    withAggregate(aggregate: Aggregations): ObservationsQueryStringBuilder {
-        this.params.append('aggregate', aggregate);
+    withAggregate(aggregate?: Aggregations): ObservationsQueryStringBuilder {
+        if(aggregate != null) {
+            this.params.append('aggregate', aggregate);
+        }
         return this;
     }
 
