@@ -6,8 +6,8 @@ export default function useChartOptions(): Array<DropdownOption<Option>> {
         value: {
             id: "PSAVERT",
             name: "Personal savings rates",
-            frequencies: ["monthly", "quarterly", "semi-annualy", "annualy"],   
-            units: ["raw", "percentageChange", "compoundedRateOfChange"],
+            frequencies: ["m", "q", "sa", "a"],   
+            units: ["lin", "chg", "pch", "pca", "log"],
             aggregations: []
         }
    }]

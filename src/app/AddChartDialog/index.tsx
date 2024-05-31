@@ -37,9 +37,9 @@ export default function AddChartDialog(): JSX.Element {
             title: values.title,
             xLabel: values.xLabel,
             yLabel: values.yLabel,
-            frequencies: [],
-            units: [],
-            aggregations: [],
+            frequencies: values.chartType.value.frequencies,
+            units: values.chartType.value.units,
+            aggregations: values.chartType.value.aggregations,
         };
 
         await addChart(chart);
