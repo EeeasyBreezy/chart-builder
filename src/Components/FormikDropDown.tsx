@@ -1,6 +1,14 @@
-import useChartOptions from '@/Dialog/useChartOptions';
 import { Aggregations, Frequencies, Units } from '@/Models/Chart';
-import { TextFieldProps, FormControl, TextField, MenuItem, FormHelperText } from '@mui/material';
+import {
+    TextFieldProps,
+    FormControl,
+    TextField,
+    MenuItem,
+    FormHelperText,
+    InputLabel,
+    Select,
+    SelectChangeEvent,
+} from '@mui/material';
 import { useField } from 'formik';
 import React from 'react';
 
@@ -26,28 +34,21 @@ export type FormikDropdownProps = TextFieldProps & {
 export const FormikDropdown = ({ name, options, label, ...props }: FormikDropdownProps) => {
     const [field, meta, helpers] = useField(name);
 
+    const onChange = (event: SelectChangeEvent<{ value: unknown }>) => {
+        const selected = options.find((option) => option.id === event.target.value);
+        helpers.setValue(selected);
+    };
+
     return (
         <FormControl fullWidth error={meta.error != null} variant="outlined">
-            <TextField
-                {...props}
-                select
-                fullWidth
-                name={name}
-                value={field.value ?? ''}
-                error={meta.touched && meta.error != null}
-                onChange={(event: React.ChangeEvent<{ value: unknown }>) => {
-                    if (!meta.touched) {
-                        helpers.setTouched(true);
-                    }
-                    field.onChange(event);
-                }}
-            >
+            <InputLabel>{label}</InputLabel>
+            <Select onChange={onChange}>
                 {options.map((option) => (
                     <MenuItem value={option.id} id={`${option.id}`} key={option.id}>
                         {option.value.name}
                     </MenuItem>
                 ))}
-            </TextField>
+            </Select>
             {meta.touched && meta.error != null && <FormHelperText>{meta.error}</FormHelperText>}
         </FormControl>
     );

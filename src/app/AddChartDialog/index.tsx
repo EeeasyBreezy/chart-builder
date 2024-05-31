@@ -37,9 +37,9 @@ export default function AddChartDialog(): JSX.Element {
             title: values.title,
             xLabel: values.xLabel,
             yLabel: values.yLabel,
-            frequencies: values.chartType.value.frequencies,
-            units: values.chartType.value.units,
-            aggregations: values.chartType.value.aggregations,
+            frequencies: [],
+            units: [],
+            aggregations: [],
         };
 
         await addChart(chart);
@@ -50,12 +50,7 @@ export default function AddChartDialog(): JSX.Element {
 
     return (
         <Dialog open={open} fullWidth maxWidth="sm" onClose={closeDialog}>
-            <Formik
-                onSubmit={submit}
-                initialValues={defaultFormValues}
-                validationSchema={schema}
-                isInitialValid={false}
-            >
+            <Formik onSubmit={submit} initialValues={defaultFormValues} validationSchema={schema} validateOnMount>
                 {({ isValid, isSubmitting }) => (
                     <Form>
                         <DialogTitle>
