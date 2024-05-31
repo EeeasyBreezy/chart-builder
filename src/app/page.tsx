@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { Line } from 'react-chartjs-2';
 import 'chartjs-adapter-date-fns';
 import {Chart, registerables} from 'chart.js';
+import LineChart from "@/Components/LineChart";
+import Point from "@/Models/Point";
 Chart.register(...registerables);
 
 export default function Home(): JSX.Element
@@ -44,39 +46,11 @@ export default function Home(): JSX.Element
         <p>{series.observation_end}</p>
         <p>{series.frequency}</p>
 
-        <Line
-            data={{
-                labels: observations.map(o => o.date),
-                datasets: [
-                    {
-                        label: series.title,
-                        data: observations.map(o => o.value),
-                        borderColor: 'red',
-                        tension: 0.1,
-                    }
-                ]
-                
-            }} 
-            options={{
-                scales: {
-                    x: {
-                        type: 'time',
-                        time: {
-                            parser: 'yyyy-mm-dd',
-                            unit: 'day'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Date'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Value'
-                        }
-                    }
-                }
-            }}/>
+        <LineChart title={series.title} xLabel="Date" yLabel={series.title} points={observations.map(o => {
+            const date = new Date(o.date);
+            const formattedDate = `${date.getFullYear()}, ${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}`;
+            const p: Point = { x: formattedDate, y: o.value };
+            return p;
+        })}  />
     </Box>
 }
