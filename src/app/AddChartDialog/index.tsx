@@ -71,7 +71,14 @@ export default function AddChartDialog(): JSX.Element {
                             <DialogBody />
                         </DialogContent>
                         <DialogActions>
-                            <LoadingButton color="primary" size="large" disabled={!isValid} loading={isSubmitting}>
+                            <LoadingButton
+                                color="primary"
+                                size="large"
+                                disabled={!isValid}
+                                loading={isSubmitting}
+                                type="submit"
+                                variant="contained"
+                            >
                                 {UIStrings.Save}
                             </LoadingButton>
                         </DialogActions>
