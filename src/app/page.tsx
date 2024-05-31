@@ -6,6 +6,10 @@ import { Box } from "@mui/material";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useEffect, useState } from "react";
+import { Line } from 'react-chartjs-2';
+import 'chartjs-adapter-date-fns';
+import {Chart, registerables} from 'chart.js';
+Chart.register(...registerables);
 
 export default function Home(): JSX.Element
 {
@@ -40,13 +44,39 @@ export default function Home(): JSX.Element
         <p>{series.observation_end}</p>
         <p>{series.frequency}</p>
 
-        <h2>Observations</h2>
-        <ul>
-            {observations.map((observation) => (
-                <li key={observation.date}>
-                    {observation.date}: {observation.value}
-                </li>
-            ))}
-        </ul>
+        <Line
+            data={{
+                labels: observations.map(o => o.date),
+                datasets: [
+                    {
+                        label: series.title,
+                        data: observations.map(o => o.value),
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }
+                ]
+                
+            }} 
+            options={{
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            parser: 'yyyy-mm-dd',
+                            unit: 'day'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Value'
+                        }
+                    }
+                }
+            }}/>
     </Box>
 }
