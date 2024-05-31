@@ -51,7 +51,7 @@ export default function Home(): JSX.Element
                     {
                         label: series.title,
                         data: observations.map(o => o.value),
-                        borderColor: 'rgb(75, 192, 192)',
+                        borderColor: 'red',
                         tension: 0.1
                     }
                 ]
