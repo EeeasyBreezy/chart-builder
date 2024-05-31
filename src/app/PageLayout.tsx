@@ -1,4 +1,4 @@
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 import { useChartContext } from '@/State/useChartContext';
 import AddChartButton from '@/Components/AddChartButton';
 import AddChartDialog from './AddChartDialog';
