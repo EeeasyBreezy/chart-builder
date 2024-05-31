@@ -15,6 +15,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ message: "'id' parameter is invalid" });
     }
 
+    if(aggregate == null || aggregate === "") {
+        return res.status(400).json({ message: "'aggregate' parameter is invalid" });
+    }
+
+    if(frequency == null || frequency === "") {
+        return res.status(400).json({ message: "'frequency' parameter is invalid" });
+    }
+
+    if(unit == null || unit === "") {
+        return res.status(400).json({ message: "'unit' parameter is invalid" });
+    }
+
     const client = new SeriesFredClient(fredApikey);
     const series = await client.getObservations(id as string, unit as Units, frequency as Frequencies, aggregate as Aggregations);
 
