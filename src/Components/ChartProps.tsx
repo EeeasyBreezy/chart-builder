@@ -1,5 +1,5 @@
-import { ObservationDTO } from "@/DTO/ObservationDTO";
-import Point from "@/Models/Point";
+import { ObservationDTO } from '@/DTO/ObservationDTO';
+import Point from '@/Models/Point';
 
 export default interface BaseChartProps {
     title: string;
@@ -8,7 +8,7 @@ export default interface BaseChartProps {
     yAxisColor?: string;
     xLabel: string;
     yLabel: string;
-    showXLabel?: boolean;
-    showYLabel?: boolean;
+    hideXLabel?: boolean;
+    hideYLabel?: boolean;
     points: Array<Point>;
 }
