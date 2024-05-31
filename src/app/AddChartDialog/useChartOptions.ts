@@ -2,7 +2,7 @@ import { DropdownOption, Option } from "@/Components/FormikDropDown";
 
 export default function useChartOptions(): Array<DropdownOption<Option>> {
    return [{
-        id: "Personal savings rates",
+        id: "PSAVERT",
         value: {
             id: "PSAVERT",
             name: "Personal savings rates",
