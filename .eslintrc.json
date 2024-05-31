@@ -1,0 +1,38 @@
+{
+  "plugins": ["prettier", "@typescript-eslint"],
+  "extends": ["next", "airbnb-typescript", "airbnb/hooks", "prettier", "plugin:prettier/recommended"],
+
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      // "ecmaVersion": 2018,
+      "sourceType": "module",
+      "project": "./tsconfig.json"
+  },
+
+  "rules": {
+      // suppress errors for missing 'import React' in files. Nextjs does it automatically
+      "react/react-in-jsx-scope": "off",
+      "prettier/prettier": "warn",
+      "no-debugger": "warn",
+      "no-console": 2,
+      "linebreak-style": ["off", "windows"],
+      "react-hooks/rules-of-hooks": "warn", // Checks rules of Hooks
+      "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+      "no-else-return": "off",
+      "react/require-default-props": "off",
+      "@typescript-eslint/return-await": "off",
+      "class-methods-use-this": "off",
+      "react/jsx-props-no-spreading": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "no-continue": "off",
+      "no-prototype-builtins": "off",
+      "react/destructuring-assignment": "off",
+      "react/self-closing-comp": "warn",
+      "import/no-cycle": "off",
+      "no-plusplus": "off",
+      "jsx-a11y/img-redundant-alt": "off"
+  }
+}
