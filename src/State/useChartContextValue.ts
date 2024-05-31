@@ -1,10 +1,11 @@
 import BaseChartProps from "@/Charts/ChartProps";
 import { useState } from "react";
 import { ChartContextType } from "./useChartContext";
+import { Chart } from "@/Models/Chart";
 
 export  default function useChartContextValue(): ChartContextType {
     const [open, setOpen] = useState<boolean>(false);
-    const [charts, setCharts] = useState<Array<BaseChartProps>>([]);
+    const [charts, setCharts] = useState<Array<Chart>>([]);
 
     const openDialog = (): void => {
         setOpen(true);

@@ -2,6 +2,9 @@ import Point from "./Point";
 
 export type ChartType = "line" | "bar";
 export type LineStyle = "solid" | "dashed";
+export type Frequencies = "daily" | "weekly" | "monthly" | "quarterly" | "semi-annualy" | "annualy";
+export type Aggregations = "sum" | "average";
+export type Units = "raw" | "percentageChange" | "compoundedRateOfChange";
 
 export interface Chart {
     type: ChartType;
@@ -16,6 +19,9 @@ export interface Chart {
     points: Array<Point>;
     lineStyle: LineStyle;
     showPoints: boolean;
+    frequencies: Array<Frequencies>;
+    units: Array<Units>;
+    aggregations: Array<Aggregations>
 }
 
 export const DefaultChart: Chart = {
@@ -31,4 +37,7 @@ export const DefaultChart: Chart = {
     points: [],
     lineStyle: "solid",
     showPoints: true,
+    frequencies: [],
+    units: [],
+    aggregations: []
 };

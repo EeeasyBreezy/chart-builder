@@ -1,15 +1,25 @@
+import useChartOptions from '@/Dialog/useChartOptions';
+import { Aggregations, Frequencies, Units } from '@/Models/Chart';
 import { TextFieldProps, FormControl, TextField, MenuItem, FormHelperText } from '@mui/material';
 import { useField } from 'formik';
 import React from 'react';
 
-export interface DropdownOption {
+export interface DropdownOption<T> {
+    id: string;
+    value: T;
+}
+
+export interface Option {
     id: string;
     name: string;
+    frequencies: Array<Frequencies>;
+    units: Array<Units>;
+    aggregations: Array<Aggregations>;
 }
 
 export type FormikDropdownProps = TextFieldProps & {
     name: string;
-    options: DropdownOption[];
+    options: DropdownOption<Option>[];
     label?: string;
 };
 
@@ -34,7 +44,7 @@ export const FormikDropdown = ({ name, options, label, ...props }: FormikDropdow
             >
                 {options.map((option) => (
                     <MenuItem value={option.id} id={`${option.id}`} key={option.id}>
-                        {option.name}
+                        {option.value.name}
                     </MenuItem>
                 ))}
             </TextField>
