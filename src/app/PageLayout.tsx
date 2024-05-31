@@ -1,5 +1,4 @@
 import { Box, Stack, useTheme } from '@mui/material';
-import dateFns from 'chartjs-adapter-date-fns';
 import { useChartContext } from '@/State/useChartContext';
 import AddChartButton from '@/Components/AddChartButton';
 import AddChartDialog from './AddChartDialog';
