@@ -1,3 +1,4 @@
+import { Aggregations, Frequencies, Units } from '@/Models/Chart';
 import BaseFredClient from './BaseFredClient';
 
 class SeriesFredClient extends BaseFredClient {
@@ -9,8 +10,12 @@ class SeriesFredClient extends BaseFredClient {
         return response["seriess"][0]; 
     }
 
-    async getObservations(id: string): Promise<any> {
-        const response = await this.client.series.getObservationsForSeries(id);
+    async getObservations(id: string, unit: Units, frequency: Frequencies, aggregate: Aggregations): Promise<any> {
+        const response = await this.client.series.getObservationsForSeries(id, {
+            frequency: frequency,
+            units: unit,
+            aggregation_method: aggregate,
+        });
         return response.observations;
     }
 }

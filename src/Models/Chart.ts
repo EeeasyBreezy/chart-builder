@@ -2,9 +2,9 @@ import Point from "./Point";
 
 export type ChartType = "line" | "bar";
 export type LineStyle = "solid" | "dashed";
-export type Frequencies = "daily" | "weekly" | "monthly" | "quarterly" | "semi-annualy" | "annualy";
-export type Aggregations = "sum" | "average";
-export type Units = "raw" | "percentageChange" | "compoundedRateOfChange";
+export type Frequencies = "d" | "w" | "m" | "q" | "sa" | "a";
+export type Aggregations = "sum" | "avg" | "eop";
+export type Units = "lin" | "chg" | "pch" | "pca" | "log";
 
 export interface Chart {
     type: ChartType;
