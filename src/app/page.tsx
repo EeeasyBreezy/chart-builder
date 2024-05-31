@@ -9,8 +9,9 @@ import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-adapter-date-fns';
 import { Chart, registerables } from 'chart.js';
-import LineChart from '@/Components/LineChart';
 import Point from '@/Models/Point';
+import AddChartDialog from '@/Dialog/AddChartDialog';
+import LineChart from '@/Charts/LineChart';
 Chart.register(...registerables);
 
 export default function Home(): JSX.Element {
@@ -41,6 +42,7 @@ export default function Home(): JSX.Element {
 
     return (
         <Box>
+            <AddChartDialog open />
             <h1>{series.title}</h1>
             <p>{series.observation_start}</p>
             <p>{series.observation_end}</p>
