@@ -5,7 +5,6 @@ import {
     DialogActions,
     DialogContent,
     DialogTitle,
-    Stack,
     Typography,
     useTheme,
     IconButton,
@@ -40,10 +39,7 @@ export default function AddChartDialog({ open, onClose }: AddChartDialogProps): 
 
     const schema = useValidationSchema();
 
-    const submit = async (values: FormPlotValues, actions: FormikHelpers<FormPlotValues>) => {
-        actions.setSubmitting(true);
-        const errors = await actions.validateForm(values);
-    };
+    const submit = async (values: FormPlotValues, actions: FormikHelpers<FormPlotValues>) => {};
 
     return (
         <Dialog open={open} fullWidth maxWidth="sm" onClose={onClose}>
