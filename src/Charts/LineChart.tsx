@@ -44,7 +44,7 @@ export default function LineChart(props: LineChartProps): JSX.Element {
                             parser: 'yyyy-MM-dd',
                         },
                         title: {
-                            display: hideXLabel,
+                            display: !hideXLabel,
                             text: xLabel,
                         },
                         ticks: {
@@ -53,7 +53,7 @@ export default function LineChart(props: LineChartProps): JSX.Element {
                     },
                     y: {
                         title: {
-                            display: hideYLabel,
+                            display: !hideYLabel,
                             text: yLabel,
                         },
                         ticks: {
