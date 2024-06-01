@@ -23,7 +23,7 @@ export default function BarChart(props: BarChartProps): JSX.Element {
                         label: title,
                         animation: false,
                         data: points.map((p) => p.y),
-                        borderColor: plotColor || 'red',
+                        backgroundColor: plotColor || 'red',
                     },
                 ],
             }}
