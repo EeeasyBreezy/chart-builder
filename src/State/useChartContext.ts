@@ -11,6 +11,7 @@ export interface ChartContextType {
 
     addChart: (chart: Chart) => Promise<void>;
     selectChart: (id: string) => void;
+    updateChart: (chart: Chart) => void;
 }
 
 // Create the chart context

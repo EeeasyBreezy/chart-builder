@@ -31,6 +31,16 @@ export  default function useChartContextValue(): ChartContextType {
         }
     }
 
+    const updateChart = (chart: Chart): void => {
+        const index = charts.findIndex((c) => c.id === chart.id);
+        if (index !== -1) {
+            const nextCharts = [...charts];
+            nextCharts[index] = chart;
+            setCharts(nextCharts);
+            setSelectedChart(chart);
+        }
+    }
+
     return {
         open,
         charts,
@@ -38,6 +48,7 @@ export  default function useChartContextValue(): ChartContextType {
         openDialog,
         closeDialog,
         addChart,
-        selectChart
+        selectChart,
+        updateChart
     };
 }
