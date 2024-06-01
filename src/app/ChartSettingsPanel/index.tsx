@@ -1,4 +1,5 @@
-import { Box, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
+import EditLabelsForm from './EditLabelsForm';
 
 export default function ChartSettingsPanel(): JSX.Element {
     return (
@@ -9,7 +10,7 @@ export default function ChartSettingsPanel(): JSX.Element {
                 elevation: 1,
             }}
         >
-            Chart settings panel
+            <EditLabelsForm />
         </Paper>
     );
 }

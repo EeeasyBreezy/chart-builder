@@ -5,4 +5,5 @@ export default class UIStrings {
     static readonly YAxis = 'Y Axis';
     static readonly Title = 'Title';
     static readonly Save = 'Save';
+    static readonly ApplyChanges = 'Apply Changes';
 }
