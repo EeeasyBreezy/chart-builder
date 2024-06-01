@@ -34,6 +34,7 @@ export default function EditLabelsForm(): JSX.Element {
             }}
             onSubmit={submit}
             enableReinitialize
+            validationSchema={schema}
         >
             <Form>
                 <Stack direction="column" spacing={theme.spacing(2)}>
