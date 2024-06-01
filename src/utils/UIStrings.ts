@@ -36,4 +36,9 @@ export default class UIStrings {
     static readonly PercentangeChange = "Percent Change"
     static readonly PercentCompoundedRateOfChange = "Compounded Annual Rate of Change";
     static readonly NaturalLog = "Natural Log";
+
+    static readonly DataManipulation = "Data Manipulation";
+    static readonly Units = "Units";
+    static readonly Frequency = "Frequency";
+    static readonly Aggregate = "Aggregate";
 }

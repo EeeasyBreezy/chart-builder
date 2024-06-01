@@ -33,5 +33,6 @@ export function unitsToUIStrings(unit: Units) {
         case "lin": return UIStrings.Linear;
         case "chg": return UIStrings.Change;
         case "log": return UIStrings.NaturalLog;
+        default: return unit;
     }
 }

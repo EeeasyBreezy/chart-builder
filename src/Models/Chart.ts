@@ -24,6 +24,9 @@ export interface Chart {
     frequencies: Array<Frequencies>;
     units: Array<Units>;
     aggregations: Array<Aggregations>;
+    currentFrequency: Frequencies;
+    currentUnit: Units;
+    currentAggregation?: Aggregations;
 }
 
 export const DefaultChart: Chart = {
@@ -43,5 +46,7 @@ export const DefaultChart: Chart = {
     hidePoints: true,
     frequencies: [],
     units: [],
-    aggregations: []
+    aggregations: [],
+    currentFrequency: "d",
+    currentUnit: "lin",
 };

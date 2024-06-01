@@ -4,6 +4,7 @@ import { useChartContext } from '@/State/useChartContext';
 import UIStrings from '@/utils/UIStrings';
 import EditColors from './EditColors';
 import VisibilityManagement from './VisibilityManagement';
+import DataManipulationPanel from './DataManipulationPanel';
 
 export default function ChartSettingsPanel(): JSX.Element {
     const { selectedChart } = useChartContext();
@@ -23,6 +24,7 @@ export default function ChartSettingsPanel(): JSX.Element {
                 <EditLabelsForm />
                 <EditColors />
                 <VisibilityManagement />
+                <DataManipulationPanel />
             </Stack>
         </Paper>
     );
