@@ -19,6 +19,8 @@ export default function ChartSettingsPanel(): JSX.Element {
                 padding: theme.spacing(2),
                 pointerEvents: selectedChart.chartLoading ? 'none' : 'auto',
                 opacity: selectedChart.chartLoading ? 0.5 : 1,
+                position: 'sticky',
+                top: 0,
             }}
         >
             <Stack direction="column" spacing={theme.spacing(2)}>
