@@ -10,5 +10,15 @@ export default function useChartOptions(): Array<DropdownOption<Option>> {
             units: ["lin", "chg", "pch", "pca", "log"],
             aggregations: []
         }
-   }]
+    },
+    {
+        id: "SP500",
+        value: {
+            id: "SP500",
+            name: "S&P 500",
+            frequencies: ["d", "m", "q", "sa", "a"],   
+            units: ["lin", "chg", "pch", "pca", "log"],
+            aggregations: []
+        }
+    }]
 }
