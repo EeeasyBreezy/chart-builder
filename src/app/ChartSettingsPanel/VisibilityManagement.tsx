@@ -12,7 +12,7 @@ export default function VisibilityManagement(): JSX.Element {
             <Typography variant="body1">{UIStrings.LabelsVisibility}</Typography>
             <Stack direction="row" spacing={theme.spacing(0.5)}>
                 {items.map((item) => (
-                    <LabeledCheckbox label={item.label} onChange={item.onChange} />
+                    <LabeledCheckbox label={item.label} onChange={item.onChange} checked={item.checked} />
                 ))}
             </Stack>
         </Stack>
