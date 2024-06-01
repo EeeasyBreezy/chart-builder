@@ -8,6 +8,7 @@ import { DropdownOption, Option } from '@/Components/FormikDropDown';
 import { useChartContext } from '@/State/useChartContext';
 import { Chart, DefaultChart } from '@/Models/Chart';
 import { LoadingButton } from '@mui/lab';
+import { v4 as uuid4 } from 'uuid';
 
 interface FormPlotValues {
     chartType: DropdownOption<Option>;
@@ -33,7 +34,8 @@ export default function AddChartDialog(): JSX.Element {
 
         const chart: Chart = {
             ...DefaultChart,
-            id: values.chartType.id,
+            id: uuid4(),
+            chartTypeId: values.chartType.id,
             title: values.title,
             xLabel: values.xLabel,
             yLabel: values.yLabel,
