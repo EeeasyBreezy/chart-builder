@@ -5,6 +5,7 @@ import { MenuItem } from '@mui/material';
 
 interface DataManipulationUIItem {
     label: string;
+    selectedValue?: string;
     options: Array<JSX.Element>;
 }
 
@@ -14,10 +15,11 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
     return [
         {
             label: UIStrings.Units,
+            selectedValue: selectedChart.currentUnit,
             options: [
                 ...selectedChart.units.map((u) => {
                     return (
-                        <MenuItem id={u} key={u} selected={selectedChart.currentUnit === u}>
+                        <MenuItem id={u} key={u} value={u}>
                             {unitsToUIStrings(u)}
                         </MenuItem>
                     );
@@ -26,10 +28,11 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
         },
         {
             label: UIStrings.Frequency,
+            selectedValue: selectedChart.currentFrequency,
             options: [
                 ...selectedChart.frequencies.map((u) => {
                     return (
-                        <MenuItem id={u} key={u} selected={selectedChart.currentFrequency === u}>
+                        <MenuItem id={u} key={u} value={u}>
                             {frequencytoUIStrings(u)}
                         </MenuItem>
                     );
@@ -38,10 +41,11 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
         },
         {
             label: UIStrings.Aggregate,
+            selectedValue: selectedChart.currentAggregation,
             options: [
                 ...selectedChart.aggregations.map((u) => {
                     return (
-                        <MenuItem id={u} key={u} selected={selectedChart.currentAggregation === u}>
+                        <MenuItem id={u} key={u} value={u}>
                             {aggregationsToUIStrings(u)}
                         </MenuItem>
                     );

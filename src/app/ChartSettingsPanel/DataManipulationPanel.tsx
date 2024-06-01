@@ -10,11 +10,14 @@ export default function DataManipulationPanel(): JSX.Element {
     return (
         <Stack direction="column" spacing={theme.spacing(2)}>
             <Typography variant="body1">{UIStrings.DataManipulation}</Typography>
-            {items.map((item) => (
-                <Select label={item.label} key={item.label}>
-                    {...item.options}
-                </Select>
-            ))}
+            {items.map((item) => {
+                console.log(item);
+                return (
+                    <Select label={item.label} key={item.label} value={item.selectedValue}>
+                        {...item.options}
+                    </Select>
+                );
+            })}
         </Stack>
     );
 }

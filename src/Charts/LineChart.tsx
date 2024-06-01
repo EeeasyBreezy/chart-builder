@@ -54,7 +54,7 @@ export default function LineChart(props: LineChartProps): JSX.Element {
                             animation: false,
                             data: points.map((p) => p.y),
                             borderColor: plotColor || 'red',
-                            pointRadius: hidePoints ? 0 : 3,
+                            pointRadius: !hidePoints ? 3 : 0,
                             borderDash: lineStyle === 'dashed' ? [5, 5] : [],
                         },
                     ],
