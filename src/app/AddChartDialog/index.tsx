@@ -3,7 +3,7 @@ import { Dialog, DialogActions, DialogContent, DialogTitle, Typography, useTheme
 import DialogBody from './DialogContent';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { CloseOutlined } from '@mui/icons-material';
-import useChartValidationSchema from '../../Validation/useChartValidationSchema';
+import useChartValidationSchema from '../../FormValidation/useChartValidationSchema';
 import { DropdownOption, Option } from '@/Components/FormikDropDown';
 import { useChartContext } from '@/State/useChartContext';
 import { Chart, DefaultChart } from '@/Models/Chart';
