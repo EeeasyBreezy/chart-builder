@@ -10,7 +10,7 @@ describe('frequencytoUIStrings', () => {
         ['q', UIStrings.Quaterly],
         ['sa', UIStrings.SemiAnnualy],
         ['a', UIStrings.Annualy],
-    ])('returns correct string for frequency %s', (frequency: string, expected: string) => {
+    ])('returns correct string for frequency %s', (frequency, expected) => {
         const result = frequencytoUIStrings(frequency as Frequencies);
         expect(result).toEqual(expected);
     });
