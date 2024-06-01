@@ -1,6 +1,5 @@
-import { useChartContext } from '@/State/useChartContext';
 import UIStrings from '@/utils/UIStrings';
-import { InputLabel, MenuItem, Select, Stack, Typography, useTheme } from '@mui/material';
+import { InputLabel, Select, Stack, Typography, useTheme } from '@mui/material';
 import useDataManipulationUI from './useDataManipulationUI';
 
 export default function DataManipulationPanel(): JSX.Element {
@@ -15,7 +14,7 @@ export default function DataManipulationPanel(): JSX.Element {
                     return (
                         <>
                             <InputLabel>{item.label}</InputLabel>
-                            <Select key={item.label} value={item.selectedValue}>
+                            <Select key={item.label} value={item.selectedValue} onChange={item.onChange}>
                                 {...item.options}
                             </Select>
                         </>

@@ -1,16 +1,18 @@
+import { Aggregations, Chart, Frequencies, Units } from '@/Models/Chart';
 import { useChartContext } from '@/State/useChartContext';
 import UIStrings from '@/utils/UIStrings';
 import { aggregationsToUIStrings, frequencytoUIStrings, unitsToUIStrings } from '@/utils/UIStringsMapping';
-import { MenuItem } from '@mui/material';
+import { MenuItem, SelectChangeEvent } from '@mui/material';
 
 interface DataManipulationUIItem {
     label: string;
     selectedValue?: string;
     options: Array<JSX.Element>;
+    onChange: (event: SelectChangeEvent<string>, child: React.ReactNode) => void;
 }
 
 export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
-    const { selectedChart } = useChartContext();
+    const { selectedChart, updateChart } = useChartContext();
 
     return [
         {
@@ -25,6 +27,13 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
                     );
                 }),
             ],
+            onChange: (event, child) => {
+                const chart: Chart = {
+                    ...selectedChart,
+                    currentUnit: event.target.value as Units,
+                };
+                updateChart(chart);
+            },
         },
         {
             label: UIStrings.Frequency,
@@ -38,6 +47,13 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
                     );
                 }),
             ],
+            onChange: (event, child) => {
+                const chart: Chart = {
+                    ...selectedChart,
+                    currentFrequency: event.target.value as Frequencies,
+                };
+                updateChart(chart);
+            },
         },
         {
             label: UIStrings.Aggregate,
@@ -51,6 +67,13 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
                     );
                 }),
             ],
+            onChange: (event, child) => {
+                const chart: Chart = {
+                    ...selectedChart,
+                    currentAggregation: event.target.value as Aggregations,
+                };
+                updateChart(chart);
+            },
         },
     ];
 }
