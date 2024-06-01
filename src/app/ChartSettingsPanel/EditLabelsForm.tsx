@@ -1,19 +1,29 @@
 import ChartLabelsEdit from '@/Components/ChartLabelsEdit';
+import { useChartContext } from '@/State/useChartContext';
 import UIStrings from '@/utils/UIStrings';
-import { Button } from '@mui/material';
-import { Form, Formik, FormikHelpers, FormikValues } from 'formik';
+import { Button, Stack, useTheme } from '@mui/material';
+import { Form, Formik } from 'formik';
 
 export default function EditLabelsForm(): JSX.Element {
+    const { selectedChart } = useChartContext();
+    const theme = useTheme();
+
     return (
         <Formik
-            initialValues={undefined}
-            onSubmit={function (values: FormikValues, formikHelpers: FormikHelpers<FormikValues>): void | Promise<any> {
-                throw new Error('Function not implemented.');
+            initialValues={{
+                title: selectedChart?.title || '',
+                xLabel: selectedChart?.xLabel || '',
+                yLabel: selectedChart?.yLabel || '',
             }}
+            onSubmit={() => {}}
         >
             <Form>
-                <ChartLabelsEdit />
-                <Button type="submit">{UIStrings.ApplyChanges}</Button>
+                <Stack direction="column" spacing={theme.spacing(2)}>
+                    <ChartLabelsEdit />
+                    <Button type="submit" variant="contained" color="primary">
+                        {UIStrings.ApplyChanges}
+                    </Button>
+                </Stack>
             </Form>
         </Formik>
     );

@@ -8,6 +8,7 @@ export default function ChartSettingsPanel(): JSX.Element {
                 minWidth: '30%',
                 alignSelf: 'flex-end',
                 elevation: 1,
+                padding: 2,
             }}
         >
             <EditLabelsForm />

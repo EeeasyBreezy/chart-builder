@@ -6,6 +6,7 @@ import { useApiClient } from "@/Clients/Hooks";
 export  default function useChartContextValue(): ChartContextType {
     const [open, setOpen] = useState<boolean>(false);
     const [charts, setCharts] = useState<Array<Chart>>([]);
+    const [selectedChart, setSelectedChart] = useState<Chart | null>(null);
     const client = useApiClient();
 
     const openDialog = (): void => {
@@ -25,6 +26,7 @@ export  default function useChartContextValue(): ChartContextType {
     return {
         open,
         charts,
+        selectedChart,
         openDialog,
         closeDialog,
         addChart,
