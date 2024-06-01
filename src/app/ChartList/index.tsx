@@ -3,6 +3,7 @@ import { useChartContext } from '@/State/useChartContext';
 import { Stack, useTheme } from '@mui/material';
 import useMapping from './useMapping';
 import LoadingLineChart from '@/Charts/LoadingLineChart';
+import LoadingBarChart from '@/Charts/LoadingBarChart';
 
 export default function ChartList(): JSX.Element {
     const { charts, selectedChart, selectChart } = useChartContext();
@@ -19,6 +20,16 @@ export default function ChartList(): JSX.Element {
                 if (chart.type == 'line') {
                     return (
                         <LoadingLineChart
+                            key={chart.id}
+                            {...convertToProps(chart)}
+                            selected={chart.id === selectedChart?.id}
+                            onClick={onClick}
+                        />
+                    );
+                }
+                if (chart.type == 'bar') {
+                    return (
+                        <LoadingBarChart
                             key={chart.id}
                             {...convertToProps(chart)}
                             selected={chart.id === selectedChart?.id}
