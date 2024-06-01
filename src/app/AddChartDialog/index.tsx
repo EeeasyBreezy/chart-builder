@@ -3,7 +3,7 @@ import { Dialog, DialogActions, DialogContent, DialogTitle, Typography, useTheme
 import DialogBody from './DialogContent';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { CloseOutlined } from '@mui/icons-material';
-import useValidationSchema from './useValidationSchema';
+import useChartValidationSchema from '../../Validation/useChartValidationSchema';
 import { DropdownOption, Option } from '@/Components/FormikDropDown';
 import { useChartContext } from '@/State/useChartContext';
 import { Chart, DefaultChart } from '@/Models/Chart';
@@ -26,7 +26,7 @@ const defaultFormValues: FormPlotValues = {
 export default function AddChartDialog(): JSX.Element {
     const theme = useTheme();
     const { open, closeDialog, addChart } = useChartContext();
-    const schema = useValidationSchema();
+    const schema = useChartValidationSchema();
 
     const submit = async (values: FormPlotValues, actions: FormikHelpers<FormPlotValues>) => {
         actions.setSubmitting(true);

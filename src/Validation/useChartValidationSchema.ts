@@ -1,7 +1,7 @@
 import YupCommonErrorMessages from '@/utils/YupErrorMessages';
 import * as yup from 'yup';
 
-export default function useValidationSchema() {
+export default function useChartValidationSchema() {
     const axisLabelMaxLength = 64;
     const titleMaxLength = 128;
 
