@@ -49,11 +49,7 @@ export  default function useChartContextValue(): ChartContextType {
         updateChart(nextChart);
         const response = await client.getObservations(chart.chartTypeId, chart.currentUnit, chart.currentFrequency, chart.currentAggregation);
         nextChart = {...chart, chartLoading: false, points: response.map((o) => ({ x: o.date, y: o.value }))};
-        // Delay the update of the chart
-        setTimeout(() => {
-            updateChart(nextChart);
-        }, 0);
-
+        updateChart(nextChart);
     }
 
     return {
