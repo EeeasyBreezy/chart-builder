@@ -21,6 +21,8 @@ export default function ChartContainer({
                 minHeight: theme.spacing(47),
                 justifyContent: 'center',
             }}
-        ></Box>
+        >
+            {children}
+        </Box>
     );
 }
