@@ -47,6 +47,6 @@ export const DefaultChart: Chart = {
     frequencies: [],
     units: [],
     aggregations: [],
-    currentFrequency: "d",
+    currentFrequency: "a",
     currentUnit: "lin",
 };
