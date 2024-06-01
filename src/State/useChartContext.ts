@@ -5,7 +5,7 @@ import React, { createContext, useContext } from 'react';
 export interface ChartContextType {
     open: boolean;
     charts: Array<Chart>;
-    selectedChart: Chart | null;
+    selectedChart: Chart;
     openDialog: () => void;
     closeDialog: () => void;
 

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { ChartContextType } from "./useChartContext";
-import { Chart } from "@/Models/Chart";
+import { Chart, DefaultChart } from "@/Models/Chart";
 import { useApiClient } from "@/Clients/Hooks";
 
 export  default function useChartContextValue(): ChartContextType {
     const [open, setOpen] = useState<boolean>(false);
     const [charts, setCharts] = useState<Array<Chart>>([]);
-    const [selectedChart, setSelectedChart] = useState<Chart | null>(null);
+    const [selectedChart, setSelectedChart] = useState<Chart>(DefaultChart);
     const client = useApiClient();
 
     const openDialog = (): void => {
