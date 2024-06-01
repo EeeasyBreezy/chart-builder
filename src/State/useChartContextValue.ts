@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ChartContextType } from "./useChartContext";
 import { Chart, DefaultChart } from "@/Models/Chart";
 import { useApiClient } from "@/Clients/Hooks";
-import { set } from "date-fns";
 
 export  default function useChartContextValue(): ChartContextType {
     const [open, setOpen] = useState<boolean>(false);
