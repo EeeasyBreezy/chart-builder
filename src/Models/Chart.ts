@@ -20,7 +20,7 @@ export interface Chart {
     hideYLabel: boolean;
     points: Array<Point>;
     lineStyle: LineStyle;
-    showPoints: boolean;
+    hidePoints: boolean;
     frequencies: Array<Frequencies>;
     units: Array<Units>;
     aggregations: Array<Aggregations>
@@ -40,7 +40,7 @@ export const DefaultChart: Chart = {
     hideYLabel: false,
     points: [],
     lineStyle: "solid",
-    showPoints: true,
+    hidePoints: true,
     frequencies: [],
     units: [],
     aggregations: []

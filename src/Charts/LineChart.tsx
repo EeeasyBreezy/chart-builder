@@ -4,14 +4,14 @@ import { Box, useTheme } from '@mui/material';
 
 export interface LineChartProps extends BaseChartProps {
     lineStyle?: string;
-    showPoints?: boolean;
+    hidePoints?: boolean;
 }
 
 export default function LineChart(props: LineChartProps): JSX.Element {
     const {
         id,
         lineStyle,
-        showPoints,
+        hidePoints,
         points,
         title,
         plotColor,
@@ -54,7 +54,7 @@ export default function LineChart(props: LineChartProps): JSX.Element {
                             animation: false,
                             data: points.map((p) => p.y),
                             borderColor: plotColor || 'red',
-                            pointRadius: showPoints ? 3 : 0,
+                            pointRadius: hidePoints ? 0 : 3,
                             borderDash: lineStyle === 'dashed' ? [5, 5] : [],
                         },
                     ],

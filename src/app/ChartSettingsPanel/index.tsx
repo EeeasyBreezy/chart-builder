@@ -3,6 +3,7 @@ import EditLabelsForm from './EditLabelsForm';
 import { useChartContext } from '@/State/useChartContext';
 import UIStrings from '@/utils/UIStrings';
 import EditColors from './EditColors';
+import VisibilityManagement from './VisibilityManagement';
 
 export default function ChartSettingsPanel(): JSX.Element {
     const { selectedChart } = useChartContext();
@@ -21,6 +22,7 @@ export default function ChartSettingsPanel(): JSX.Element {
                 <Typography variant="h6">{`${UIStrings.ChartOptions}: ${selectedChart?.title || ''}`}</Typography>
                 <EditLabelsForm />
                 <EditColors />
+                <VisibilityManagement />
             </Stack>
         </Paper>
     );

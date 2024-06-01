@@ -12,4 +12,8 @@ export default class UIStrings {
     static readonly XAxisColor = 'X Axis Color';
     static readonly YAxisColor = 'Y Axis Color';
     static readonly PlotColor = 'Plot Color';
+    static readonly LabelsVisibility = "Labels Visibility";
+    static readonly HideXLabel = "Hide X Label";
+    static readonly HideYLabel = "Hide Y Label";
+    static readonly HidePoints = "Hide Points";
 }

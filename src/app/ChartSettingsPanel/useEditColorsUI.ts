@@ -10,7 +10,7 @@ interface UseEditColors {
     onChange: (color: ColorResult, event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function useEditColors(): Array<UseEditColors> {
+export default function useEditColorsUI(): Array<UseEditColors> {
     const { selectedChart, updateChart } = useChartContext();
     const { plotColor, xAxisColor, yAxisColor } = selectedChart!;
 
