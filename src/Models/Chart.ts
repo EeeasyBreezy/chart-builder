@@ -23,7 +23,7 @@ export interface Chart {
     hidePoints: boolean;
     frequencies: Array<Frequencies>;
     units: Array<Units>;
-    aggregations: Array<Aggregations>
+    aggregations: Array<Aggregations>;
 }
 
 export const DefaultChart: Chart = {

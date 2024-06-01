@@ -16,4 +16,24 @@ export default class UIStrings {
     static readonly HideXLabel = "Hide X Label";
     static readonly HideYLabel = "Hide Y Label";
     static readonly HidePoints = "Hide Points";
+
+    static readonly Daily = "Daily";
+    static readonly Weekly = "Weekly";
+    static readonly Monthly = "Monthly";
+    static readonly Quaterly = "Quaterly";
+    static readonly SemiAnnualy = "Semi-annually";
+    static readonly Annualy = "Annualy";
+
+    static readonly Solid = "Solid";
+    static readonly Dashed = "Dashed";
+
+    static readonly Average = "Average";
+    static readonly Sum = "Sum";
+    static readonly EndOfPeriod = "End of period";
+
+    static readonly Linear = "Linear (no transformation)";
+    static readonly Change = "Change";
+    static readonly PercentangeChange = "Percent Change"
+    static readonly PercentCompoundedRateOfChange = "Compounded Annual Rate of Change";
+    static readonly NaturalLog = "Natural Log";
 }
