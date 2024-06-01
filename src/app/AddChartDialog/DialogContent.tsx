@@ -1,5 +1,4 @@
 import { FormikDropdown } from '@/Components/FormikDropDown';
-import FormikTextField from '@/Components/FormikTextField';
 import UIStrings from '@/utils/UIStrings';
 import { Stack, useTheme } from '@mui/material';
 import useChartOptions from './useChartOptions';
