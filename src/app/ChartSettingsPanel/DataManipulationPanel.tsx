@@ -5,7 +5,6 @@ import useDataManipulationUI from './useDataManipulationUI';
 
 export default function DataManipulationPanel(): JSX.Element {
     const theme = useTheme();
-    const { selectedChart } = useChartContext();
     const items = useDataManipulationUI();
 
     return (
@@ -13,11 +12,7 @@ export default function DataManipulationPanel(): JSX.Element {
             <Typography variant="body1">{UIStrings.DataManipulation}</Typography>
             {items.map((item) => (
                 <Select label={item.label} key={item.label}>
-                    {item.options.map((option) => (
-                        <MenuItem value={option.id} key={option.id}>
-                            {option.value.name}
-                        </MenuItem>
-                    ))}
+                    {...item.options}
                 </Select>
             ))}
         </Stack>
