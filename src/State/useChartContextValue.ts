@@ -18,7 +18,7 @@ export  default function useChartContextValue(): ChartContextType {
     };
 
     const addChart = async (chart: Chart): Promise<void> => {
-        const response = await client.getObservations(chart.chartTypeId, chart.units[0], chart.frequencies[0]);
+        const response = await client.getObservations(chart.chartTypeId, chart.currentUnit, chart.currentFrequency);
         const nextChart: Chart = {...chart, points: response.map((o) => ({ x: o.date, y: o.value }))};
         setCharts([nextChart, ...charts]);
     };
