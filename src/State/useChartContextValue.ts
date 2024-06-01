@@ -25,7 +25,6 @@ export  default function useChartContextValue(): ChartContextType {
 
     const selectChart = (id: string): void => {
         const chart = charts.find((c) => c.id === id);
-        console.log(chart);
         if (chart) {
             setSelectedChart(chart);
         }

@@ -1,17 +1,18 @@
 import { Stack, Typography } from '@mui/material';
-import { SketchPicker } from 'react-color';
+import React from 'react';
+import { ColorResult, HuePicker, SketchPicker } from 'react-color';
 
 interface ColorPickerProps {
     label: string;
     color: string;
-    onChange: (color: string) => void;
+    onChange: (color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function ColorPicker({ label, color, onChange }: ColorPickerProps): JSX.Element {
     return (
         <Stack>
             <Typography variant="body1">{label}</Typography>
-            <SketchPicker color={color} onChange={(color) => onChange(color.hex)} />
+            <HuePicker color={color} onChange={onChange} />
         </Stack>
     );
 }
