@@ -1,4 +1,4 @@
-import { Box, CircularProgress, useTheme } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import LineChart, { LineChartProps } from './LineChart';
 import ChartContainer from './ChartContainer';
 
