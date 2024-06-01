@@ -6,4 +6,5 @@ export default class UIStrings {
     static readonly Title = 'Title';
     static readonly Save = 'Save';
     static readonly ApplyChanges = 'Apply Changes';
+    static readonly ChartOptions = 'Chart Options';
 }

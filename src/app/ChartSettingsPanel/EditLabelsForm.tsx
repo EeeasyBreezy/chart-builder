@@ -20,7 +20,14 @@ export default function EditLabelsForm(): JSX.Element {
             <Form>
                 <Stack direction="column" spacing={theme.spacing(2)}>
                     <ChartLabelsEdit />
-                    <Button type="submit" variant="contained" color="primary">
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        sx={{
+                            alignSelf: 'flex-end',
+                        }}
+                    >
                         {UIStrings.ApplyChanges}
                     </Button>
                 </Stack>
