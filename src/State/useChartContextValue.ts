@@ -1,27 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChartContextType } from "./useChartContext";
 import { Chart, DefaultChart } from "@/Models/Chart";
 import { useApiClient } from "@/Clients/Hooks";
+import PQueue from "p-queue";
 
 export  default function useChartContextValue(): ChartContextType {
     const [open, setOpen] = useState<boolean>(false);
     const [charts, setCharts] = useState<Array<Chart>>([]);
     const [selectedChart, setSelectedChart] = useState<Chart>(DefaultChart);
     const client = useApiClient();
-
-    const { currentUnit, currentFrequency, currentAggregation } = selectedChart;
-
-    useEffect(() => {
-        const fetchData = async (): Promise<void> => {
-            let nextChart = {...selectedChart, chartLoading: true};
-            updateChart(nextChart);
-            const response = await client.getObservations(selectedChart.chartTypeId, currentUnit, currentFrequency, currentAggregation);
-            nextChart = {...selectedChart, chartLoading: false, points: response.map((o) => ({ x: o.date, y: o.value }))};
-            setSelectedChart(nextChart);
-            updateChart(nextChart);
-        };
-        fetchData();
-    }, [currentUnit, currentFrequency, currentAggregation]);
+    const queue = useRef(new PQueue({ concurrency: 1 })).current;
 
     const openDialog = (): void => {
         setOpen(true);
@@ -50,18 +38,30 @@ export  default function useChartContextValue(): ChartContextType {
             const nextCharts = [...charts];
             nextCharts[index] = chart;
             setCharts(nextCharts);
-            setSelectedChart(chart);
         }
+    }
+
+    const reloadChart = async (chart: Chart): Promise<void> => {
+        queue.add(async () => {
+            let nextChart = {...chart, chartLoading: true};
+            updateChart(nextChart);
+            const response = await client.getObservations(chart.chartTypeId, chart.currentUnit, chart.currentFrequency, chart.currentAggregation);
+            nextChart = {...chart, chartLoading: false, points: response.map((o) => ({ x: o.date, y: o.value }))};
+            console.log(nextChart);
+            updateChart(nextChart);
+        });
     }
 
     return {
         open,
         charts,
         selectedChart,
+
         openDialog,
         closeDialog,
         addChart,
         selectChart,
-        updateChart
+        updateChart,
+        reloadChart
     };
 }

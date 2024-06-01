@@ -12,7 +12,7 @@ interface DataManipulationUIItem {
 }
 
 export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
-    const { selectedChart, updateChart } = useChartContext();
+    const { selectedChart, reloadChart } = useChartContext();
 
     return [
         {
@@ -27,12 +27,12 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
                     );
                 }),
             ],
-            onChange: (event, child) => {
+            onChange: async (event, child) => {
                 const chart: Chart = {
                     ...selectedChart,
                     currentUnit: event.target.value as Units,
                 };
-                updateChart(chart);
+                await reloadChart(chart);
             },
         },
         {
@@ -47,12 +47,12 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
                     );
                 }),
             ],
-            onChange: (event, child) => {
+            onChange: async (event, child) => {
                 const chart: Chart = {
                     ...selectedChart,
                     currentFrequency: event.target.value as Frequencies,
                 };
-                updateChart(chart);
+                await reloadChart(chart);
             },
         },
         {
@@ -67,12 +67,12 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
                     );
                 }),
             ],
-            onChange: (event, child) => {
+            onChange: async (event, child) => {
                 const chart: Chart = {
                     ...selectedChart,
                     currentAggregation: event.target.value as Aggregations,
                 };
-                updateChart(chart);
+                await reloadChart(chart);
             },
         },
     ];
