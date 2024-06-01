@@ -1,4 +1,3 @@
-import { ObservationDTO } from '@/DTO/ObservationDTO';
 import Point from '@/Models/Point';
 
 export default interface BaseChartProps {
@@ -11,4 +10,5 @@ export default interface BaseChartProps {
     hideXLabel?: boolean;
     hideYLabel?: boolean;
     points: Array<Point>;
+    selected?: boolean;
 }
