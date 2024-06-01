@@ -2,6 +2,7 @@ import { Paper, Stack, Typography, useTheme } from '@mui/material';
 import EditLabelsForm from './EditLabelsForm';
 import { useChartContext } from '@/State/useChartContext';
 import UIStrings from '@/utils/UIStrings';
+import EditColors from './EditColors';
 
 export default function ChartSettingsPanel(): JSX.Element {
     const { selectedChart } = useChartContext();
@@ -19,6 +20,7 @@ export default function ChartSettingsPanel(): JSX.Element {
             <Stack direction="column" spacing={theme.spacing(2)}>
                 <Typography variant="h6">{`${UIStrings.ChartOptions}: ${selectedChart?.title || ''}`}</Typography>
                 <EditLabelsForm />
+                <EditColors />
             </Stack>
         </Paper>
     );

@@ -3,7 +3,7 @@ import useChartValidationSchema from '@/FormValidation/useChartValidationSchema'
 import { Chart } from '@/Models/Chart';
 import { useChartContext } from '@/State/useChartContext';
 import UIStrings from '@/utils/UIStrings';
-import { Button, Stack, useTheme } from '@mui/material';
+import { Button, Stack, Typography, useTheme } from '@mui/material';
 import { Form, Formik, FormikHelpers } from 'formik';
 
 interface EditChartValues {
@@ -38,6 +38,7 @@ export default function EditLabelsForm(): JSX.Element {
         >
             <Form>
                 <Stack direction="column" spacing={theme.spacing(2)}>
+                    <Typography variant="body1">{UIStrings.EditLabels}</Typography>
                     <ChartLabelsEdit />
                     <Button
                         type="submit"
