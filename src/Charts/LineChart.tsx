@@ -36,7 +36,7 @@ export default function LineChart(props: LineChartProps): JSX.Element {
         <Box
             sx={{
                 padding: theme.spacing(2),
-                borderWidth: '1px',
+                borderWidth: selected ? '3px' : '1px',
                 borderStyle: 'solid',
                 borderColor: selected ? 'green' : 'black',
                 ':hover': {
