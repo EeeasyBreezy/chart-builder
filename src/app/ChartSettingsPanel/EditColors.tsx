@@ -12,13 +12,6 @@ export default function EditColors(): JSX.Element {
 
     const pickers = useEditColors();
 
-    const onChangeHandler = (color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => {
-        const chart: Chart = {
-            ...selectedChart!,
-            plotColor: color.hex,
-        };
-        updateChart(chart);
-    };
     return (
         <Stack direction="column" spacing={theme.spacing(2)}>
             <Typography variant="body1">{UIStrings.EditColors}</Typography>
