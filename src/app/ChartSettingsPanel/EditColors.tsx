@@ -2,11 +2,15 @@ import ColorPicker from '@/Components/ColorPicker';
 import { Chart } from '@/Models/Chart';
 import { useChartContext } from '@/State/useChartContext';
 import UIStrings from '@/utils/UIStrings';
-import { Stack, Typography } from '@mui/material';
+import { Stack, Typography, useTheme } from '@mui/material';
 import { ColorResult } from 'react-color';
+import useEditColors from './useEditColors';
 
 export default function EditColors(): JSX.Element {
     const { updateChart, selectedChart } = useChartContext();
+    const theme = useTheme();
+
+    const pickers = useEditColors();
 
     const onChangeHandler = (color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => {
         const chart: Chart = {
@@ -16,13 +20,11 @@ export default function EditColors(): JSX.Element {
         updateChart(chart);
     };
     return (
-        <Stack>
+        <Stack direction="column" spacing={theme.spacing(2)}>
             <Typography variant="body1">{UIStrings.EditColors}</Typography>
-            <ColorPicker
-                label={UIStrings.PlotColor}
-                color={selectedChart?.plotColor || '#000000'}
-                onChange={onChangeHandler}
-            />
+            {pickers.map((item) => (
+                <ColorPicker label={item.label} color={item.selectedColor} onChange={item.onChange} />
+            ))}
         </Stack>
     );
 }
