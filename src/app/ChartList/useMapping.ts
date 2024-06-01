@@ -9,6 +9,7 @@ export default function useMapping():ChartMapping {
 
     const convertToProps = (chart: Chart): LineChartProps => {
         const result: LineChartProps ={
+            id: chart.id,
             title: chart.title,
             plotColor: chart.plotColor,
             xAxisColor: chart.xAxisColor,

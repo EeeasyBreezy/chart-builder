@@ -16,6 +16,7 @@ export default function EditLabelsForm(): JSX.Element {
                 yLabel: selectedChart?.yLabel || '',
             }}
             onSubmit={() => {}}
+            enableReinitialize
         >
             <Form>
                 <Stack direction="column" spacing={theme.spacing(2)}>

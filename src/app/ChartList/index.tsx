@@ -9,7 +9,6 @@ export default function ChartList(): JSX.Element {
     const { convertToProps } = useMapping();
 
     const onClick = (id: string) => {
-        alert('clicked');
         selectChart(id);
     };
 
