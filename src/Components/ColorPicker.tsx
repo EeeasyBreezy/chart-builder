@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material';
 import React from 'react';
-import { ColorResult, HuePicker, SketchPicker } from 'react-color';
+import { ColorResult, HuePicker } from 'react-color';
 
 interface ColorPickerProps {
     label: string;
