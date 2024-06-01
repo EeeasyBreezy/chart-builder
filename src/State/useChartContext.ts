@@ -10,6 +10,7 @@ export interface ChartContextType {
     closeDialog: () => void;
 
     addChart: (chart: Chart) => Promise<void>;
+    selectChart: (id: string) => void;
 }
 
 // Create the chart context

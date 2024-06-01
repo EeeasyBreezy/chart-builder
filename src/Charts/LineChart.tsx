@@ -9,6 +9,7 @@ export interface LineChartProps extends BaseChartProps {
 
 export default function LineChart(props: LineChartProps): JSX.Element {
     const {
+        id,
         lineStyle,
         showPoints,
         points,
@@ -21,8 +22,15 @@ export default function LineChart(props: LineChartProps): JSX.Element {
         xAxisColor,
         yAxisColor,
         selected,
+        onClick,
     } = props;
     const theme = useTheme();
+
+    const handleClick = () => {
+        if (onClick) {
+            onClick(id);
+        }
+    };
 
     return (
         <Box
@@ -37,9 +45,7 @@ export default function LineChart(props: LineChartProps): JSX.Element {
             }}
         >
             <Line
-                onClick={() => {
-                    alert('Hello!');
-                }}
+                onClick={handleClick}
                 data={{
                     labels: points.map((p) => p.x),
                     datasets: [
