@@ -13,4 +13,5 @@ export default interface BaseChartProps {
     points: Array<Point>;
     selected?: boolean;
     onClick?: (id: string) => void;
+    chartLoading?: boolean;
 }

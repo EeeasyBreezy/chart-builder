@@ -20,7 +20,8 @@ export default function useMapping():ChartMapping {
             hideYLabel: chart.hideYLabel,
             points: chart.points,
             lineStyle: chart.lineStyle,
-            hidePoints: chart.hidePoints
+            hidePoints: chart.hidePoints,
+            chartLoading: chart.chartLoading,
         };
 
         return result;

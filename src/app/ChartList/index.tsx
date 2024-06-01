@@ -2,6 +2,7 @@ import LineChart from '@/Charts/LineChart';
 import { useChartContext } from '@/State/useChartContext';
 import { Stack, useTheme } from '@mui/material';
 import useMapping from './useMapping';
+import LoadingLineChart from '@/Charts/LoadingLineChart';
 
 export default function ChartList(): JSX.Element {
     const { charts, selectedChart, selectChart } = useChartContext();
@@ -17,7 +18,7 @@ export default function ChartList(): JSX.Element {
             {charts.map((chart) => {
                 if (chart.type == 'line') {
                     return (
-                        <LineChart
+                        <LoadingLineChart
                             key={chart.id}
                             {...convertToProps(chart)}
                             selected={chart.id === selectedChart?.id}

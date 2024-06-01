@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChartContextType } from "./useChartContext";
 import { Chart, DefaultChart } from "@/Models/Chart";
 import { useApiClient } from "@/Clients/Hooks";
@@ -8,6 +8,20 @@ export  default function useChartContextValue(): ChartContextType {
     const [charts, setCharts] = useState<Array<Chart>>([]);
     const [selectedChart, setSelectedChart] = useState<Chart>(DefaultChart);
     const client = useApiClient();
+
+    const { currentUnit, currentFrequency, currentAggregation } = selectedChart;
+
+    useEffect(() => {
+        const fetchData = async (): Promise<void> => {
+            let nextChart = {...selectedChart, chartLoading: true};
+            updateChart(nextChart);
+            const response = await client.getObservations(selectedChart.chartTypeId, currentUnit, currentFrequency, currentAggregation);
+            nextChart = {...selectedChart, chartLoading: false, points: response.map((o) => ({ x: o.date, y: o.value }))};
+            setSelectedChart(nextChart);
+            updateChart(nextChart);
+        };
+        fetchData();
+    }, [currentUnit, currentFrequency, currentAggregation]);
 
     const openDialog = (): void => {
         setOpen(true);

@@ -27,6 +27,7 @@ export interface Chart {
     currentFrequency: Frequencies;
     currentUnit: Units;
     currentAggregation?: Aggregations;
+    chartLoading?: boolean;
 }
 
 export const DefaultChart: Chart = {
