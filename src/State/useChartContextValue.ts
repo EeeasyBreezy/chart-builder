@@ -38,6 +38,9 @@ export  default function useChartContextValue(): ChartContextType {
             let nextCharts = {...charts};
             nextCharts[chart.id] = chart;
             setCharts(nextCharts);
+            if(chart.id === selectedChart.id) {
+                setSelectedChart(chart);
+            }
         }
     }
 
@@ -49,7 +52,6 @@ export  default function useChartContextValue(): ChartContextType {
         // Delay the update of the chart
         setTimeout(() => {
             updateChart(nextChart);
-            setSelectedChart(chart);
         }, 0);
 
     }
