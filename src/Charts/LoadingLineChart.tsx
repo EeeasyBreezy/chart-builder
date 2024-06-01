@@ -3,8 +3,6 @@ import LineChart, { LineChartProps } from './LineChart';
 import ChartContainer from './ChartContainer';
 
 export default function LoadingLineChart({ chartLoading, selected, ...props }: LineChartProps): JSX.Element {
-    const theme = useTheme();
-
     return (
         <ChartContainer selected={selected}>
             {chartLoading ? (

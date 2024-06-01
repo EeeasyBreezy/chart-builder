@@ -36,3 +36,11 @@ export function unitsToUIStrings(unit: Units) {
         default: return unit;
     }
 }
+
+export function chartTypeToUIStrings(type: string) {
+    switch(type) {
+        case "line": return UIStrings.Line;
+        case "bar": return UIStrings.Bar;
+        default: return type;
+    }
+}

@@ -41,4 +41,8 @@ export default class UIStrings {
     static readonly Units = "Units";
     static readonly Frequency = "Frequency";
     static readonly Aggregate = "Aggregate";
+
+    static readonly ChartType = "Chart Type";
+    static readonly Line = "Line";
+    static readonly Bar = "Bar";
 }

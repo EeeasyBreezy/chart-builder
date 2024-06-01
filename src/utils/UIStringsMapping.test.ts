@@ -1,6 +1,6 @@
 import { Aggregations, Frequencies, LineStyle, Units } from "@/Models/Chart";
 import UIStrings from "./UIStrings";
-import { frequencytoUIStrings, lineStyleToUIStrings, aggregationsToUIStrings, unitsToUIStrings } from "./UIStringsMapping";
+import { frequencytoUIStrings, lineStyleToUIStrings, aggregationsToUIStrings, unitsToUIStrings, chartTypeToUIStrings } from "./UIStringsMapping";
 
 describe('frequencytoUIStrings', () => {
     test.each([
@@ -44,6 +44,17 @@ describe('unitsToUIStrings', () => {
         ['log', UIStrings.NaturalLog],
     ])('returns correct string for unit %s', (unit, expected) => {
         const result = unitsToUIStrings(unit as Units);
+        expect(result).toEqual(expected);
+    });
+});
+
+describe('chartTypeToUIStrings', () => {
+    test.each([
+        ['line', UIStrings.Line],
+        ['bar', UIStrings.Bar],
+        ['other', 'other']
+    ])('returns correct string for type %s', (type, expected) => {
+        const result = chartTypeToUIStrings(type);
         expect(result).toEqual(expected);
     });
 });

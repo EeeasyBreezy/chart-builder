@@ -5,6 +5,7 @@ import UIStrings from '@/utils/UIStrings';
 import EditColors from './EditColors';
 import VisibilityManagement from './VisibilityManagement';
 import DataManipulationPanel from './DataManipulationPanel';
+import EditChartType from './EditChartType';
 
 export default function ChartSettingsPanel(): JSX.Element {
     const { selectedChart } = useChartContext();
@@ -26,6 +27,7 @@ export default function ChartSettingsPanel(): JSX.Element {
             <Stack direction="column" spacing={theme.spacing(2)}>
                 <Typography variant="h6">{`${UIStrings.ChartOptions}: ${selectedChart?.title || ''}`}</Typography>
                 <EditLabelsForm />
+                <EditChartType />
                 <EditColors />
                 <VisibilityManagement />
                 <DataManipulationPanel />
