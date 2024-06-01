@@ -19,9 +19,9 @@ export  default function useChartContextValue(): ChartContextType {
 
     const addChart = async (chart: Chart): Promise<void> => {
         const response = await client.getObservations(chart.chartTypeId, chart.currentUnit, chart.currentFrequency);
-        const nextChart: Chart = {...chart, points: response.map((o) => ({ x: o.date, y: o.value }))};
+        const nextChart: Chart = { ...chart, points: response.map((o) => ({ x: o.date, y: o.value })) };
 
-        setCharts({[chart.id]: nextChart, ...charts});
+        setCharts((prevCharts) => ({ ...prevCharts, [chart.id]: nextChart }));
     };
 
     const selectChart = (id: string): void => {
@@ -32,15 +32,18 @@ export  default function useChartContextValue(): ChartContextType {
     }
 
     const updateChart = (chart: Chart): void => {
-        const existingChart = charts[chart.id];
-        if (existingChart) {
-            let nextCharts = {...charts};
-            nextCharts[chart.id] = chart;
-            setCharts(nextCharts);
-            if(chart.id === selectedChart.id) {
-                setSelectedChart(chart);
+        setCharts((prevCharts) => {
+            const existingChart = prevCharts[chart.id];
+            if (existingChart) {
+                let nextCharts = { ...prevCharts };
+                nextCharts[chart.id] = chart;
+                if (chart.id === selectedChart.id) {
+                    setSelectedChart(chart);
+                }
+                return nextCharts;
             }
-        }
+            return prevCharts;
+        });
     }
 
     const reloadChart = async (chart: Chart): Promise<void> => {

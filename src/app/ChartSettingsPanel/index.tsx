@@ -17,6 +17,8 @@ export default function ChartSettingsPanel(): JSX.Element {
                 alignSelf: 'flex-end',
                 elevation: 1,
                 padding: theme.spacing(2),
+                pointerEvents: selectedChart.chartLoading ? 'none' : 'auto',
+                opacity: selectedChart.chartLoading ? 0.5 : 1,
             }}
         >
             <Stack direction="column" spacing={theme.spacing(2)}>
