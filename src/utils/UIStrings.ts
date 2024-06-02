@@ -1,4 +1,5 @@
 export default class UIStrings {
+    static readonly ChartBuilder = 'Chart Builder';
     static readonly AddChart = 'Add Chart';
     static readonly Measurement = 'Measurement';
     static readonly XAxis = 'X Axis';

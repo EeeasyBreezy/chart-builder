@@ -1,16 +1,14 @@
-import { Box, Grid, Stack, useTheme } from '@mui/material';
-import { useChartContext } from '@/State/useChartContext';
-import AddChartButton from '@/Components/AddChartButton';
+import { Grid, Stack, useTheme } from '@mui/material';
 import AddChartDialog from './AddChartDialog';
 import ChartList from './ChartList';
 import ChartSettingsPanel from './ChartSettingsPanel';
+import PageHeader from './PageHeader';
 
 export default function PageLayout(): JSX.Element {
-    const { openDialog } = useChartContext();
     const theme = useTheme();
     return (
         <Stack direction="column" spacing={theme.spacing(2)} sx={{ height: '100vh' }}>
-            <AddChartButton onClick={openDialog} />
+            <PageHeader />
 
             <Grid
                 container
