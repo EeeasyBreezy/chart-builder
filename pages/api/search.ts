@@ -1,5 +1,7 @@
 import { fredApikey } from '@/AppSettings';
 import SeriesFredClient from '@/Clients/SeriesFredClient';
+import { Page } from '@/DTO/Page';
+import { SeriesDTO } from '@/DTO/SeriesDTO';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // eslint-disable-next-line consistent-return
@@ -26,5 +28,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const client = new SeriesFredClient(fredApikey);
     const series = await client.search(text as string, parsedLimit);
 
-    return res.status(200).json(series);
+    const page: Page<SeriesDTO> = {
+        data: series.seriess.map((x: any) => ({
+            id: x.id,
+            observation_start: x.observation_start,
+            observation_end: x.observation_end,
+            title: x.title,
+            frequency: x.frequency,
+        })),
+        pagination: {
+            offset: series.offset,
+            limit: series.limit,
+            totalCount: series.count,
+        },
+    };
+
+    return res.status(200).json(page);
 }

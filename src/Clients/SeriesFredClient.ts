@@ -28,7 +28,12 @@ class SeriesFredClient {
     }
 
     async search(text: string, limit: number): Promise<any> {
-        const response = await this.client.series.getSeriesThatMatchesSearch(text, { limit });
+        const response = await this.client.series.getSeriesThatMatchesSearch(text,
+            {
+                limit,
+                filter_variable: "frequency",
+                filter_value: "Monthly"
+            });
         return response;
     }
 }
