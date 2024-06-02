@@ -7,6 +7,7 @@ export  default function useChartContextValue(): ChartContextType {
     const [open, setOpen] = useState<boolean>(false);
     const [charts, setCharts] = useState<Record<string, Chart>>({});
     const [selectedChart, setSelectedChart] = useState<Chart>(DefaultChart);
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState<boolean>(false);
     const client = useApiClient();
 
     const openDialog = (): void => {
@@ -15,6 +16,14 @@ export  default function useChartContextValue(): ChartContextType {
 
     const closeDialog = (): void => {
         setOpen(false);
+    };
+
+    const openDeleteDialog = (): void => {
+        setDeleteDialogOpen(true);
+    };
+
+    const closeDeleteDialog = (): void => {
+        setDeleteDialogOpen(false);
     };
 
     const addChart = async (chart: Chart): Promise<void> => {
@@ -54,8 +63,19 @@ export  default function useChartContextValue(): ChartContextType {
         updateChart(nextChart);
     }
 
+    const deleteChart = (id: string): void => {
+        setCharts((prevCharts) => {
+            const nextCharts = { ...prevCharts };
+            delete nextCharts[id];
+            return nextCharts;
+        });
+        setDeleteDialogOpen(false);
+        setSelectedChart(DefaultChart);
+    }
+
     return {
         open,
+        deleteDialogOpen: deleteDialogOpen,
         charts: Object.values(charts),
         selectedChart,
 
@@ -64,6 +84,10 @@ export  default function useChartContextValue(): ChartContextType {
         addChart,
         selectChart,
         updateChart,
-        reloadChart
+        reloadChart,
+        deleteChart,
+
+        openDeleteDialog,
+        closeDeleteDialog,
     };
 }

@@ -6,6 +6,7 @@ import EditColors from './EditColors';
 import VisibilityManagement from './VisibilityManagement';
 import DataManipulationPanel from './DataManipulationPanel';
 import EditChartType from './EditChartType';
+import DeleteChart from './DeleteChart';
 
 export default function ChartSettingsPanel(): JSX.Element {
     const { selectedChart } = useChartContext();
@@ -53,6 +54,7 @@ export default function ChartSettingsPanel(): JSX.Element {
                     <EditColors />
                     <VisibilityManagement />
                     <DataManipulationPanel />
+                    <DeleteChart />
                 </Stack>
             </Box>
         </Paper>

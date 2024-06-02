@@ -4,15 +4,19 @@ import React, { createContext, useContext } from 'react';
 // Define the shape of your chart context
 export interface ChartContextType {
     open: boolean;
+    deleteDialogOpen: boolean;
     charts: Array<Chart>;
     selectedChart: Chart;
     openDialog: () => void;
     closeDialog: () => void;
+    openDeleteDialog: () => void;
+    closeDeleteDialog: () => void;
 
     addChart: (chart: Chart) => Promise<void>;
     selectChart: (id: string) => void;
     updateChart: (chart: Chart) => void;
     reloadChart: (chart: Chart) => Promise<void>;
+    deleteChart: (id: string) => void;
 }
 
 // Create the chart context
