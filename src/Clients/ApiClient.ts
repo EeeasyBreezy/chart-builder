@@ -36,7 +36,7 @@ export default class ApiClient {
         return observations;
     }
 
-    async search(text: string, limit: number): Promise<Array<Page<SeriesDTO>>>
+    async search(text: string, limit: number): Promise<Page<SeriesDTO>>
     {
         const query = new SearchQueryStringBuilder()
             .withSearch(text)

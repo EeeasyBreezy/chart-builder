@@ -2,7 +2,7 @@ import { FormControl, Autocomplete, AutocompleteProps } from '@mui/material';
 import { useField } from 'formik';
 
 export interface AutocompleteOption {
-    id?: string;
+    id: string;
     label: string;
 }
 
