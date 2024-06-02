@@ -1,13 +1,13 @@
-import { Chart } from "@/Models/Chart";
-import { useChartContext } from "@/State/useChartContext";
-import UIStrings from "@/utils/UIStrings";
-import { ChangeEvent } from "react";
-import { ColorResult } from "react-color";
+import { Chart } from '@/Models/Chart';
+import { useChartContext } from '@/State/useChartContext';
+import UIStrings from '@/utils/UIStrings';
+import { ChangeEvent } from 'react';
+import { ColorResult } from 'react-color';
 
 interface UseEditColors {
     label: string;
     selectedColor: string;
-    onChange: (color: ColorResult, event: ChangeEvent<HTMLInputElement>) => void
+    onChange: (color: ColorResult, event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function useEditColorsUI(): Array<UseEditColors> {
@@ -19,12 +19,12 @@ export default function useEditColorsUI(): Array<UseEditColors> {
             label: UIStrings.PlotColor,
             selectedColor: plotColor,
             onChange: (color, event) => {
-                const chart: Chart = { 
+                const chart: Chart = {
                     ...selectedChart!,
-                    plotColor: color.hex
+                    plotColor: color.hex,
                 };
                 updateChart(chart);
-            }
+            },
         },
         {
             label: UIStrings.XAxisColor,
@@ -32,10 +32,10 @@ export default function useEditColorsUI(): Array<UseEditColors> {
             onChange: (color, event) => {
                 const chart: Chart = {
                     ...selectedChart!,
-                    xAxisColor: color.hex
-                }
+                    xAxisColor: color.hex,
+                };
                 updateChart(chart);
-            }
+            },
         },
         {
             label: UIStrings.YAxisColor,
@@ -43,10 +43,10 @@ export default function useEditColorsUI(): Array<UseEditColors> {
             onChange: (color, event) => {
                 const chart: Chart = {
                     ...selectedChart!,
-                    yAxisColor: color.hex
-                }
+                    yAxisColor: color.hex,
+                };
                 updateChart(chart);
-            }
-        }
-    ]
+            },
+        },
+    ];
 }

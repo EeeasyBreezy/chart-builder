@@ -1,5 +1,4 @@
-import { Aggregations, Frequencies, Units } from "@/Models/Chart";
-import ObservationsQueryStringBuilder from "./ObservationsQueryStringBuilder";
+import ObservationsQueryStringBuilder from './ObservationsQueryStringBuilder';
 
 describe('ObservationsQueryStringBuilder', () => {
     let builder: ObservationsQueryStringBuilder;
@@ -10,9 +9,9 @@ describe('ObservationsQueryStringBuilder', () => {
 
     test.each([
         ['id', 'withId', 'test-id'],
-        ['unit', 'withUnits', "lin"],
-        ['frequency', 'withFrequencies', "d"],
-        ['aggregate', 'withAggregate', "avg"],
+        ['unit', 'withUnits', 'lin'],
+        ['frequency', 'withFrequencies', 'd'],
+        ['aggregate', 'withAggregate', 'avg'],
     ])('adds %s parameter correctly', (paramName, methodName, value) => {
         // @ts-ignore
         builder[methodName](value);

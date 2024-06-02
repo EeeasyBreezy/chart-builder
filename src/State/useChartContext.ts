@@ -1,5 +1,5 @@
 import { Chart } from '@/Models/Chart';
-import React, { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 
 // Define the shape of your chart context
 export interface ChartContextType {

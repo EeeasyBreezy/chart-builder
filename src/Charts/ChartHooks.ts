@@ -1,8 +1,8 @@
-import { LineStyle } from "@/Models/Chart";
-import Point from "@/Models/Point";
-import { ChartData } from "chart.js";
+import { LineStyle } from '@/Models/Chart';
+import Point from '@/Models/Point';
+import { ChartData } from 'chart.js';
 
-function useData(label: string, points: Array<Point> ) {
+function useData(label: string, points: Array<Point>) {
     return {
         labels: points.map((p) => p.x),
         datasets: [
@@ -12,10 +12,16 @@ function useData(label: string, points: Array<Point> ) {
                 data: points.map((p) => p.y),
             },
         ],
-    }
+    };
 }
 
-export function useLineData(label: string, points: Array<Point>, lineStyle?: LineStyle, hidePoints?: boolean, plotColor?: string): ChartData<"line", number[], string> {
+export function useLineData(
+    label: string,
+    points: Array<Point>,
+    lineStyle?: LineStyle,
+    hidePoints?: boolean,
+    plotColor?: string,
+): ChartData<'line', number[], string> {
     const dataset = useData(label, points);
     return {
         ...dataset,
@@ -27,7 +33,7 @@ export function useLineData(label: string, points: Array<Point>, lineStyle?: Lin
                 borderDash: lineStyle === 'dashed' ? [5, 5] : [],
             },
         ],
-    }
+    };
 }
 
 export function useBarData(label: string, points: Array<Point>, plotColor?: string) {
@@ -40,10 +46,17 @@ export function useBarData(label: string, points: Array<Point>, plotColor?: stri
                 backgroundColor: plotColor || 'red',
             },
         ],
-    }
+    };
 }
 
-export function useScales(xLabel: string, yLabel: string, hideXLabel?: boolean, hideYLabel?: boolean, xAxisColor?: string, yAxisColor?: string): any {
+export function useScales(
+    xLabel: string,
+    yLabel: string,
+    hideXLabel?: boolean,
+    hideYLabel?: boolean,
+    xAxisColor?: string,
+    yAxisColor?: string,
+): any {
     return {
         x: {
             type: 'time',
@@ -67,7 +80,7 @@ export function useScales(xLabel: string, yLabel: string, hideXLabel?: boolean, 
                 color: yAxisColor ?? 'black',
             },
         },
-    }
+    };
 }
 
 function useLegend() {
@@ -78,7 +91,7 @@ function useLegend() {
             boxWidth: 0,
         },
         title: { display: true },
-    }
+    };
 }
 
 function useTooltip() {
@@ -93,12 +106,12 @@ function useTooltip() {
                 return `Value: ${context.parsed.y}`;
             },
         },
-    }
+    };
 }
 
 export function usePlugins() {
     return {
         legend: useLegend(),
         tooltip: useTooltip(),
-    }
+    };
 }

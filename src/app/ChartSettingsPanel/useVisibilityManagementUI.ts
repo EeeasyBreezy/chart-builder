@@ -1,6 +1,6 @@
-import { useChartContext } from "@/State/useChartContext";
-import UIStrings from "@/utils/UIStrings";
-import { Chart } from "@/Models/Chart";
+import { useChartContext } from '@/State/useChartContext';
+import UIStrings from '@/utils/UIStrings';
+import { Chart } from '@/Models/Chart';
 
 interface VisibilityManagementUIItem {
     label: string;
@@ -18,10 +18,10 @@ export default function useVisibilityManagementUI(): Array<VisibilityManagementU
             onChange: (event, checked) => {
                 const chart: Chart = {
                     ...selectedChart,
-                    hidePoints: checked
-                }
+                    hidePoints: checked,
+                };
                 updateChart(chart);
-            }
+            },
         },
         {
             label: UIStrings.HideXLabel,
@@ -29,10 +29,10 @@ export default function useVisibilityManagementUI(): Array<VisibilityManagementU
             onChange: (event, checked) => {
                 const chart: Chart = {
                     ...selectedChart,
-                    hideXLabel: checked
-                }
+                    hideXLabel: checked,
+                };
                 updateChart(chart);
-            }
+            },
         },
         {
             label: UIStrings.HideYLabel,
@@ -40,10 +40,10 @@ export default function useVisibilityManagementUI(): Array<VisibilityManagementU
             onChange: (event, checked) => {
                 const chart: Chart = {
                     ...selectedChart,
-                    hideYLabel: checked
-                }
+                    hideYLabel: checked,
+                };
                 updateChart(chart);
-            }
-        }
-    ]
+            },
+        },
+    ];
 }

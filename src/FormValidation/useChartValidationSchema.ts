@@ -6,8 +6,17 @@ export default function useChartValidationSchema() {
     const titleMaxLength = 128;
 
     return yup.object().shape({
-        title: yup.string().required(YupCommonErrorMessages.Required).max(titleMaxLength, YupCommonErrorMessages.MaxLength(titleMaxLength)),
-        xLabel: yup.string().required(YupCommonErrorMessages.Required).max(axisLabelMaxLength, YupCommonErrorMessages.MaxLength(axisLabelMaxLength)),
-        yLabel: yup.string().required(YupCommonErrorMessages.Required).max(axisLabelMaxLength, YupCommonErrorMessages.MaxLength(axisLabelMaxLength)),
+        title: yup
+            .string()
+            .required(YupCommonErrorMessages.Required)
+            .max(titleMaxLength, YupCommonErrorMessages.MaxLength(titleMaxLength)),
+        xLabel: yup
+            .string()
+            .required(YupCommonErrorMessages.Required)
+            .max(axisLabelMaxLength, YupCommonErrorMessages.MaxLength(axisLabelMaxLength)),
+        yLabel: yup
+            .string()
+            .required(YupCommonErrorMessages.Required)
+            .max(axisLabelMaxLength, YupCommonErrorMessages.MaxLength(axisLabelMaxLength)),
     });
 }

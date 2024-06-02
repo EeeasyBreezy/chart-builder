@@ -5,5 +5,5 @@ export default interface Point {
 
 export const DefaultPoint: Point = {
     x: '',
-    y: 0
-}
+    y: 0,
+};

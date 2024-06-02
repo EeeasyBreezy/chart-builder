@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { id } = req.query;
 
-    if(id == null || id === "") {
+    if (id == null || id === '') {
         return res.status(400).json({ message: "'id' parameter is invalid" });
     }
 

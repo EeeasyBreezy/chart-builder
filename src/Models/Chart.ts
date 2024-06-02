@@ -1,10 +1,10 @@
-import Point from "./Point";
+import Point from './Point';
 
-export type ChartType = "line" | "bar";
-export type LineStyle = "solid" | "dashed";
-export type Frequencies = "d" | "w" | "m" | "q" | "sa" | "a";
-export type Aggregations = "sum" | "avg" | "eop";
-export type Units = "lin" | "chg" | "pch" | "pca" | "log";
+export type ChartType = 'line' | 'bar';
+export type LineStyle = 'solid' | 'dashed';
+export type Frequencies = 'd' | 'w' | 'm' | 'q' | 'sa' | 'a';
+export type Aggregations = 'sum' | 'avg' | 'eop';
+export type Units = 'lin' | 'chg' | 'pch' | 'pca' | 'log';
 
 export interface Chart {
     type: ChartType;
@@ -31,23 +31,23 @@ export interface Chart {
 }
 
 export const DefaultChart: Chart = {
-    type: "line",
-    id: "",
-    chartTypeId: "",
-    title: "",
-    plotColor: "red",
-    xAxisColor: "black",
-    yAxisColor: "black",
-    xLabel: "",
-    yLabel: "",
+    type: 'line',
+    id: '',
+    chartTypeId: '',
+    title: '',
+    plotColor: 'red',
+    xAxisColor: 'black',
+    yAxisColor: 'black',
+    xLabel: '',
+    yLabel: '',
     hideXLabel: false,
     hideYLabel: false,
     points: [],
-    lineStyle: "solid",
+    lineStyle: 'solid',
     hidePoints: true,
     frequencies: [],
     units: [],
     aggregations: [],
-    currentFrequency: "a",
-    currentUnit: "lin",
+    currentFrequency: 'a',
+    currentUnit: 'lin',
 };

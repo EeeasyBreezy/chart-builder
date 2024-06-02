@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import { DeleteChartDialog } from './DeleteChartDialog';
 
 export default function DeleteChart(): JSX.Element {
-    const { selectedChart, openDeleteDialog } = useChartContext();
+    const { openDeleteDialog } = useChartContext();
 
     return (
         <>

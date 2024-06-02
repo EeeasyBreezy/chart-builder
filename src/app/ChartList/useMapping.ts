@@ -1,14 +1,12 @@
-import BaseChartProps from "@/Charts/ChartProps";
-import { LineChartProps } from "@/Charts/LineChart";
-import { Chart } from "@/Models/Chart";
+import { LineChartProps } from '@/Charts/LineChart';
+import { Chart } from '@/Models/Chart';
 
 interface ChartMapping {
     convertToProps: (chart: Chart) => LineChartProps;
 }
-export default function useMapping():ChartMapping {
-
+export default function useMapping(): ChartMapping {
     const convertToProps = (chart: Chart): LineChartProps => {
-        const result: LineChartProps ={
+        const result: LineChartProps = {
             id: chart.id,
             title: chart.title,
             plotColor: chart.plotColor,

@@ -1,4 +1,4 @@
-import { Aggregations, Frequencies, Units } from "@/Models/Chart";
+import { Aggregations, Frequencies, Units } from '@/Models/Chart';
 
 export default class ObservationsQueryStringBuilder {
     params: URLSearchParams;
@@ -23,7 +23,7 @@ export default class ObservationsQueryStringBuilder {
     }
 
     withAggregate(aggregate?: Aggregations): ObservationsQueryStringBuilder {
-        if(aggregate != null) {
+        if (aggregate != null) {
             this.params.append('aggregate', aggregate);
         }
         return this;

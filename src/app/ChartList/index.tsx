@@ -1,4 +1,3 @@
-import LineChart from '@/Charts/LineChart';
 import { useChartContext } from '@/State/useChartContext';
 import { Stack, useTheme } from '@mui/material';
 import useMapping from './useMapping';

@@ -4,7 +4,7 @@ import { Chart } from '@/Models/Chart';
 import { useChartContext } from '@/State/useChartContext';
 import UIStrings from '@/utils/UIStrings';
 import { Button, Stack, Typography, useTheme } from '@mui/material';
-import { Form, Formik, FormikHelpers } from 'formik';
+import { Form, Formik } from 'formik';
 
 interface EditChartValues {
     title: string;
@@ -17,7 +17,7 @@ export default function EditLabelsForm(): JSX.Element {
     const theme = useTheme();
     const schema = useChartValidationSchema();
 
-    const submit = (values: EditChartValues, helpers: FormikHelpers<EditChartValues>) => {
+    const submit = (values: EditChartValues) => {
         const chart: Chart = {
             ...selectedChart!,
             ...values,

@@ -17,7 +17,7 @@
         },
         // "ecmaVersion": 2018,
         "sourceType": "module",
-        "project": "tsconfig.json"
+        "project": "./tsconfig.json"
     },
     "rules": {
         // suppress errors for missing 'import React' in files. Nextjs does it automatically
@@ -43,6 +43,7 @@
         "react/self-closing-comp": "warn",
         "import/no-cycle": "off",
         "no-plusplus": "off",
-        "jsx-a11y/img-redundant-alt": "off"
+        "jsx-a11y/img-redundant-alt": "off",
+        "import/extensions": "off"
     }
 }

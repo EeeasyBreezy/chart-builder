@@ -2,7 +2,6 @@ import { Aggregations, Frequencies, Units } from '@/Models/Chart';
 import {
     TextFieldProps,
     FormControl,
-    TextField,
     MenuItem,
     FormHelperText,
     InputLabel,
@@ -31,7 +30,7 @@ export type FormikDropdownProps = TextFieldProps & {
     label?: string;
 };
 
-export const FormikDropdown = ({ name, options, label, ...props }: FormikDropdownProps) => {
+export const FormikDropdown = ({ name, options, label }: FormikDropdownProps) => {
     const [field, meta, helpers] = useField(name);
 
     const onChange = (event: SelectChangeEvent<{ value: unknown }>) => {
