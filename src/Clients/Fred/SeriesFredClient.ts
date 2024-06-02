@@ -7,6 +7,8 @@ class SeriesFredClient extends BaseFredClient {
         const response = await this.client.series.getSeries(id);
         // have to use key "seriess" because this key is returned by the API
         // and node-fred uses "series" in types declaration resulting in underfined property
+        // we also need to mute typescript here because the key is not in the types declaration
+        //@ts-ignore
         return response["seriess"][0]; 
     }
 
