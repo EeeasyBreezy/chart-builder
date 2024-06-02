@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "cy:run": "npx cypress run",
+    "cy:open": "npx cypress open",
+    "cy:test": "set CYPRESS_VERIFY_TIMEOUT=100000 && set WAIT_ON_TIMEOUT=600000 && start-server-and-test start http://127.0.0.1:3000 cy:run"
   },
   "dependencies": {
     "@date-io/date-fns": "^2.17.0",
