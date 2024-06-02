@@ -1,7 +1,14 @@
 import { Aggregations, Frequencies, Units } from '@/Models/Chart';
-import BaseFredClient from './BaseFredClient';
 
-class SeriesFredClient extends BaseFredClient {
+import Fred from 'node-fred';
+
+class SeriesFredClient {
+    client: Fred;
+
+    constructor(apiKey: string) {
+        this.client = new Fred(apiKey);
+    }
+    
     async getSeries(id: string): Promise<any> {
         const response = await this.client.series.getSeries(id);
         // have to use key "seriess" because this key is returned by the API
@@ -18,6 +25,11 @@ class SeriesFredClient extends BaseFredClient {
             aggregation_method: aggregate,
         });
         return response.observations;
+    }
+
+    async search(text: string, limit: number): Promise<any> {
+        const response = await this.client.series.getSeriesThatMatchesSearch(text, { limit });
+        return response;
     }
 }
 

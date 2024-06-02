@@ -3,6 +3,8 @@ import { SeriesDTO } from '@/DTO/SeriesDTO';
 import { Units, Frequencies, Aggregations } from '@/Models/Chart';
 import axios from 'axios';
 import ObservationsQueryStringBuilder from './Builders/ObservationsQueryStringBuilder';
+import { Page } from '@/DTO/Page';
+import SearchQueryStringBuilder from './Builders/SearchQueryStringBuilder';
 
 export default class ApiClient {
     baseUrl: string;
@@ -32,5 +34,15 @@ export default class ApiClient {
         const response = await axios.get(`${this.baseUrl}/api/observations?${queryString}`);
         const observations = response.data;
         return observations;
+    }
+
+    async search(text: string, limit: number): Promise<Array<Page<SeriesDTO>>>
+    {
+        const query = new SearchQueryStringBuilder()
+            .withSearch(text)
+            .withLimit(limit)
+            .build();
+        const response = await axios.get(`${this.baseUrl}/api/search?${query}`);
+        return response.data;
     }
 }

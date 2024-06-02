@@ -1,5 +1,5 @@
 import { fredApikey } from '@/AppSettings';
-import SeriesFredClient from '@/Clients/Fred/SeriesFredClient';
+import SeriesFredClient from '@/Clients/SeriesFredClient';
 import { Aggregations, Frequencies, Units } from '@/Models/Chart';
 import type { NextApiRequest, NextApiResponse } from 'next';
 

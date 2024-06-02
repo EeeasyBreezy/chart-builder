@@ -1,10 +1,10 @@
 import { Aggregations, Frequencies, Units } from '@/Models/Chart';
+import BaseQueryStringBuilder from './BaseQueryStringBuilder';
 
-export default class ObservationsQueryStringBuilder {
-    params: URLSearchParams;
+export default class ObservationsQueryStringBuilder extends BaseQueryStringBuilder {
 
     constructor() {
-        this.params = new URLSearchParams();
+        super();
     }
 
     withId(id: string): ObservationsQueryStringBuilder {
@@ -27,9 +27,5 @@ export default class ObservationsQueryStringBuilder {
             this.params.append('aggregate', aggregate);
         }
         return this;
-    }
-
-    build(): string {
-        return this.params.toString();
     }
 }
