@@ -18,7 +18,7 @@ export default function ChartContainer({
                 ':hover': {
                     borderColor: 'red',
                 },
-                minHeight: theme.spacing(47),
+                minHeight: theme.spacing(67),
                 justifyContent: 'center',
             }}
         >
