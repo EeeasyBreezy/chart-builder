@@ -1,4 +1,4 @@
-import { Paper, Stack, Typography, useTheme } from '@mui/material';
+import { Box, Paper, Stack, Typography, useTheme } from '@mui/material';
 import EditLabelsForm from './EditLabelsForm';
 import { useChartContext } from '@/State/useChartContext';
 import UIStrings from '@/utils/UIStrings';
@@ -40,20 +40,21 @@ export default function ChartSettingsPanel(): JSX.Element {
             >
                 {`${UIStrings.ChartOptions}: ${selectedChart?.title || ''}`}
             </Typography>
-            <Stack
-                direction="column"
-                spacing={theme.spacing(2)}
+            <Box
                 sx={{
                     overflowY: 'auto',
                     flex: 1,
+                    padding: theme.spacing(2),
                 }}
             >
-                <EditLabelsForm />
-                <EditChartType />
-                <EditColors />
-                <VisibilityManagement />
-                <DataManipulationPanel />
-            </Stack>
+                <Stack direction="column" spacing={theme.spacing(2)}>
+                    <EditLabelsForm />
+                    <EditChartType />
+                    <EditColors />
+                    <VisibilityManagement />
+                    <DataManipulationPanel />
+                </Stack>
+            </Box>
         </Paper>
     );
 }

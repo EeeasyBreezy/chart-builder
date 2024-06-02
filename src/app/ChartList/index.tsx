@@ -20,6 +20,7 @@ export default function ChartList(): JSX.Element {
             spacing={theme.spacing(2)}
             sx={{
                 marginBottom: theme.spacing(4),
+                marginRight: theme.spacing(2),
             }}
         >
             {charts.map((chart) => {
