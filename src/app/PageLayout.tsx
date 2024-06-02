@@ -9,14 +9,20 @@ export default function PageLayout(): JSX.Element {
     const { openDialog } = useChartContext();
     const theme = useTheme();
     return (
-        <Stack direction="column" spacing={theme.spacing(2)}>
+        <Stack direction="column" spacing={theme.spacing(2)} sx={{ height: '100vh' }}>
             <AddChartButton onClick={openDialog} />
 
-            <Grid container direction="row" spacing={theme.spacing(1)} paddingX={theme.spacing(2)}>
-                <Grid item xs={8}>
+            <Grid
+                container
+                direction="row"
+                spacing={theme.spacing(1)}
+                paddingX={theme.spacing(2)}
+                sx={{ flex: 1, overflow: 'hidden' }}
+            >
+                <Grid item xs={8} sx={{ height: '100%', overflowY: 'auto' }}>
                     <ChartList />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={4} sx={{ height: '100%', overflowY: 'auto' }}>
                     <ChartSettingsPanel />
                 </Grid>
             </Grid>
