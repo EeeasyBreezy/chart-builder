@@ -7,7 +7,7 @@ import PageHeader from './PageHeader';
 export default function PageLayout(): JSX.Element {
     const theme = useTheme();
     return (
-        <Stack direction="column" spacing={theme.spacing(2)} sx={{ height: '100vh' }}>
+        <Stack direction="column" spacing={theme.spacing(2)} sx={{ height: '100vh', overflowY: 'hidden' }}>
             <PageHeader />
 
             <Grid

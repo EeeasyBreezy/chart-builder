@@ -15,7 +15,13 @@ export default function ChartList(): JSX.Element {
     };
 
     return (
-        <Stack direction="column" spacing={theme.spacing(2)}>
+        <Stack
+            direction="column"
+            spacing={theme.spacing(2)}
+            sx={{
+                marginBottom: theme.spacing(4),
+            }}
+        >
             {charts.map((chart) => {
                 if (chart.type == 'line') {
                     return (
