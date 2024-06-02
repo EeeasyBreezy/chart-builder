@@ -20,12 +20,34 @@ export default function ChartSettingsPanel(): JSX.Element {
                 padding: theme.spacing(2),
                 pointerEvents: selectedChart.chartLoading ? 'none' : 'auto',
                 opacity: selectedChart.chartLoading ? 0.5 : 1,
-                position: 'sticky',
-                top: 0,
+                position: 'relative',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
             }}
         >
-            <Stack direction="column" spacing={theme.spacing(2)}>
-                <Typography variant="h6">{`${UIStrings.ChartOptions}: ${selectedChart?.title || ''}`}</Typography>
+            <Typography
+                variant="h6"
+                sx={{
+                    position: 'sticky',
+                    top: 0,
+                    backgroundColor: 'white',
+                    zIndex: 1000,
+                    padding: theme.spacing(1),
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                    marginBottom: theme.spacing(4), // Ensure there's space between header and content
+                }}
+            >
+                {`${UIStrings.ChartOptions}: ${selectedChart?.title || ''}`}
+            </Typography>
+            <Stack
+                direction="column"
+                spacing={theme.spacing(2)}
+                sx={{
+                    overflowY: 'auto',
+                    flex: 1,
+                }}
+            >
                 <EditLabelsForm />
                 <EditChartType />
                 <EditColors />
