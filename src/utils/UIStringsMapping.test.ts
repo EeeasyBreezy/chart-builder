@@ -4,8 +4,8 @@ import {
     frequencytoUIStrings,
     lineStyleToUIStrings,
     aggregationsToUIStrings,
-    unitsToUIStr2ings,
     chartTypeToUIStrings,
+    unitsToUIStrings,
 } from './UIStringsMapping';
 
 describe('frequencytoUIStrings', () => {
