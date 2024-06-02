@@ -22,7 +22,12 @@ interface UseAddChartDialog extends UseAddChartDialogState {
 }
 
 export default function useAddChartDialog(): UseAddChartDialog {
-    const [state, setState] = useState<UseAddChartDialogState>({ options: [], searchLoading: false, chartLoading: false, selectedChart: DefaultSeriesDTO });
+    const [state, setState] = useState<UseAddChartDialogState>({
+        options: [],
+        searchLoading: false,
+        chartLoading: false,
+        selectedChart: DefaultSeriesDTO
+    });
     const { options, searchLoading, chartLoading, selectedChart } = state;
     const client = useApiClient();
 
