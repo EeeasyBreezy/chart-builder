@@ -75,7 +75,7 @@ export  default function useChartContextValue(): ChartContextType {
 
     return {
         open,
-        deleteDialogOpen: deleteDialogOpen,
+        deleteDialogOpen,
         charts: Object.values(charts),
         selectedChart,
 
