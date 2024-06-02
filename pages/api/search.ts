@@ -8,10 +8,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(405).json({ message: 'Method not allowed' });
     }
 
-    const { search, limit } = req.query;
+    const { text, limit } = req.query;
 
-    if (search == null || search === '') {
-        return res.status(400).json({ message: "'id' parameter is invalid" });
+    if (text == null || text.length < 3) {
+        return res.status(400).json({ message: "'text' parameter is invalid" });
     }
 
     if (limit == null || limit === '') {
@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const client = new SeriesFredClient(fredApikey);
-    const series = await client.search(search as string, parsedLimit);
+    const series = await client.search(text as string, parsedLimit);
 
     return res.status(200).json(series);
 }
