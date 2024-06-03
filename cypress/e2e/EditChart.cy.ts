@@ -8,6 +8,7 @@ describe('AddChart', () => {
     const shouldChangeCheckboxes = 'shouldChangeCheckboxes';
     const shouldValidateColors = 'shouldValidateColors';
     const shouldManipulateData = 'shouldManipulateData';
+    const shouldDeleteChart = 'shouldDeleteChart';
 
     beforeEach(() => {
         cy.intercept('GET', '/api/search?*', {
@@ -160,5 +161,29 @@ describe('AddChart', () => {
                 const cleanedText = text.replace(/\u200B/g, '');
                 expect(cleanedText).to.equal('Annualy');
             });
+    });
+
+    it.only(shouldDeleteChart, () => {
+        addChart();
+        cy.get('canvas').click();
+
+        cy.buttonValidateAndClick('Delete Chart');
+        cy.findByRole('dialog').within(() => {
+            cy.textShouldBeVisible('Are you sure you want to delete the chart?');
+            cy.buttonValidateAndClick('Cancel');
+        });
+
+        cy.findByRole('dialog').should('not.exist');
+
+        cy.buttonValidateAndClick('Delete Chart');
+        cy.findByRole('dialog').within(() => {
+            cy.textShouldBeVisible('Are you sure you want to delete the chart?');
+            cy.buttonValidateAndClick('Yes');
+        });
+
+        cy.getByDataCy('chartSettingsPanel').should('have.css', 'pointer-events', 'none');
+        cy.getByDataCy('chartSettingsPanel').should('have.css', 'opacity', '0.5');
+        cy.get('canvas').should('not.exist');
+        cy.findByRole('dialog').should('not.exist');
     });
 });
