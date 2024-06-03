@@ -1,4 +1,4 @@
-import { validateFilledAddChartDialogState, validateInitialAddChartDialogState } from '../support/utils/AddChart.utils';
+import { addChart, validateInitialAddChartDialogState } from '../support/utils/AddChart.utils';
 
 describe('AddChart', () => {
     const shouldAddChart = 'shouldAddChart';
@@ -42,25 +42,7 @@ describe('AddChart', () => {
                         body: data,
                     });
                 }).as('getSeries');
-                validateInitialAddChartDialogState();
-
-                // search for a chart
-                cy.findByRole('dialog').within(() => {
-                    cy.getByDataCy('chartAutocomplete').click();
-                    cy.getByDataCy('chartAutocomplete').type('Personal Saving Rate');
-                    cy.wait('@search');
-                });
-
-                // select a chart
-                cy.findByText('Personal Saving Rate').last().click();
-                cy.wait('@getSeries');
-
-                validateFilledAddChartDialogState();
-
-                cy.buttonValidateAndClick('Save');
-
-                cy.wait('@getObservations');
-                cy.findByRole('dialog').should('not.exist');
+                addChart();
             });
         });
     });
