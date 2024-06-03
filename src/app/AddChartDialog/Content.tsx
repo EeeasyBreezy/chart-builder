@@ -1,8 +1,8 @@
-import ChartLabelsEdit from '@/Components/ChartLabelsEdit';
 import UIStrings from '@/utils/UIStrings';
 import { DialogContent, Stack, Autocomplete, TextField, useTheme } from '@mui/material';
 import { ChangeEvent } from 'react';
 import { useAddChartDialogContext } from './useAddChartDialogContext';
+import ChartLabelsEditWithBlock from './ChartLabelsEditWithBlock';
 
 export default function Content(): JSX.Element {
     const theme = useTheme();
@@ -31,7 +31,7 @@ export default function Content(): JSX.Element {
                         await selectChart(newValue.id);
                     }}
                 />
-                <ChartLabelsEdit />
+                <ChartLabelsEditWithBlock />
             </Stack>
         </DialogContent>
     );
