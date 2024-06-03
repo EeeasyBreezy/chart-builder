@@ -163,7 +163,7 @@ describe('AddChart', () => {
             });
     });
 
-    it.only(shouldDeleteChart, () => {
+    it(shouldDeleteChart, () => {
         addChart();
         cy.get('canvas').click();
 
