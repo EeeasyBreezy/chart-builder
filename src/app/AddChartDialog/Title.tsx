@@ -13,7 +13,17 @@ export default function Title(): JSX.Element {
 
     const closeWrapper = () => {
         dispose();
-        resetForm({ values: { chartType: DefaultChartOption, title: '', xLabel: '', yLabel: '' } });
+        resetForm({
+            values: { chartType: DefaultChartOption, title: '', xLabel: '', yLabel: '' },
+            isSubmitting: false,
+            isValidating: false,
+            errors: {
+                // need to set errors non-empty here, so formik will not persist value of isValid prop
+                title: '',
+                xLabel: '',
+                yLabel: '',
+            },
+        });
         closeDialog();
     };
 

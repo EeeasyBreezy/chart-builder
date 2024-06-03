@@ -5,6 +5,8 @@ import { useFormikContext } from 'formik';
 
 export default function Actions(): JSX.Element {
     const { isValid, isSubmitting } = useFormikContext();
+    // eslint-disable-next-line no-console
+    console.log('isValid', isValid);
 
     return (
         <DialogActions>
