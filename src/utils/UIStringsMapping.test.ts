@@ -58,6 +58,7 @@ describe('unitsToUIStrings', () => {
 describe('chartTypeToUIStrings', () => {
     test.each([
         ['line', UIStrings.Line],
+        ['area', UIStrings.Area],
         ['bar', UIStrings.Bar],
         ['other', 'other'],
     ])('returns correct string for type %s', (type, expected) => {

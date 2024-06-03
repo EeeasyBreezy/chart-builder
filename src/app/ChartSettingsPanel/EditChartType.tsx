@@ -12,7 +12,7 @@ export default function EditChartType(): JSX.Element {
         <Stack direction="column" spacing={theme.spacing(2)}>
             <Typography variant="body1">{UIStrings.ChartType}</Typography>
             <ChartTypeDropdown />
-            {selectedChart.type === 'line' && <LineStyleDropdown />}
+            {selectedChart.type !== 'bar' && <LineStyleDropdown />}
         </Stack>
     );
 }

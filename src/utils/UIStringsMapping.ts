@@ -73,6 +73,8 @@ export function chartTypeToUIStrings(type: string) {
     switch (type) {
         case 'line':
             return UIStrings.Line;
+        case 'area':
+            return UIStrings.Area;
         case 'bar':
             return UIStrings.Bar;
         default:

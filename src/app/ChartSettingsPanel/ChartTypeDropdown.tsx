@@ -4,7 +4,7 @@ import { chartTypeToUIStrings } from '@/utils/UIStringsMapping';
 import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 export default function ChartTypeDropdown(): JSX.Element {
-    const types: ChartType[] = ['line', 'bar'];
+    const types: ChartType[] = ['line', 'area', 'bar'];
     const { selectedChart, updateChart } = useChartContext();
 
     const onChange = (event: SelectChangeEvent<ChartType>) => {

@@ -47,6 +47,7 @@ export default class UIStrings {
 
     static readonly ChartType = 'Chart Type';
     static readonly Line = 'Line';
+    static readonly Area = 'Area';
     static readonly Bar = 'Bar';
 
     static readonly DeleteChart = 'Delete Chart';
