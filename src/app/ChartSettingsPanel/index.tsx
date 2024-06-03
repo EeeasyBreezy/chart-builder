@@ -11,6 +11,7 @@ import DeleteChart from './DeleteChart';
 export default function ChartSettingsPanel(): JSX.Element {
     const { selectedChart } = useChartContext();
     const theme = useTheme();
+    const disabled = selectedChart.chartLoading || selectedChart.id === '';
 
     return (
         <Paper
@@ -19,13 +20,14 @@ export default function ChartSettingsPanel(): JSX.Element {
                 alignSelf: 'flex-end',
                 elevation: 1,
                 padding: theme.spacing(2),
-                pointerEvents: selectedChart.chartLoading ? 'none' : 'auto',
-                opacity: selectedChart.chartLoading ? 0.5 : 1,
+                pointerEvents: disabled ? 'none' : 'auto',
+                opacity: disabled ? 0.5 : 1,
                 position: 'relative',
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
             }}
+            data-cy="chartSettingsPanel"
         >
             <Typography
                 variant="h6"

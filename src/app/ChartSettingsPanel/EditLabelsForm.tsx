@@ -19,7 +19,7 @@ export default function EditLabelsForm(): JSX.Element {
 
     const submit = (values: EditChartValues) => {
         const chart: Chart = {
-            ...selectedChart!,
+            ...selectedChart,
             ...values,
         };
         updateChart(chart);
@@ -28,30 +28,33 @@ export default function EditLabelsForm(): JSX.Element {
     return (
         <Formik
             initialValues={{
-                title: selectedChart?.title || '',
-                xLabel: selectedChart?.xLabel || '',
-                yLabel: selectedChart?.yLabel || '',
+                title: selectedChart.title,
+                xLabel: selectedChart.xLabel,
+                yLabel: selectedChart.yLabel,
             }}
             onSubmit={submit}
             enableReinitialize
             validationSchema={schema}
         >
-            <Form>
-                <Stack direction="column" spacing={theme.spacing(2)}>
-                    <Typography variant="body1">{UIStrings.EditLabels}</Typography>
-                    <ChartLabelsEdit />
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        sx={{
-                            alignSelf: 'flex-end',
-                        }}
-                    >
-                        {UIStrings.ApplyChanges}
-                    </Button>
-                </Stack>
-            </Form>
+            {({ isValid }) => (
+                <Form>
+                    <Stack direction="column" spacing={theme.spacing(2)}>
+                        <Typography variant="body1">{UIStrings.EditLabels}</Typography>
+                        <ChartLabelsEdit />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            sx={{
+                                alignSelf: 'flex-end',
+                            }}
+                            disabled={!isValid}
+                        >
+                            {UIStrings.ApplyChanges}
+                        </Button>
+                    </Stack>
+                </Form>
+            )}
         </Formik>
     );
 }

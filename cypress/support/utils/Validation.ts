@@ -1,3 +1,9 @@
+export function validateLabelInput(title: string, xLabel: string, yLabel: string) {
+    cy.textInputShouldHaveValue('title', title);
+    cy.textInputShouldHaveValue('xLabel', xLabel);
+    cy.textInputShouldHaveValue('yLabel', yLabel);
+}
+
 export function validateInitialAddChartDialogState() {
     // validate dialog initial state
     // placeholders visible
@@ -25,31 +31,7 @@ export function validateFilledAddChartDialogState() {
         cy.textInputShouldBeEnabled('editXLabel');
         cy.textInputShouldBeEnabled('editYLabel');
 
-        cy.textInputShouldHaveValue('title', 'Personal Saving Rate');
-        cy.textInputShouldHaveValue('xLabel', 'Date');
-        cy.textInputShouldHaveValue('yLabel', 'Percent');
+        validateLabelInput('Personal Saving Rate', 'Date', 'Percent');
     });
 }
 
-export function addChart() {
-
-    validateInitialAddChartDialogState();
-
-    // search for a chart
-    cy.findByRole('dialog').within(() => {
-        cy.getByDataCy('chartAutocomplete').click();
-        cy.getByDataCy('chartAutocomplete').type('Personal Saving Rate');
-        cy.wait('@search');
-    });
-
-    // select a chart
-    cy.findByText('Personal Saving Rate').last().click();
-    cy.wait('@getSeries');
-
-    validateFilledAddChartDialogState();
-
-    cy.buttonValidateAndClick('Save');
-
-    cy.wait('@getObservations');
-    cy.findByRole('dialog').should('not.exist');
-}

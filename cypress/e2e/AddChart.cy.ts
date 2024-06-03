@@ -1,4 +1,5 @@
-import { addChart, validateInitialAddChartDialogState } from '../support/utils/AddChart.utils';
+import { addChart } from "../support/utils/Charts";
+import { validateInitialAddChartDialogState } from "../support/utils/Validation";
 
 describe('AddChart', () => {
     const shouldAddChart = 'shouldAddChart';
@@ -20,7 +21,6 @@ describe('AddChart', () => {
         }).as('getObservations');
 
         cy.visit('http://localhost:3000');
-        cy.buttonValidateAndClick('Add Chart');
     });
 
     [

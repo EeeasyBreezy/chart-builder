@@ -1,3 +1,7 @@
+import { addChart } from "../support/utils/Charts";
+import { validateLabelInput } from "../support/utils/Validation";
+
+
 describe('AddChart', () => {
     const shouldChangeLabels = 'shouldChangeLabels';
     const shouldNotChangeLabelsWhenFormIsInvalid = 'shouldNotChangeLabelsWhenFormIsInvalid';
@@ -18,10 +22,31 @@ describe('AddChart', () => {
         }).as('getObservations');
 
         cy.visit('http://localhost:3000');
-        cy.buttonValidateAndClick('Add Chart');
     });
 
     it.only(shouldChangeLabels, () => {
+        addChart();
+
+        // validate chart settings panel is disabled when no chart is selected
+        cy.getByDataCy('chartSettingsPanel').should('have.css', 'pointer-events', 'none');
+        cy.getByDataCy('chartSettingsPanel').should('have.css', 'opacity', '0.5');
+
+        cy.get('canvas').click();
+
+        // validate chart settings panel is enabled when a chart is selected
+        cy.getByDataCy('chartSettingsPanel').should('have.css', 'pointer-events', 'auto');
+        cy.getByDataCy('chartSettingsPanel').should('have.css', 'opacity', '1');
+        cy.textShouldBeVisible('Chart Options: Personal Saving Rate'); // title in settings is available
+        validateLabelInput('Personal Saving Rate', 'Date', 'Percent'); // labels in settings are available
+
+        cy.clearInput('title');
+        cy.clearInput('xLabel');
+        cy.clearInput('yLabel');
+        cy.buttonShouldBeDisabled('Apply Changes');
+
+        cy.typeIntoInput('title', 'This is new title');
+        cy.typeIntoInput('xLabel', 'This is new x label');
+        cy.typeIntoInput('yLabel', 'This is new y label');
+        cy.buttonValidateAndClick('Apply Changes');
     });
-       
 });
