@@ -10,6 +10,7 @@ import { getByDataCy } from './commands/getByDataCy';
 import { textInputShouldBeDisabled } from './commands/textInputShouldBeDisabled';
 import { textInputShouldBeEnabled } from './commands/textInputShouldBeEnabled';
 import { textInputShouldHaveValue } from './commands/textInputShouldHaveValue';
+import { typeIntoInput } from './commands/typeIntoInput';
 
 Cypress.Commands.add('buttonValidateAndClick', buttonValidateAndClick);
 Cypress.Commands.add('textShouldBeVisible', textShouldBeVisible);
@@ -21,3 +22,4 @@ Cypress.Commands.add('getByDataCy', getByDataCy);
 Cypress.Commands.add('textInputShouldBeDisabled', textInputShouldBeDisabled);
 Cypress.Commands.add('textInputShouldBeEnabled', textInputShouldBeEnabled);
 Cypress.Commands.add('textInputShouldHaveValue', textInputShouldHaveValue);
+Cypress.Commands.add('typeIntoInput', typeIntoInput);
