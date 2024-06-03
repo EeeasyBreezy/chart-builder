@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "id": "PSAVERT",
+            "observation_start": "1959-01-01",
+            "observation_end": "2024-04-01",
+            "title": "Personal Saving Rate",
+            "frequency": "Monthly"
+        }
+    ],
+    "pagination": {
+        "offset": 0,
+        "limit": 10,
+        "totalCount": 1
+    }
+}

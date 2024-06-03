@@ -25,7 +25,12 @@ export default function Content(): JSX.Element {
                 <Autocomplete
                     loading={searchLoading}
                     renderInput={(props) => (
-                        <TextField onChange={onTextChange} label={`${UIStrings.Measurement}*`} {...props} />
+                        <TextField
+                            data-cy="chartAutocomplete"
+                            onChange={onTextChange}
+                            label={`${UIStrings.Measurement}*`}
+                            {...props}
+                        />
                     )}
                     options={options}
                     getOptionLabel={(option) => option.title}
