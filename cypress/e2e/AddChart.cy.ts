@@ -45,7 +45,7 @@ describe('AddChart', () => {
         cy.findByRole('dialog').should('not.exist');
     });
 
-    it.only(shouldNotAddChartWhenFormIsInvalid, () => {
+    it(shouldNotAddChartWhenFormIsInvalid, () => {
         validateInitialAddChartDialogState();
 
         // search for a chart
