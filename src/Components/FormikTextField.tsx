@@ -3,10 +3,9 @@ import { useField } from 'formik';
 
 export type FormikTextFieldBaseProps = TextFieldProps & {
     name: string;
-    commentary?: string;
 };
 
-export default function FormikTextField({ name, commentary, onChange, ...props }: FormikTextFieldBaseProps) {
+export default function FormikTextField({ name, onChange, ...props }: FormikTextFieldBaseProps) {
     const [field, meta, helpers] = useField(name);
 
     return (
