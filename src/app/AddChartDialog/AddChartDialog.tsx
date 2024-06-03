@@ -23,7 +23,6 @@ const defaultFormValues: FormPlotValues = {
 };
 
 export default function AddChartDialog(): JSX.Element {
-    const theme = useTheme();
     const schema = useChartValidationSchema();
     const { open, closeDialog, addChart } = useChartContext();
 
