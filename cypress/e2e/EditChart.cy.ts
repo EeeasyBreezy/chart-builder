@@ -125,7 +125,7 @@ describe('AddChart', () => {
         cy.textShouldBeVisible('Y Axis Color');
     });
 
-    it.only(shouldManipulateData, () => {
+    it(shouldManipulateData, () => {
         addChart();
         cy.get('canvas').click();
 
