@@ -7,6 +7,9 @@ import { buttonShouldBeDisabled } from './commands/buttonShouldBeDisabled';
 import { checkboxShouldBeChecked } from './commands/checkboxShouldBeChecked';
 import { labelShouldBeVisible } from './commands/labelShouldBeVisible';
 import { getByDataCy } from './commands/getByDataCy';
+import { textInputShouldBeDisabled } from './commands/textInputShouldBeDisabled';
+import { textInputShouldBeEnabled } from './commands/textInputShouldBeEnabled';
+import { textInputShouldHaveValue } from './commands/textInputShouldHaveValue';
 
 Cypress.Commands.add('buttonValidateAndClick', buttonValidateAndClick);
 Cypress.Commands.add('textShouldBeVisible', textShouldBeVisible);
@@ -15,3 +18,6 @@ Cypress.Commands.add('checkboxShouldBeChecked', checkboxShouldBeChecked);
 Cypress.Commands.add('checkboxShouldNotBeChecked', checkboxShouldBeChecked);
 Cypress.Commands.add('labelShouldBeVisible', labelShouldBeVisible);
 Cypress.Commands.add('getByDataCy', getByDataCy);
+Cypress.Commands.add('textInputShouldBeDisabled', textInputShouldBeDisabled);
+Cypress.Commands.add('textInputShouldBeEnabled', textInputShouldBeEnabled);
+Cypress.Commands.add('textInputShouldHaveValue', textInputShouldHaveValue);
