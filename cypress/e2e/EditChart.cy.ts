@@ -1,6 +1,5 @@
-import { addChart } from "../support/utils/Charts";
-import { validateLabelInput } from "../support/utils/Validation";
-
+import { addChart } from '../support/utils/Charts';
+import { validateLabelInput } from '../support/utils/Validation';
 
 describe('AddChart', () => {
     const shouldChangeLabels = 'shouldChangeLabels';
@@ -24,7 +23,7 @@ describe('AddChart', () => {
         cy.visit('http://localhost:3000');
     });
 
-    it.only(shouldChangeLabels, () => {
+    it(shouldChangeLabels, () => {
         addChart();
 
         // validate chart settings panel is disabled when no chart is selected
@@ -48,5 +47,29 @@ describe('AddChart', () => {
         cy.typeIntoInput('xLabel', 'This is new x label');
         cy.typeIntoInput('yLabel', 'This is new y label');
         cy.buttonValidateAndClick('Apply Changes');
+    });
+
+    it.only(shouldNotChangeLabelsWhenFormIsInvalid, () => {
+        addChart();
+
+        cy.get('canvas').click();
+
+        cy.clearInput('title');
+        cy.clearInput('xLabel');
+        cy.clearInput('yLabel');
+        cy.buttonShouldBeDisabled('Apply Changes');
+
+        const longString = 'a'.repeat(130);
+        cy.typeIntoInput('title', longString);
+        cy.textShouldBeVisible('Must be at most 128 characters');
+        cy.buttonShouldBeDisabled('Apply Changes');
+
+        cy.typeIntoInput('xLabel', longString);
+        cy.textShouldBeVisible('Must be at most 64 characters');
+        cy.buttonShouldBeDisabled('Apply Changes');
+
+        cy.typeIntoInput('yLabel', longString);
+        cy.textShouldBeVisible('Must be at most 64 characters');
+        cy.buttonShouldBeDisabled('Apply Changes');
     });
 });
