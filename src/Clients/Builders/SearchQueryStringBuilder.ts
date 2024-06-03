@@ -1,10 +1,6 @@
-import BaseQueryStringBuilder from "./BaseQueryStringBuilder";
+import BaseQueryStringBuilder from './BaseQueryStringBuilder';
 
 export default class SearchQueryStringBuilder extends BaseQueryStringBuilder {
-    constructor() {
-        super();
-    }
-
     withSearch(text: string): SearchQueryStringBuilder {
         this.params.append('text', text);
         return this;

@@ -8,7 +8,7 @@ class SeriesFredClient {
     constructor(apiKey: string) {
         this.client = new Fred(apiKey);
     }
-    
+
     async getSeries(id: string): Promise<any> {
         const response = await this.client.series.getSeries(id);
         // have to use key "seriess" because this key is returned by the API
@@ -28,12 +28,11 @@ class SeriesFredClient {
     }
 
     async search(text: string, limit: number): Promise<any> {
-        const response = await this.client.series.getSeriesThatMatchesSearch(text,
-            {
-                limit,
-                filter_variable: "frequency",
-                filter_value: "Monthly"
-            });
+        const response = await this.client.series.getSeriesThatMatchesSearch(text, {
+            limit,
+            filter_variable: 'frequency',
+            filter_value: 'Monthly',
+        });
         return response;
     }
 }

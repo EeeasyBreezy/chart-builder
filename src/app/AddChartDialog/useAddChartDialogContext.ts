@@ -1,6 +1,6 @@
 import { Frequencies } from '@/Models/Chart';
 import { DebouncedFunc } from 'lodash';
-import React, { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 
 export interface ChartOption {
     id: string;
@@ -13,14 +13,14 @@ export interface ChartOption {
 export const DefaultChartOption: ChartOption = {
     id: '',
     title: '',
-    minFrequency: "d",
+    minFrequency: 'd',
     xLabel: '',
     yLabel: '',
 };
 
 export interface AddChartDialogContextData {
     options: Array<ChartOption>;
-    searchLoading: boolean; 
+    searchLoading: boolean;
     chartLoading: boolean;
     selectedChart: ChartOption;
     search: DebouncedFunc<(text: string) => Promise<void>>;

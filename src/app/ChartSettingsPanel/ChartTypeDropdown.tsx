@@ -7,7 +7,7 @@ export default function ChartTypeDropdown(): JSX.Element {
     const types: ChartType[] = ['line', 'bar'];
     const { selectedChart, updateChart } = useChartContext();
 
-    const onChange = (event: SelectChangeEvent<ChartType>, child: React.ReactNode) => {
+    const onChange = (event: SelectChangeEvent<ChartType>) => {
         updateChart({ ...selectedChart, type: event.target.value as ChartType });
     };
 

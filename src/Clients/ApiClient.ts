@@ -6,7 +6,6 @@ import ObservationsQueryStringBuilder from './Builders/ObservationsQueryStringBu
 import { Page } from '@/DTO/Page';
 import SearchQueryStringBuilder from './Builders/SearchQueryStringBuilder';
 
-
 export default class ApiClient {
     baseUrl: string;
 
@@ -37,12 +36,8 @@ export default class ApiClient {
         return observations;
     }
 
-    async search(text: string, limit: number): Promise<Page<SeriesDTO>>
-    {
-        const query = new SearchQueryStringBuilder()
-            .withSearch(text)
-            .withLimit(limit)
-            .build();
+    async search(text: string, limit: number): Promise<Page<SeriesDTO>> {
+        const query = new SearchQueryStringBuilder().withSearch(text).withLimit(limit).build();
         const response = await axios.get(`${this.baseUrl}/api/search?${query}`);
         return response.data;
     }

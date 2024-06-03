@@ -24,7 +24,6 @@ export default function AddChartDialogWithFormik(): JSX.Element {
 
         while (frequencies[0] !== stringToFrequency(values.chartType.minFrequency)) {
             frequencies.shift();
-            console.log(frequencies);
         }
 
         const chart: Chart = {

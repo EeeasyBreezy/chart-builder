@@ -27,7 +27,7 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
                     );
                 }),
             ],
-            onChange: async (event, child) => {
+            onChange: async (event) => {
                 const chart: Chart = {
                     ...selectedChart,
                     currentUnit: event.target.value as Units,
@@ -47,7 +47,7 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
                     );
                 }),
             ],
-            onChange: async (event, child) => {
+            onChange: async (event) => {
                 const chart: Chart = {
                     ...selectedChart,
                     currentFrequency: event.target.value as Frequencies,
@@ -67,7 +67,7 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
                     );
                 }),
             ],
-            onChange: async (event, child) => {
+            onChange: async (event) => {
                 const chart: Chart = {
                     ...selectedChart,
                     currentAggregation: event.target.value as Aggregations,

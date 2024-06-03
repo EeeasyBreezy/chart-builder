@@ -3,10 +3,6 @@ import BaseQueryStringBuilder from './BaseQueryStringBuilder';
 
 export default class ObservationsQueryStringBuilder extends BaseQueryStringBuilder {
 
-    constructor() {
-        super();
-    }
-
     withId(id: string): ObservationsQueryStringBuilder {
         this.params.append('id', id);
         return this;

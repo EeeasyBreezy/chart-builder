@@ -18,7 +18,7 @@ export default function useEditColorsUI(): Array<UseEditColors> {
         {
             label: UIStrings.PlotColor,
             selectedColor: plotColor,
-            onChange: (color, event) => {
+            onChange: (color) => {
                 const chart: Chart = {
                     ...selectedChart!,
                     plotColor: color.hex,
@@ -29,7 +29,7 @@ export default function useEditColorsUI(): Array<UseEditColors> {
         {
             label: UIStrings.XAxisColor,
             selectedColor: xAxisColor,
-            onChange: (color, event) => {
+            onChange: (color) => {
                 const chart: Chart = {
                     ...selectedChart!,
                     xAxisColor: color.hex,
@@ -40,7 +40,7 @@ export default function useEditColorsUI(): Array<UseEditColors> {
         {
             label: UIStrings.YAxisColor,
             selectedColor: yAxisColor,
-            onChange: (color, event) => {
+            onChange: (color) => {
                 const chart: Chart = {
                     ...selectedChart!,
                     yAxisColor: color.hex,

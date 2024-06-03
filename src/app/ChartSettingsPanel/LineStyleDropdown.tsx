@@ -7,7 +7,7 @@ export default function LineStyleDropdown(): JSX.Element {
     const values: LineStyle[] = ['solid', 'dashed'];
     const { selectedChart, updateChart } = useChartContext();
 
-    const onChange = (event: SelectChangeEvent<LineStyle>, child: React.ReactNode) => {
+    const onChange = (event: SelectChangeEvent<LineStyle>) => {
         updateChart({ ...selectedChart, lineStyle: event.target.value as LineStyle });
     };
 
