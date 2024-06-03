@@ -1,4 +1,4 @@
-import { Form, Formik, FormikHelpers } from 'formik';
+import { Formik, FormikHelpers } from 'formik';
 import AddChartDialog from './AddChartDialog';
 import useChartValidationSchema from '@/FormValidation/useChartValidationSchema';
 import { Chart, DefaultChart, Frequencies } from '@/Models/Chart';
