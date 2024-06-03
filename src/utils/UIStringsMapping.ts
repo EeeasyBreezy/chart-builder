@@ -2,7 +2,7 @@ import { Aggregations, Frequencies, LineStyle, Units } from '@/Models/Chart';
 import UIStrings from '@/utils/UIStrings';
 
 export function frequencytoUIStrings(frequency: Frequencies) {
-    switch (frequency) {
+    switch (frequency.toLowerCase()) {
         case 'd':
             return UIStrings.Daily;
         case 'w':
@@ -10,7 +10,7 @@ export function frequencytoUIStrings(frequency: Frequencies) {
         case 'm':
             return UIStrings.Monthly;
         case 'q':
-            return UIStrings.Quaterly;
+            return UIStrings.Quarterly;
         case 'sa':
             return UIStrings.SemiAnnualy;
         case 'a':
@@ -20,17 +20,17 @@ export function frequencytoUIStrings(frequency: Frequencies) {
 
 export function stringToFrequency(frequency: string) {
     switch (frequency) {
-        case 'Daily':
+        case UIStrings.Daily:
             return 'd';
-        case 'Weekly':
+        case UIStrings.Weekly:
             return 'w';
-        case 'Monthly':
+        case UIStrings.Monthly:
             return 'm';
-        case 'Quaterly':
+        case UIStrings.Quarterly:
             return 'q';
-        case 'Semi-Annualy':
+        case UIStrings.SemiAnnualy:
             return 'sa';
-        case 'Annualy':
+        case UIStrings.Annualy:
             return 'a';
     }
 }

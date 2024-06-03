@@ -6,6 +6,7 @@ import {
     aggregationsToUIStrings,
     chartTypeToUIStrings,
     unitsToUIStrings,
+    stringToFrequency,
 } from './UIStringsMapping';
 
 describe('frequencytoUIStrings', () => {
@@ -13,7 +14,7 @@ describe('frequencytoUIStrings', () => {
         ['d', UIStrings.Daily],
         ['w', UIStrings.Weekly],
         ['m', UIStrings.Monthly],
-        ['q', UIStrings.Quaterly],
+        ['q', UIStrings.Quarterly],
         ['sa', UIStrings.SemiAnnualy],
         ['a', UIStrings.Annualy],
     ])('returns correct string for frequency %s', (frequency, expected) => {
@@ -61,6 +62,20 @@ describe('chartTypeToUIStrings', () => {
         ['other', 'other'],
     ])('returns correct string for type %s', (type, expected) => {
         const result = chartTypeToUIStrings(type);
+        expect(result).toEqual(expected);
+    });
+});
+
+describe('stringToFrequency', () => {
+    test.each([
+        [UIStrings.Daily, 'd'],
+        [UIStrings.Weekly, 'w'],
+        [UIStrings.Monthly, 'm'],
+        [UIStrings.Quarterly, 'q'],
+        [UIStrings.SemiAnnualy, 'sa'],
+        [UIStrings.Annualy, 'a'],
+    ])('returns correct frequency for string %s', (input, expected) => {
+        const result = stringToFrequency(input);
         expect(result).toEqual(expected);
     });
 });

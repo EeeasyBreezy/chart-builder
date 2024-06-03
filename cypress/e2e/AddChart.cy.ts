@@ -23,26 +23,46 @@ describe('AddChart', () => {
         cy.buttonValidateAndClick('Add Chart');
     });
 
-    it(shouldAddChart, () => {
-        validateInitialAddChartDialogState();
+    [
+        ['D', 'Daily'],
+        ['W', 'Weekly'],
+        ['M', 'Monthly'],
+        ['Q', 'Quarterly'],
+        ['SA', 'Semi-Annualy'],
+        ['A', 'Annualy'],
+    ].forEach((frequencyShort, frequency) => {
+        it(shouldAddChart, () => {
+            cy.fixture('series/personalSavingRate.json').then((data) => {
+                data.frequency = frequency;
+                data.frequency_short = frequencyShort;
 
-        // search for a chart
-        cy.findByRole('dialog').within(() => {
-            cy.getByDataCy('chartAutocomplete').click();
-            cy.getByDataCy('chartAutocomplete').type('Personal Saving Rate');
-            cy.wait('@search');
+                cy.intercept('GET', '/api/series?id=*', (request) => {
+                    request.reply({
+                        statusCode: 200,
+                        body: data,
+                    });
+                }).as('getSeries');
+                validateInitialAddChartDialogState();
+
+                // search for a chart
+                cy.findByRole('dialog').within(() => {
+                    cy.getByDataCy('chartAutocomplete').click();
+                    cy.getByDataCy('chartAutocomplete').type('Personal Saving Rate');
+                    cy.wait('@search');
+                });
+
+                // select a chart
+                cy.findByText('Personal Saving Rate').last().click();
+                cy.wait('@getSeries');
+
+                validateFilledAddChartDialogState();
+
+                cy.buttonValidateAndClick('Save');
+
+                cy.wait('@getObservations');
+                cy.findByRole('dialog').should('not.exist');
+            });
         });
-
-        // select a chart
-        cy.findByText('Personal Saving Rate').last().click();
-        cy.wait('@getSeries');
-
-        validateFilledAddChartDialogState();
-
-        cy.buttonValidateAndClick('Save');
-
-        cy.wait('@getObservations');
-        cy.findByRole('dialog').should('not.exist');
     });
 
     it(shouldNotAddChartWhenFormIsInvalid, () => {
@@ -88,7 +108,6 @@ describe('AddChart', () => {
             cy.textShouldBeVisible('Must be at most 64 characters');
             cy.buttonShouldBeDisabled('Save');
             cy.clearInput('yLabel');
-
         });
     });
 });

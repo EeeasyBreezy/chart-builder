@@ -22,7 +22,7 @@ export default class UIStrings {
     static readonly Daily = 'Daily';
     static readonly Weekly = 'Weekly';
     static readonly Monthly = 'Monthly';
-    static readonly Quaterly = 'Quaterly';
+    static readonly Quarterly = 'Quarterly';
     static readonly SemiAnnualy = 'Semi-annually';
     static readonly Annualy = 'Annualy';
 
