@@ -6,6 +6,7 @@ describe('AddChart', () => {
     const shouldNotChangeLabelsWhenFormIsInvalid = 'shouldNotChangeLabelsWhenFormIsInvalid';
     const shouldChangeChartType = 'shouldChangeChartType';
     const shouldChangeCheckboxes = 'shouldChangeCheckboxes';
+    const shouldValidateColors = 'shouldValidateColors';
 
     beforeEach(() => {
         cy.intercept('GET', '/api/search?*', {
@@ -99,7 +100,7 @@ describe('AddChart', () => {
         cy.getByDataCy('lineStyle').should('not.exist');
     });
 
-    it.only(shouldChangeCheckboxes, () => {
+    it(shouldChangeCheckboxes, () => {
         addChart();
         cy.get('canvas').click();
 
@@ -112,4 +113,14 @@ describe('AddChart', () => {
         cy.getByDataCy('Hide X Label').within(() => cy.get('input').should('be.checked'));
         cy.getByDataCy('Hide Y Label').within(() => cy.get('input').should('be.checked'));
     });
+
+    it(shouldValidateColors, () => {
+        addChart();
+        cy.get('canvas').click();
+
+        cy.textShouldBeVisible('Edit Colors');
+        cy.textShouldBeVisible('Plot Color');
+        cy.textShouldBeVisible('X Axis Color');
+        cy.textShouldBeVisible('Y Axis Color');
+    })
 });
