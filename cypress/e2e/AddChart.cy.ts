@@ -76,7 +76,6 @@ describe('AddChart', () => {
             cy.typeIntoInput('title', 'Personal Saving Rate');
 
             cy.clearInput('xLabel');
-            cy.clearInput('yLabel');
 
             cy.typeIntoInput('xLabel', longString);
             cy.textShouldBeVisible('Must be at most 64 characters');
@@ -84,6 +83,7 @@ describe('AddChart', () => {
             cy.clearInput('xLabel');
             cy.textShouldBeVisible('Required');
 
+            cy.clearInput('yLabel');
             cy.typeIntoInput('yLabel', longString);
             cy.textShouldBeVisible('Must be at most 64 characters');
             cy.buttonShouldBeDisabled('Save');
