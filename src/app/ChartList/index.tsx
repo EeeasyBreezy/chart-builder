@@ -28,7 +28,7 @@ export default function ChartList(): JSX.Element {
                         <LoadingLineChart
                             key={chart.id}
                             {...convertToProps(chart)}
-                            selected={chart.id === selectedChart?.id}
+                            selected={chart.id === selectedChart.id}
                             onClick={onClick}
                         />
                     );
@@ -38,7 +38,7 @@ export default function ChartList(): JSX.Element {
                         <LoadingBarChart
                             key={chart.id}
                             {...convertToProps(chart)}
-                            selected={chart.id === selectedChart?.id}
+                            selected={chart.id === selectedChart.id}
                             onClick={onClick}
                         />
                     );

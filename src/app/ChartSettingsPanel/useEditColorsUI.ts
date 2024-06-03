@@ -7,20 +7,22 @@ import { ColorResult } from 'react-color';
 interface UseEditColors {
     label: string;
     selectedColor: string;
+    dataCy: string;
     onChange: (color: ColorResult, event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function useEditColorsUI(): Array<UseEditColors> {
     const { selectedChart, updateChart } = useChartContext();
-    const { plotColor, xAxisColor, yAxisColor } = selectedChart!;
+    const { plotColor, xAxisColor, yAxisColor } = selectedChart;
 
     return [
         {
             label: UIStrings.PlotColor,
             selectedColor: plotColor,
+            dataCy: 'plotColor',
             onChange: (color) => {
                 const chart: Chart = {
-                    ...selectedChart!,
+                    ...selectedChart,
                     plotColor: color.hex,
                 };
                 updateChart(chart);
@@ -29,9 +31,10 @@ export default function useEditColorsUI(): Array<UseEditColors> {
         {
             label: UIStrings.XAxisColor,
             selectedColor: xAxisColor,
+            dataCy: 'xAxisColor',
             onChange: (color) => {
                 const chart: Chart = {
-                    ...selectedChart!,
+                    ...selectedChart,
                     xAxisColor: color.hex,
                 };
                 updateChart(chart);
@@ -40,9 +43,10 @@ export default function useEditColorsUI(): Array<UseEditColors> {
         {
             label: UIStrings.YAxisColor,
             selectedColor: yAxisColor,
+            dataCy: 'yAxisColor',
             onChange: (color) => {
                 const chart: Chart = {
-                    ...selectedChart!,
+                    ...selectedChart,
                     yAxisColor: color.hex,
                 };
                 updateChart(chart);

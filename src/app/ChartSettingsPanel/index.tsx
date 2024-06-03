@@ -41,7 +41,7 @@ export default function ChartSettingsPanel(): JSX.Element {
                     marginBottom: theme.spacing(4), // Ensure there's space between header and content
                 }}
             >
-                {`${UIStrings.ChartOptions}: ${selectedChart?.title || ''}`}
+                {`${UIStrings.ChartOptions}: ${selectedChart.title || ''}`}
             </Typography>
             <Box
                 sx={{
