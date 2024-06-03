@@ -1,7 +1,8 @@
 import { useApiClient } from "@/Clients/Hooks";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { AddChartDialogContextData, ChartOption, DefaultChartOption } from "./useAddChartDialogContext";
 import { Frequencies } from "@/Models/Chart";
+import { debounce } from "lodash";
 
 interface UseAddChartDialogState {
     options: Array<ChartOption>;
@@ -20,16 +21,17 @@ export default function useAddChartDialogContextValue(): AddChartDialogContextDa
     const { options, searchLoading, chartLoading, selectedChart } = state;
     const client = useApiClient();
 
-    const search = async (text: string): Promise<void> => {
+    const search = useCallback(debounce(async (text: string): Promise<void> => {
         if(text.length < 3) {
             setState({ ...state, options: [], searchLoading: false });
             return;
         }
+
         setState({ ...state, searchLoading: true });
         const page = await client.search(text, 10);
         const opts = page.data.map(x => ({ id: x.id, title: x.title, minFrequency: x.frequency as Frequencies, xLabel: "Date", yLabel: x.units}));
         setState({ ...state, options: opts, searchLoading: false });
-    }
+    }, 500), []);
 
     const selectChart = async (id: string): Promise<void> => {
         setState({ ...state, chartLoading: true });

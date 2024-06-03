@@ -6,6 +6,7 @@ import ObservationsQueryStringBuilder from './Builders/ObservationsQueryStringBu
 import { Page } from '@/DTO/Page';
 import SearchQueryStringBuilder from './Builders/SearchQueryStringBuilder';
 
+
 export default class ApiClient {
     baseUrl: string;
 
