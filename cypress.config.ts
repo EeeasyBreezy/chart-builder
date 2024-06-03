@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
@@ -5,7 +6,6 @@ export default defineConfig({
     viewportWidth: 1440,
     screenshotOnRunFailure: true,
     video: false,
-    screenshots: true,
     retries: {
         runMode: 3,
     },
