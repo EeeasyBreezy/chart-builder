@@ -1,13 +1,12 @@
-import UIStrings from '@/utils/UIStrings';
-import { CloseOutlined } from '@mui/icons-material';
-import { LoadingButton } from '@mui/lab';
-import { DialogTitle, Typography, IconButton, DialogContent, DialogActions, useTheme, Dialog } from '@mui/material';
+import { useTheme, Dialog } from '@mui/material';
 import { Formik, Form, FormikHelpers } from 'formik';
-import DialogBody from './DialogContent';
 import { Chart, DefaultChart } from '@/Models/Chart';
 import useChartValidationSchema from '@/FormValidation/useChartValidationSchema';
 import { v4 as uuid4 } from 'uuid';
 import { useChartContext } from '@/State/useChartContext';
+import Title from './Title';
+import Content from './Content';
+import Actions from './Actions';
 
 interface FormPlotValues {
     chartType: DropdownOption<Option>;
@@ -52,39 +51,11 @@ export default function AddChartDialog(): JSX.Element {
     return (
         <Dialog open={open} fullWidth maxWidth="sm" onClose={closeDialog}>
             <Formik onSubmit={submit} initialValues={defaultFormValues} validationSchema={schema} validateOnMount>
-                {({ isValid, isSubmitting }) => (
-                    <Form>
-                        <DialogTitle>
-                            <Typography>{UIStrings.AddChart}</Typography>
-                            <IconButton
-                                style={{
-                                    position: 'absolute',
-                                    right: theme.spacing(1),
-                                    top: theme.spacing(1),
-                                    color: theme.palette.grey[500],
-                                }}
-                                onClick={closeDialog}
-                            >
-                                <CloseOutlined />
-                            </IconButton>
-                        </DialogTitle>
-                        <DialogContent>
-                            <DialogBody />
-                        </DialogContent>
-                        <DialogActions>
-                            <LoadingButton
-                                color="primary"
-                                size="large"
-                                disabled={!isValid}
-                                loading={isSubmitting}
-                                type="submit"
-                                variant="contained"
-                            >
-                                {UIStrings.Save}
-                            </LoadingButton>
-                        </DialogActions>
-                    </Form>
-                )}
+                <Form>
+                    <Title />
+                    <Content />
+                    <Actions />
+                </Form>
             </Formik>
         </Dialog>
     );
