@@ -21,6 +21,7 @@ export function frequencytoUIStrings(frequency: Frequencies) {
 export function stringToFrequency(frequency: string) {
     switch (frequency) {
         case UIStrings.Daily:
+        case UIStrings.DailyClose:
             return 'd';
         case UIStrings.Weekly:
             return 'w';

@@ -20,6 +20,7 @@ export default class UIStrings {
     static readonly HidePoints = 'Hide Points';
 
     static readonly Daily = 'Daily';
+    static readonly DailyClose = 'Daily, Close';
     static readonly Weekly = 'Weekly';
     static readonly Monthly = 'Monthly';
     static readonly Quarterly = 'Quarterly';

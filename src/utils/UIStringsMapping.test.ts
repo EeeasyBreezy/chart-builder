@@ -69,6 +69,7 @@ describe('chartTypeToUIStrings', () => {
 describe('stringToFrequency', () => {
     test.each([
         [UIStrings.Daily, 'd'],
+        [UIStrings.DailyClose, 'd'],
         [UIStrings.Weekly, 'w'],
         [UIStrings.Monthly, 'm'],
         [UIStrings.Quarterly, 'q'],

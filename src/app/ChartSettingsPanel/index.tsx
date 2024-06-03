@@ -50,7 +50,13 @@ export default function ChartSettingsPanel(): JSX.Element {
                     padding: theme.spacing(2),
                 }}
             >
-                <Stack direction="column" spacing={theme.spacing(2)}>
+                <Stack
+                    direction="column"
+                    spacing={theme.spacing(2)}
+                    sx={{
+                        paddingBottom: theme.spacing(2),
+                    }}
+                >
                     <EditLabelsForm />
                     <EditChartType />
                     <EditColors />

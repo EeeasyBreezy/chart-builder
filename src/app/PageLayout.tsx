@@ -20,7 +20,7 @@ export default function PageLayout(): JSX.Element {
                 <Grid item xs={8} sx={{ height: '100%', overflowY: 'auto' }}>
                     <ChartList />
                 </Grid>
-                <Grid item xs={4} sx={{ height: '100%', overflowY: 'auto' }}>
+                <Grid item xs={4} sx={{ height: '100%' }}>
                     <ChartSettingsPanel />
                 </Grid>
             </Grid>
