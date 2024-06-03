@@ -1,6 +1,6 @@
 import Point from './Point';
 
-export type ChartType = 'line' | 'bar';
+export type ChartType = 'line' | 'area' | 'bar';
 export type LineStyle = 'solid' | 'dashed';
 export type Frequencies = 'd' | 'w' | 'm' | 'q' | 'sa' | 'a';
 export type Aggregations = 'sum' | 'avg' | 'eop';
@@ -28,6 +28,8 @@ export interface Chart {
     currentUnit: Units;
     currentAggregation?: Aggregations;
     chartLoading?: boolean;
+    areaColor?: string;
+    backgroundColor: string;
 }
 
 export const DefaultChart: Chart = {
@@ -50,4 +52,5 @@ export const DefaultChart: Chart = {
     aggregations: [],
     currentFrequency: 'a',
     currentUnit: 'lin',
+    backgroundColor: 'transparent',
 };

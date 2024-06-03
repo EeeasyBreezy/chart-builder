@@ -1,8 +1,10 @@
+import { AreaChartProps } from '@/Charts/AreaChart';
 import { LineChartProps } from '@/Charts/LineChart';
 import { Chart } from '@/Models/Chart';
 
 interface ChartMapping {
     convertToProps: (chart: Chart) => LineChartProps;
+    convertToAreaChartProps: (chart: Chart) => AreaChartProps;
 }
 export default function useMapping(): ChartMapping {
     const convertToProps = (chart: Chart): LineChartProps => {
@@ -25,7 +27,15 @@ export default function useMapping(): ChartMapping {
         return result;
     };
 
+    const convertToAreaChartProps = (chart: Chart): AreaChartProps => {
+        const result: AreaChartProps = convertToProps(chart);
+        result.backgroundColor = chart.backgroundColor;
+
+        return result;
+    };
+
     return {
         convertToProps,
+        convertToAreaChartProps,
     };
 }
