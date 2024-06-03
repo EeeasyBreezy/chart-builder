@@ -11,6 +11,7 @@ import { textInputShouldBeEnabled } from './commands/textInputShouldBeEnabled';
 import { textInputShouldHaveValue } from './commands/textInputShouldHaveValue';
 import { typeIntoInput } from './commands/typeIntoInput';
 import { checkboxShouldNotBeChecked } from './commands/checkBoxShouldNotBeChecked';
+import { clearInput } from './commands/clearInput';
 
 Cypress.Commands.add('buttonValidateAndClick', buttonValidateAndClick);
 Cypress.Commands.add('textShouldBeVisible', textShouldBeVisible);
@@ -22,3 +23,4 @@ Cypress.Commands.add('textInputShouldBeDisabled', textInputShouldBeDisabled);
 Cypress.Commands.add('textInputShouldBeEnabled', textInputShouldBeEnabled);
 Cypress.Commands.add('textInputShouldHaveValue', textInputShouldHaveValue);
 Cypress.Commands.add('typeIntoInput', typeIntoInput);
+Cypress.Commands.add('clearInput', clearInput);

@@ -17,7 +17,7 @@ export default function FormikTextField({ name, commentary, onChange, ...props }
                 fullWidth
                 value={field.value}
                 error={meta.touched && meta.error != null}
-                helperText={commentary}
+                helperText={meta.error}
                 onChange={(event) => {
                     if (!meta.touched) {
                         // perf: causes full formik form rerendering.

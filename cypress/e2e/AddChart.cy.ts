@@ -68,6 +68,27 @@ describe('AddChart', () => {
         const longString = 'a'.repeat(200);
         cy.findByRole('dialog').within(() => {
             cy.typeIntoInput('title', longString);
+            cy.textShouldBeVisible('Must be at most 128 characters');
+            cy.buttonShouldBeDisabled('Save');
+
+            cy.clearInput('title');
+
+            cy.typeIntoInput('title', 'Personal Saving Rate');
+
+            cy.clearInput('xLabel');
+            cy.clearInput('yLabel');
+
+            cy.typeIntoInput('xLabel', longString);
+            cy.textShouldBeVisible('Must be at most 64 characters');
+            cy.buttonShouldBeDisabled('Save');
+            cy.clearInput('xLabel');
+            cy.textShouldBeVisible('Required');
+
+            cy.typeIntoInput('yLabel', longString);
+            cy.textShouldBeVisible('Must be at most 64 characters');
+            cy.buttonShouldBeDisabled('Save');
+            cy.clearInput('yLabel');
+
         });
     });
 });
