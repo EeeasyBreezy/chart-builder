@@ -7,6 +7,7 @@ describe('AddChart', () => {
     const shouldChangeChartType = 'shouldChangeChartType';
     const shouldChangeCheckboxes = 'shouldChangeCheckboxes';
     const shouldValidateColors = 'shouldValidateColors';
+    const shouldManipulateData = 'shouldManipulateData';
 
     beforeEach(() => {
         cy.intercept('GET', '/api/search?*', {
@@ -122,5 +123,42 @@ describe('AddChart', () => {
         cy.textShouldBeVisible('Plot Color');
         cy.textShouldBeVisible('X Axis Color');
         cy.textShouldBeVisible('Y Axis Color');
-    })
+    });
+
+    it.only(shouldManipulateData, () => {
+        addChart();
+        cy.get('canvas').click();
+
+        cy.textShouldBeVisible('Data Manipulation');
+        cy.textShouldBeVisible('Units');
+        cy.textShouldBeVisible('Frequency');
+        cy.textShouldBeVisible('Aggregate');
+
+        cy.intercept('GET', '/api/observations?id=*', { fixture: 'observations/personalSavingRate.log.json' }).as(
+            'getLogObservations',
+        );
+
+        cy.getByDataCy('Units').click();
+        cy.findByText('Natural Log').click();
+        cy.wait('@getLogObservations').its('response.statusCode').should('eq', 200);
+        cy.getByDataCy('Units')
+            .invoke('text')
+            .then((text) => {
+                const cleanedText = text.replace(/\u200B/g, '');
+                expect(cleanedText).to.equal('Natural Log');
+            });
+
+        cy.intercept('GET', '/api/observations?id=*', { fixture: 'observations/personalSavingRate.log.json' }).as(
+            'getLogAnnualObservations',
+        );
+        cy.getByDataCy('Frequency').click();
+        cy.findByText('Annualy').click();
+        cy.wait('@getLogAnnualObservations').its('response.statusCode').should('eq', 200);
+        cy.getByDataCy('Frequency')
+            .invoke('text')
+            .then((text) => {
+                const cleanedText = text.replace(/\u200B/g, '');
+                expect(cleanedText).to.equal('Annualy');
+            });
+    });
 });

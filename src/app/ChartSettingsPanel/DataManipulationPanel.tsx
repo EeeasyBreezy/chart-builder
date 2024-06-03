@@ -15,7 +15,12 @@ export default function DataManipulationPanel(): JSX.Element {
                     return (
                         <>
                             <InputLabel>{item.label}</InputLabel>
-                            <Select key={item.label} value={item.selectedValue} onChange={item.onChange}>
+                            <Select
+                                key={item.label}
+                                value={item.selectedValue}
+                                onChange={item.onChange}
+                                data-cy={item.label}
+                            >
                                 {...item.options}
                             </Select>
                         </>
