@@ -1,5 +1,5 @@
 import { Dialog } from '@mui/material';
-import { Form, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 import { useChartContext } from '@/State/useChartContext';
 import Title from './Title';
 import Content from './Content';

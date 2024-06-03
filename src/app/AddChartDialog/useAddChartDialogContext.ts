@@ -1,4 +1,5 @@
 import { Frequencies } from '@/Models/Chart';
+import { DebouncedFunc } from 'lodash';
 import React, { createContext, useContext } from 'react';
 
 export interface ChartOption {
@@ -22,7 +23,7 @@ export interface AddChartDialogContextData {
     searchLoading: boolean; 
     chartLoading: boolean;
     selectedChart: ChartOption;
-    search: (search: string) => Promise<void>;
+    search: DebouncedFunc<(text: string) => Promise<void>>;
     selectChart: (id: string) => Promise<void>;
     cleanChart: () => void;
     dispose: () => void;
