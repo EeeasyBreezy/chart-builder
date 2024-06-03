@@ -12,7 +12,7 @@ export default function ChartTypeDropdown(): JSX.Element {
     };
 
     return (
-        <Select value={selectedChart.type} onChange={onChange}>
+        <Select value={selectedChart.type} onChange={onChange} data-cy="chartType">
             {types.map((type) => {
                 return (
                     <MenuItem key={type} value={type}>

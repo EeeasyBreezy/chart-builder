@@ -12,7 +12,7 @@ export default function LineStyleDropdown(): JSX.Element {
     };
 
     return (
-        <Select value={selectedChart.lineStyle} onChange={onChange}>
+        <Select value={selectedChart.lineStyle} onChange={onChange} data-cy="lineStyle">
             {values.map((value) => {
                 return (
                     <MenuItem key={value} value={value}>

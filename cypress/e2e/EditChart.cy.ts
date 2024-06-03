@@ -4,6 +4,8 @@ import { validateLabelInput } from '../support/utils/Validation';
 describe('AddChart', () => {
     const shouldChangeLabels = 'shouldChangeLabels';
     const shouldNotChangeLabelsWhenFormIsInvalid = 'shouldNotChangeLabelsWhenFormIsInvalid';
+    const shouldChangeChartType = 'shouldChangeChartType';
+    const shouldChangeColors = 'shouldChangeColors';
 
     beforeEach(() => {
         cy.intercept('GET', '/api/search?*', {
@@ -32,6 +34,8 @@ describe('AddChart', () => {
 
         cy.get('canvas').click();
 
+        cy.textShouldBeVisible('Edit Labels');
+
         // validate chart settings panel is enabled when a chart is selected
         cy.getByDataCy('chartSettingsPanel').should('have.css', 'pointer-events', 'auto');
         cy.getByDataCy('chartSettingsPanel').should('have.css', 'opacity', '1');
@@ -49,7 +53,7 @@ describe('AddChart', () => {
         cy.buttonValidateAndClick('Apply Changes');
     });
 
-    it.only(shouldNotChangeLabelsWhenFormIsInvalid, () => {
+    it(shouldNotChangeLabelsWhenFormIsInvalid, () => {
         addChart();
 
         cy.get('canvas').click();
@@ -71,5 +75,32 @@ describe('AddChart', () => {
         cy.typeIntoInput('yLabel', longString);
         cy.textShouldBeVisible('Must be at most 64 characters');
         cy.buttonShouldBeDisabled('Apply Changes');
+    });
+
+    it(shouldChangeChartType, () => {
+        addChart();
+
+        cy.get('canvas').click();
+
+        cy.textShouldBeVisible('Chart Type');
+        cy.getByDataCy('lineStyle').should('exist');
+        cy.getByDataCy('chartType').click();
+
+        cy.findByText('Bar').click();
+
+        cy.getByDataCy('chartType')
+            .invoke('text')
+            .then((text) => {
+                const cleanedText = text.replace(/\u200B/g, '');
+                expect(cleanedText).to.equal('Bar');
+            });
+        cy.getByDataCy('lineStyle').should('not.exist');
+    });
+
+    it.only(shouldChangeColors, () => {
+        addChart();
+        cy.get('canvas').click();
+
+        
     });
 });
