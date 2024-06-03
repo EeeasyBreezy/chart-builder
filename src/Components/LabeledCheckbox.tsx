@@ -9,7 +9,7 @@ interface LabeledCheckboxProps {
 export default function LabeledCheckbox({ label, onChange, checked }: LabeledCheckboxProps): JSX.Element {
     return (
         <FormControlLabel
-            control={<Checkbox onChange={onChange} checked={checked} />}
+            control={<Checkbox onChange={onChange} checked={checked} data-cy={label} />}
             label={<Typography variant="body2">{label}</Typography>}
         />
     );

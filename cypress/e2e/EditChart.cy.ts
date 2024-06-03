@@ -99,7 +99,7 @@ describe('AddChart', () => {
         cy.getByDataCy('lineStyle').should('not.exist');
     });
 
-    it(shouldChangeCheckboxes, () => {
+    it.only(shouldChangeCheckboxes, () => {
         addChart();
         cy.get('canvas').click();
 
@@ -107,5 +107,9 @@ describe('AddChart', () => {
         cy.findByText('Hide Points').click();
         cy.findByText('Hide X Label').click();
         cy.findByText('Hide Y Label').click();
+
+        cy.getByDataCy('Hide Points').within(() => cy.get('input').should('not.be.checked'));
+        cy.getByDataCy('Hide X Label').within(() => cy.get('input').should('be.checked'));
+        cy.getByDataCy('Hide Y Label').within(() => cy.get('input').should('be.checked'));
     });
 });
