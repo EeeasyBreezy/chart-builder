@@ -20,7 +20,6 @@ export default function AddChartDialogWithFormik(): JSX.Element {
     const { selectedChart, dispose } = useAddChartDialogContext();
 
     const submit = async (values: ChartFormValues, actions: FormikHelpers<ChartFormValues>) => {
-        actions.setSubmitting(true);
         const frequencies: Array<Frequencies> = ['d', 'w', 'm', 'q', 'sa', 'a'];
 
         while (frequencies[0] !== stringToFrequency(values.chartType.minFrequency)) {
@@ -57,16 +56,8 @@ export default function AddChartDialogWithFormik(): JSX.Element {
     };
 
     return (
-        <Formik
-            initialValues={initialValues}
-            onSubmit={submit}
-            validationSchema={schema}
-            validateOnMount
-            enableReinitialize
-        >
-            <Form>
-                <AddChartDialog />
-            </Form>
+        <Formik initialValues={initialValues} onSubmit={submit} validationSchema={schema} enableReinitialize>
+            <AddChartDialog />
         </Formik>
     );
 }
