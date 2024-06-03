@@ -51,7 +51,11 @@ export default function useAddChartDialogContextValue(): AddChartDialogContextDa
     const cleanChart = () => {
         setState({ ...state, selectedChart: DefaultChartOption });
     }
+
+    const dispose = () => {
+        setState({ ...state, options: [], searchLoading: false, chartLoading: false, selectedChart: DefaultChartOption });
+    }
     
 
-    return { options, searchLoading, chartLoading, selectedChart, search, selectChart, cleanChart };
+    return { options, searchLoading, chartLoading, selectedChart, search, selectChart, cleanChart, dispose };
 } 

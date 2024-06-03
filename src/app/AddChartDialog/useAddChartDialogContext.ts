@@ -25,6 +25,7 @@ export interface AddChartDialogContextData {
     search: (search: string) => Promise<void>;
     selectChart: (id: string) => Promise<void>;
     cleanChart: () => void;
+    dispose: () => void;
 }
 
 export const AddChartDialogContext = createContext<AddChartDialogContextData | undefined>(undefined);

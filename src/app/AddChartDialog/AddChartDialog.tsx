@@ -20,7 +20,7 @@ interface FormPlotValues {
 export default function AddChartDialog(): JSX.Element {
     const schema = useChartValidationSchema();
     const { open, closeDialog, addChart } = useChartContext();
-    const { selectedChart } = useAddChartDialogContext();
+    const { selectedChart, dispose } = useAddChartDialogContext();
 
     const submit = async (values: FormPlotValues, actions: FormikHelpers<FormPlotValues>) => {
         actions.setSubmitting(true);
@@ -48,6 +48,8 @@ export default function AddChartDialog(): JSX.Element {
         await addChart(chart);
 
         actions.setSubmitting(false);
+        dispose();
+        actions.resetForm();
         closeDialog();
     };
 
