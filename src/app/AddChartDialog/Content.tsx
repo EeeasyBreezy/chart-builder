@@ -1,12 +1,12 @@
 import UIStrings from '@/utils/UIStrings';
-import { DialogContent, Stack, Autocomplete, TextField, useTheme } from '@mui/material';
+import { DialogContent, Stack, Autocomplete, TextField, useTheme, AutocompleteInputChangeReason } from '@mui/material';
 import { ChangeEvent, SyntheticEvent } from 'react';
 import { ChartOption, useAddChartDialogContext } from './useAddChartDialogContext';
 import ChartLabelsEditWithBlock from './ChartLabelsEditWithBlock';
 
 export default function Content(): JSX.Element {
     const theme = useTheme();
-    const { options, search, selectChart, searchLoading, cleanChart } = useAddChartDialogContext();
+    const { options, search, selectChart, searchLoading, cleanChart, dispose } = useAddChartDialogContext();
 
     const onTextChange = async (event: ChangeEvent<HTMLInputElement>) => {
         await search(event.target.value);
@@ -17,6 +17,11 @@ export default function Content(): JSX.Element {
             return;
         }
         await selectChart(newValue.id);
+    };
+    const onInputChange = async (event: SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
+        if (reason === 'clear' || reason === 'reset') {
+            dispose();
+        }
     };
 
     return (
@@ -35,6 +40,8 @@ export default function Content(): JSX.Element {
                     options={options}
                     getOptionLabel={(option) => option.title}
                     onChange={onAutocompleteChange}
+                    onInputChange={onInputChange}
+                    clearOnBlur={false}
                 />
                 <ChartLabelsEditWithBlock />
             </Stack>

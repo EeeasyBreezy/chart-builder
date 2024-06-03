@@ -24,11 +24,11 @@ export default function useAddChartDialogContextValue(): AddChartDialogContextDa
     const search = useCallback(
         debounce(async (text: string): Promise<void> => {
             if (text.length < 3) {
-                setState({ ...state, options: [], searchLoading: false });
+                setState((prev) => ({ ...prev, options: [], searchLoading: false }));
                 return;
             }
 
-            setState({ ...state, searchLoading: true });
+            setState((prev) => ({ ...prev, searchLoading: true }));
             const page = await client.search(text, 10);
             const opts = page.data.map((x) => ({
                 id: x.id,
@@ -37,16 +37,16 @@ export default function useAddChartDialogContextValue(): AddChartDialogContextDa
                 xLabel: 'Date',
                 yLabel: x.units,
             }));
-            setState({ ...state, options: opts, searchLoading: false });
+            setState((prev) => ({ ...prev, options: opts, searchLoading: false }));
         }, 500),
         [],
     );
 
     const selectChart = async (id: string): Promise<void> => {
-        setState({ ...state, chartLoading: true });
+        setState((prev) => ({ ...prev, chartLoading: true }));
         const series = await client.getSeries(id);
-        setState({
-            ...state,
+        setState((prev) => ({
+            ...prev,
             chartLoading: false,
             selectedChart: {
                 id: series.id,
@@ -55,21 +55,21 @@ export default function useAddChartDialogContextValue(): AddChartDialogContextDa
                 xLabel: 'Date',
                 yLabel: series.units,
             },
-        });
+        }));
     };
 
     const cleanChart = () => {
-        setState({ ...state, selectedChart: DefaultChartOption });
+        setState((prev) => ({ ...prev, selectedChart: DefaultChartOption }));
     };
 
     const dispose = () => {
-        setState({
-            ...state,
+        setState((prev) => ({
+            ...prev,
             options: [],
             searchLoading: false,
             chartLoading: false,
             selectedChart: DefaultChartOption,
-        });
+        }));
     };
 
     return { options, searchLoading, chartLoading, selectedChart, search, selectChart, cleanChart, dispose };
