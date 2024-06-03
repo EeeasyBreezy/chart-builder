@@ -47,7 +47,6 @@ export default function useAddChartDialogContextValue(): AddChartDialogContextDa
                 yLabel: series.units
             }
         });
-
     }
 
     const cleanChart = () => {

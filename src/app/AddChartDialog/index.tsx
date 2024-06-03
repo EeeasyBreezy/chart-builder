@@ -1,4 +1,4 @@
-import AddChartDialog from './AddChartDialog';
+import AddChartDialogWithFormik from './AddChartDialogWithFormik';
 import { AddChartDialogContext } from './useAddChartDialogContext';
 import useAddChartDialogContextValue from './useAddChartDialogContextValue';
 
@@ -7,7 +7,7 @@ export default function Dialog(): JSX.Element {
 
     return (
         <AddChartDialogContext.Provider value={contextValue}>
-            <AddChartDialog />
+            <AddChartDialogWithFormik />
         </AddChartDialogContext.Provider>
     );
 }
