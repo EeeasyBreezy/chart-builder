@@ -1,5 +1,5 @@
 import { Grid, Stack, useTheme } from '@mui/material';
-import AddChartDialog from './AddChartDialog';
+import Dialog from './AddChartDialog';
 import ChartList from './ChartList';
 import ChartSettingsPanel from './ChartSettingsPanel';
 import PageHeader from './PageHeader';
@@ -25,7 +25,7 @@ export default function PageLayout(): JSX.Element {
                 </Grid>
             </Grid>
 
-            <AddChartDialog />
+            <Dialog />
         </Stack>
     );
 }

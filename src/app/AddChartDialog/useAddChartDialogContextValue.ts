@@ -1,32 +1,21 @@
 import { useApiClient } from "@/Clients/Hooks";
-import { DefaultSeriesDTO, SeriesDTO } from "@/DTO/SeriesDTO";
 import { useState } from "react";
-
-interface AutocompleteOption {
-    id: string;
-    name: string;
-}
+import { AddChartDialogContextData, ChartOption, DefaultChartOption } from "./useAddChartDialogContext";
+import { Frequencies } from "@/Models/Chart";
 
 interface UseAddChartDialogState {
-    options: Array<AutocompleteOption>;
+    options: Array<ChartOption>;
     searchLoading: boolean; 
     chartLoading: boolean;
-    selectedChart: SeriesDTO;
+    selectedChart: ChartOption;
 }
 
-interface UseAddChartDialog extends UseAddChartDialogState {
-    options: Array<AutocompleteOption>;
-    search: (search: string) => Promise<void>;
-    selectChart: (id: string) => Promise<void>;
-    cleanChart: () => void;
-}
-
-export default function useAddChartDialog(): UseAddChartDialog {
+export default function useAddChartDialogContextValue(): AddChartDialogContextData {
     const [state, setState] = useState<UseAddChartDialogState>({
         options: [],
         searchLoading: false,
         chartLoading: false,
-        selectedChart: DefaultSeriesDTO
+        selectedChart: DefaultChartOption
     });
     const { options, searchLoading, chartLoading, selectedChart } = state;
     const client = useApiClient();
@@ -38,18 +27,29 @@ export default function useAddChartDialog(): UseAddChartDialog {
         }
         setState({ ...state, searchLoading: true });
         const page = await client.search(text, 10);
-        const opts = page.data.map(x => ({ id: x.id, name: x.title }));
+        const opts = page.data.map(x => ({ id: x.id, title: x.title, minFrequency: x.frequency as Frequencies, xLabel: '', yLabel: ''}));
         setState({ ...state, options: opts, searchLoading: false });
     }
 
     const selectChart = async (id: string): Promise<void> => {
         setState({ ...state, chartLoading: true });
         const series = await client.getSeries(id);
-        setState({ ...state, selectedChart: series, chartLoading: false });
+        setState({
+            ...state,
+            chartLoading: false,
+            selectedChart: {
+                id: series.id,
+                title: series.title,
+                minFrequency: series.frequency as Frequencies,
+                xLabel: 'Date',
+                yLabel: series.units
+            }
+        });
+
     }
 
     const cleanChart = () => {
-        setState({ ...state, selectedChart: DefaultSeriesDTO });
+        setState({ ...state, selectedChart: DefaultChartOption });
     }
     
 

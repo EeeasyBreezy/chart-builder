@@ -4,6 +4,7 @@ export interface SeriesDTO {
     observation_end: string;
     title: string;
     frequency: string;
+    units: string;
 }
 
 export const DefaultSeriesDTO: SeriesDTO = {
@@ -12,4 +13,5 @@ export const DefaultSeriesDTO: SeriesDTO = {
     observation_end: '',
     title: '',
     frequency: '',
+    units: '',
 };

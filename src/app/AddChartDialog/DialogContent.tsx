@@ -1,12 +1,12 @@
 import UIStrings from '@/utils/UIStrings';
 import { Autocomplete, Stack, TextField, useTheme } from '@mui/material';
 import ChartLabelsEdit from '@/Components/ChartLabelsEdit';
-import useAddChartDialog from './useAddChartDialog';
+import useAddChartDialogContextValue from './useAddChartDialogContextValue';
 import { ChangeEvent } from 'react';
 
 export default function DialogBody(): JSX.Element {
     const theme = useTheme();
-    const { options, search, selectChart, searchLoading, cleanChart } = useAddChartDialog();
+    const { options, search, selectChart, searchLoading, cleanChart } = useAddChartDialogContextValue();
 
     return (
         <Stack direction="column" spacing={theme.spacing(2)} paddingY={theme.spacing(2)}>
@@ -22,7 +22,7 @@ export default function DialogBody(): JSX.Element {
                     />
                 )}
                 options={options}
-                getOptionLabel={(option) => option.name}
+                getOptionLabel={(option) => option.title}
                 onChange={async (event, newValue) => {
                     if (newValue == null) {
                         cleanChart();
