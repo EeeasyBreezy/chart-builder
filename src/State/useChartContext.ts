@@ -11,7 +11,6 @@ export interface ChartContextType {
     closeDialog: () => void;
     openDeleteDialog: () => void;
     closeDeleteDialog: () => void;
-
     addChart: (chart: Chart) => Promise<void>;
     selectChart: (id: string) => void;
     updateChart: (chart: Chart) => void;
