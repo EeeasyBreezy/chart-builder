@@ -1,9 +1,11 @@
-import { addChart } from "../support/utils/Charts";
-import { validateInitialAddChartDialogState } from "../support/utils/Validation";
+import { addChart } from '../support/utils/Charts';
+import { validateInitialAddChartDialogState } from '../support/utils/Validation';
 
 describe('AddChart', () => {
     const shouldAddChart = 'shouldAddChart';
     const shouldNotAddChartWhenFormIsInvalid = 'shouldNotAddChartWhenFormIsInvalid';
+    const shouldValidateAutocomplete = 'shouldValidateAutocomplete';
+    const shouldCloseDialog = 'shouldCloseDialog';
 
     beforeEach(() => {
         cy.intercept('GET', '/api/search?*', {
@@ -21,6 +23,58 @@ describe('AddChart', () => {
         }).as('getObservations');
 
         cy.visit('http://localhost:3000');
+    });
+
+    it.only(shouldCloseDialog, () => {
+        cy.buttonValidateAndClick('Add Chart');
+        validateInitialAddChartDialogState();
+
+        cy.findByRole('dialog').within(() => {
+            cy.getByDataCy('chartAutocomplete').click();
+            cy.getByDataCy('chartAutocomplete').type('Personal Saving Rate');
+        });
+        cy.wait('@search');
+        cy.findByText('Personal Saving Rate').last().click();
+        cy.wait('@getSeries');
+
+        cy.findByTestId('CloseOutlinedIcon').click();
+        cy.findByRole('dialog').should('not.exist');
+
+        cy.buttonValidateAndClick('Add Chart');
+        validateInitialAddChartDialogState();
+    });
+
+    it(shouldValidateAutocomplete, () => {
+        cy.buttonValidateAndClick('Add Chart');
+        // search for a chart
+        cy.findByRole('dialog').within(() => {
+            cy.getByDataCy('chartAutocomplete').click();
+            cy.getByDataCy('chartAutocomplete').type('Personal Saving Rate');
+        });
+        cy.textShouldBeVisible('Loading...');
+        cy.wait('@search');
+
+        cy.get('body').click(10, 10); // make autocomplete loose focus and validate that it has persisted entered value
+        cy.findByRole('dialog').within(() => {
+            cy.getByDataCy('chartAutocomplete').within(() => {
+                cy.get('input').should('have.value', 'Personal Saving Rate');
+            });
+        });
+
+        cy.findByRole('dialog').within(() => {
+            cy.getByDataCy('chartAutocomplete').click();
+        });
+        cy.findByText('Personal Saving Rate').last().click(); // select value from Auto complete
+
+        // clear autocomplete
+        cy.findByRole('dialog').within(() => {
+            cy.findByTestId('CloseIcon').click();
+            cy.getByDataCy('chartAutocomplete').within(() => {
+                cy.get('input').should('have.value', '');
+            });
+            cy.getByDataCy('chartAutocomplete').click();
+        });
+        cy.textShouldBeVisible('No options');
     });
 
     [
