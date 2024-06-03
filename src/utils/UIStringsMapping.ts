@@ -18,6 +18,23 @@ export function frequencytoUIStrings(frequency: Frequencies) {
     }
 }
 
+export function stringToFrequency(frequency: string) {
+    switch (frequency) {
+        case 'Daily':
+            return 'd';
+        case 'Weekly':
+            return 'w';
+        case 'Monthly':
+            return 'm';
+        case 'Quaterly':
+            return 'q';
+        case 'Semi-Annualy':
+            return 'sa';
+        case 'Annualy':
+            return 'a';
+    }
+}
+
 export function lineStyleToUIStrings(style: LineStyle) {
     switch (style) {
         case 'solid':

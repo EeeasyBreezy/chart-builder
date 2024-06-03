@@ -27,7 +27,7 @@ export default function useAddChartDialogContextValue(): AddChartDialogContextDa
         }
         setState({ ...state, searchLoading: true });
         const page = await client.search(text, 10);
-        const opts = page.data.map(x => ({ id: x.id, title: x.title, minFrequency: x.frequency as Frequencies, xLabel: '', yLabel: ''}));
+        const opts = page.data.map(x => ({ id: x.id, title: x.title, minFrequency: x.frequency as Frequencies, xLabel: "Date", yLabel: x.units}));
         setState({ ...state, options: opts, searchLoading: false });
     }
 

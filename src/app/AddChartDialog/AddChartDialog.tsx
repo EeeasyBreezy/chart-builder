@@ -1,33 +1,35 @@
-import { useTheme, Dialog } from '@mui/material';
+import { Dialog } from '@mui/material';
 import { Formik, Form, FormikHelpers } from 'formik';
-import { Chart, DefaultChart } from '@/Models/Chart';
+import { Chart, DefaultChart, Frequencies } from '@/Models/Chart';
 import useChartValidationSchema from '@/FormValidation/useChartValidationSchema';
 import { v4 as uuid4 } from 'uuid';
 import { useChartContext } from '@/State/useChartContext';
 import Title from './Title';
 import Content from './Content';
 import Actions from './Actions';
+import { ChartOption, useAddChartDialogContext } from './useAddChartDialogContext';
+import { stringToFrequency } from '@/utils/UIStringsMapping';
 
 interface FormPlotValues {
-    chartType: DropdownOption<Option>;
+    chartType: ChartOption;
     title: string;
     xLabel: string;
     yLabel: string;
 }
 
-const defaultFormValues: FormPlotValues = {
-    chartType: { id: '', value: { id: '', name: '', frequencies: [], units: [], aggregations: [] } },
-    title: '',
-    xLabel: '',
-    yLabel: '',
-};
-
 export default function AddChartDialog(): JSX.Element {
     const schema = useChartValidationSchema();
     const { open, closeDialog, addChart } = useChartContext();
+    const { selectedChart } = useAddChartDialogContext();
 
     const submit = async (values: FormPlotValues, actions: FormikHelpers<FormPlotValues>) => {
         actions.setSubmitting(true);
+
+        const frequencies: Array<Frequencies> = ['d', 'w', 'm', 'q', 'sa', 'a'];
+        while (frequencies[0] !== stringToFrequency(values.chartType.minFrequency)) {
+            frequencies.shift();
+            console.log(frequencies);
+        }
 
         const chart: Chart = {
             ...DefaultChart,
@@ -36,9 +38,11 @@ export default function AddChartDialog(): JSX.Element {
             title: values.title,
             xLabel: values.xLabel,
             yLabel: values.yLabel,
-            frequencies: values.chartType.value.frequencies,
-            units: values.chartType.value.units,
-            aggregations: values.chartType.value.aggregations,
+            frequencies,
+            units: ['lin', 'chg', 'pch', 'pca', 'log'],
+            aggregations: ['sum', 'avg', 'eop'],
+            currentUnit: 'lin',
+            currentFrequency: frequencies[0],
         };
 
         await addChart(chart);
@@ -47,9 +51,22 @@ export default function AddChartDialog(): JSX.Element {
         closeDialog();
     };
 
+    const initialValues = {
+        chartType: selectedChart,
+        title: selectedChart.title,
+        xLabel: selectedChart.xLabel,
+        yLabel: selectedChart.yLabel,
+    };
+
     return (
         <Dialog open={open} fullWidth maxWidth="sm" onClose={closeDialog}>
-            <Formik onSubmit={submit} initialValues={defaultFormValues} validationSchema={schema} validateOnMount>
+            <Formik
+                onSubmit={submit}
+                initialValues={initialValues}
+                validationSchema={schema}
+                validateOnMount
+                enableReinitialize
+            >
                 <Form>
                     <Title />
                     <Content />
