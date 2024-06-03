@@ -5,7 +5,7 @@ describe('AddChart', () => {
     const shouldChangeLabels = 'shouldChangeLabels';
     const shouldNotChangeLabelsWhenFormIsInvalid = 'shouldNotChangeLabelsWhenFormIsInvalid';
     const shouldChangeChartType = 'shouldChangeChartType';
-    const shouldChangeColors = 'shouldChangeColors';
+    const shouldChangeCheckboxes = 'shouldChangeCheckboxes';
 
     beforeEach(() => {
         cy.intercept('GET', '/api/search?*', {
@@ -55,7 +55,6 @@ describe('AddChart', () => {
 
     it(shouldNotChangeLabelsWhenFormIsInvalid, () => {
         addChart();
-
         cy.get('canvas').click();
 
         cy.clearInput('title');
@@ -79,11 +78,14 @@ describe('AddChart', () => {
 
     it(shouldChangeChartType, () => {
         addChart();
-
         cy.get('canvas').click();
 
         cy.textShouldBeVisible('Chart Type');
         cy.getByDataCy('lineStyle').should('exist');
+
+        cy.getByDataCy('lineStyle').click();
+        cy.findByText('Dashed').click();
+
         cy.getByDataCy('chartType').click();
 
         cy.findByText('Bar').click();
@@ -97,10 +99,13 @@ describe('AddChart', () => {
         cy.getByDataCy('lineStyle').should('not.exist');
     });
 
-    it.only(shouldChangeColors, () => {
+    it(shouldChangeCheckboxes, () => {
         addChart();
         cy.get('canvas').click();
 
-        
+        cy.textShouldBeVisible('Labels Visibility');
+        cy.findByText('Hide Points').click();
+        cy.findByText('Hide X Label').click();
+        cy.findByText('Hide Y Label').click();
     });
 });
