@@ -25,7 +25,7 @@ describe('AddChart', () => {
         cy.visit('http://localhost:3000');
     });
 
-    it.only(shouldCloseDialog, () => {
+    it(shouldCloseDialog, () => {
         cy.buttonValidateAndClick('Add Chart');
         validateInitialAddChartDialogState();
 

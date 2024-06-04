@@ -10,6 +10,11 @@ export function validateInitialAddChartDialogState() {
     // inputs disabled
     cy.findByRole('dialog').within(() => {
         cy.textShouldBeVisible('Add Chart');
+        cy.textShouldBeVisible('Start typing to search for a dataset');
+        cy.textShouldBeVisible(
+            'Data is provided by Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis',
+        );
+        cy.textShouldBeVisible('https://fred.stlouisfed.org/');
         cy.getByDataCy('chartAutocomplete').within(() => cy.findByLabelText('Dataset*').should('be.visible'));
         cy.getByDataCy('editTitle').within(() => cy.findByLabelText('Title*').should('be.visible'));
         cy.getByDataCy('editXLabel').within(() => cy.findByLabelText('X Axis*').should('be.visible'));
@@ -34,4 +39,3 @@ export function validateFilledAddChartDialogState() {
         validateLabelInput('Personal Saving Rate', 'Date', 'Percent');
     });
 }
-
