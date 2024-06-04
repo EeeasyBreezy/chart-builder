@@ -56,13 +56,7 @@ export default function AddChartDialogWithFormik(): JSX.Element {
     };
 
     return (
-        <Formik
-            initialValues={initialValues}
-            onSubmit={submit}
-            validationSchema={schema}
-            enableReinitialize
-            validateOnMount
-        >
+        <Formik initialValues={initialValues} onSubmit={submit} validationSchema={schema} enableReinitialize>
             <AddChartDialog />
         </Formik>
     );

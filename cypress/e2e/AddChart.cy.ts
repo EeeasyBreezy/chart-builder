@@ -44,6 +44,10 @@ describe('AddChart', () => {
             cy.getByDataCy('chartAutocomplete').type('Producer');
         });
         cy.wait('@getSearch');
+
+        cy.findByText(
+            'Producer Price Index by Commodity: Rubber and Plastic Products: All Other Consumer, Institutional, and Commercial Products & Producer Price Index by Commodity: Rubber and Plastic Products: All Other Consumer, Institutional, and Commercial Products',
+        ).click();
     });
 
     it(shouldCloseDialog, () => {

@@ -4,18 +4,11 @@ import { DialogActions } from '@mui/material';
 import { useFormikContext } from 'formik';
 
 export default function Actions(): JSX.Element {
-    const { isValid, isSubmitting } = useFormikContext();
+    const { isSubmitting } = useFormikContext();
 
     return (
         <DialogActions>
-            <LoadingButton
-                color="primary"
-                size="large"
-                disabled={!isValid}
-                loading={isSubmitting}
-                type="submit"
-                variant="contained"
-            >
+            <LoadingButton color="primary" size="large" loading={isSubmitting} type="submit" variant="contained">
                 {UIStrings.Save}
             </LoadingButton>
         </DialogActions>
