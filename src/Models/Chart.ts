@@ -25,8 +25,9 @@ export interface Chart {
     units: Array<Units>;
     aggregations: Array<Aggregations>;
     currentFrequency: Frequencies;
+    minFrequency: Frequencies;
     currentUnit: Units;
-    currentAggregation?: Aggregations;
+    currentAggregation: Aggregations;
     chartLoading?: boolean;
     areaColor?: string;
     fillColor?: string;
@@ -51,5 +52,7 @@ export const DefaultChart: Chart = {
     units: [],
     aggregations: [],
     currentFrequency: 'a',
+    currentAggregation: "eop",
+    minFrequency: 'd',
     currentUnit: 'lin',
 };

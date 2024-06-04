@@ -7,6 +7,7 @@ import { MenuItem, SelectChangeEvent } from '@mui/material';
 interface DataManipulationUIItem {
     label: string;
     selectedValue?: string;
+    visible: boolean;
     options: Array<JSX.Element>;
     onChange: (event: SelectChangeEvent<string>, child: React.ReactNode) => void;
 }
@@ -18,6 +19,7 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
         {
             label: UIStrings.Units,
             selectedValue: selectedChart.currentUnit,
+            visible: true,
             options: [
                 ...selectedChart.units.map((u) => {
                     return (
@@ -38,6 +40,7 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
         {
             label: UIStrings.Frequency,
             selectedValue: selectedChart.currentFrequency,
+            visible: true,
             options: [
                 ...selectedChart.frequencies.map((u) => {
                     return (
@@ -58,6 +61,7 @@ export default function useDataManipulationUI(): Array<DataManipulationUIItem> {
         {
             label: UIStrings.Aggregate,
             selectedValue: selectedChart.currentAggregation,
+            visible: selectedChart.currentFrequency !== selectedChart.minFrequency,
             options: [
                 ...selectedChart.aggregations.map((u) => {
                     return (

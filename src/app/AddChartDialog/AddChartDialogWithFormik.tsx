@@ -38,6 +38,7 @@ export default function AddChartDialogWithFormik(): JSX.Element {
             aggregations: ['sum', 'avg', 'eop'],
             currentUnit: 'lin',
             currentFrequency: frequencies[0],
+            minFrequency: frequencies[0],
         };
         await addChart(chart);
 
