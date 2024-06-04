@@ -121,7 +121,7 @@ describe('AddChart', () => {
         cy.getByDataCy('Hide Y Label').within(() => cy.get('input').should('be.checked'));
     });
 
-    it(shouldValidateColors, () => {
+    it.only(shouldValidateColors, () => {
         addChart();
         cy.get('canvas').click();
 
@@ -129,6 +129,13 @@ describe('AddChart', () => {
         cy.textShouldBeVisible('Plot Color');
         cy.textShouldBeVisible('X Axis Color');
         cy.textShouldBeVisible('Y Axis Color');
+
+        cy.getByDataCy('Plot Color').click();
+        cy.get('#rc-editable-input-2').click().clear().type('8898E7'); // change color to blue
+        cy.get('body').click(10, 10); // close outside of color picker to apply changes
+
+        cy.getByDataCy('Plot Color').click();
+        cy.get('#rc-editable-input-12').should('have.value', '8898E7');
     });
 
     it(shouldManipulateData, () => {
