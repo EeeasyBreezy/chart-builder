@@ -6,6 +6,7 @@ describe('AddChart', () => {
     const shouldNotAddChartWhenFormIsInvalid = 'shouldNotAddChartWhenFormIsInvalid';
     const shouldValidateAutocomplete = 'shouldValidateAutocomplete';
     const shouldCloseDialog = 'shouldCloseDialog';
+    const shouldHightLightErrorOnSelection = 'shouldHightLightErrorOnSelection';
 
     beforeEach(() => {
         cy.intercept('GET', '/api/search?*', {
@@ -23,6 +24,26 @@ describe('AddChart', () => {
         }).as('getObservations');
 
         cy.visit('http://localhost:3000');
+    });
+
+    it.only(shouldHightLightErrorOnSelection, () => {
+        cy.intercept('GET', '/api/series?id=*', {
+            fixture: 'series/producerPriceIndexByCommodity.json',
+        }).as('getSeries');
+
+        cy.intercept('GET', '/api/search?*', {
+            fixture: 'search/producerPriceIndexByCommodity.json',
+            delay: 2000,
+        }).as('getSearch');
+
+        cy.buttonValidateAndClick('Add Chart');
+        validateInitialAddChartDialogState();
+
+        cy.findByRole('dialog').within(() => {
+            cy.getByDataCy('chartAutocomplete').click();
+            cy.getByDataCy('chartAutocomplete').type('Producer');
+        });
+        cy.wait('@getSearch');
     });
 
     it(shouldCloseDialog, () => {
