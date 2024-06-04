@@ -10,7 +10,7 @@ export function validateInitialAddChartDialogState() {
     // inputs disabled
     cy.findByRole('dialog').within(() => {
         cy.textShouldBeVisible('Add Chart');
-        cy.getByDataCy('chartAutocomplete').within(() => cy.findByLabelText('Measurement*').should('be.visible'));
+        cy.getByDataCy('chartAutocomplete').within(() => cy.findByLabelText('Dataset*').should('be.visible'));
         cy.getByDataCy('editTitle').within(() => cy.findByLabelText('Title*').should('be.visible'));
         cy.getByDataCy('editXLabel').within(() => cy.findByLabelText('X Axis*').should('be.visible'));
         cy.getByDataCy('editYLabel').within(() => cy.findByLabelText('Y Axis*').should('be.visible'));

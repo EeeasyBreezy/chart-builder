@@ -1,5 +1,13 @@
 import UIStrings from '@/utils/UIStrings';
-import { DialogContent, Stack, Autocomplete, TextField, useTheme, AutocompleteInputChangeReason } from '@mui/material';
+import {
+    DialogContent,
+    Stack,
+    Autocomplete,
+    TextField,
+    useTheme,
+    AutocompleteInputChangeReason,
+    Typography,
+} from '@mui/material';
 import { ChangeEvent, SyntheticEvent } from 'react';
 import { ChartOption, useAddChartDialogContext } from './useAddChartDialogContext';
 import ChartLabelsEditWithBlock from './ChartLabelsEditWithBlock';
@@ -27,13 +35,17 @@ export default function Content(): JSX.Element {
     return (
         <DialogContent>
             <Stack direction="column" spacing={theme.spacing(2)} paddingY={theme.spacing(2)}>
+                <Stack direction="column">
+                    <Typography variant="caption">{UIStrings.SearchInstruction}</Typography>
+                    <Typography variant="caption">{`${UIStrings.DataIsProvidedBy}`}</Typography>
+                </Stack>
                 <Autocomplete
                     loading={searchLoading}
                     renderInput={(props) => (
                         <TextField
                             data-cy="chartAutocomplete"
                             onChange={onTextChange}
-                            label={`${UIStrings.Measurement}*`}
+                            label={`${UIStrings.Dataset}*`}
                             {...props}
                         />
                     )}

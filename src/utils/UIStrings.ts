@@ -2,7 +2,7 @@
 export default class UIStrings {
     static readonly ChartBuilder = 'Chart Builder';
     static readonly AddChart = 'Add Chart';
-    static readonly Measurement = 'Measurement';
+    static readonly Dataset = 'Dataset';
     static readonly XAxis = 'X Axis';
     static readonly YAxis = 'Y Axis';
     static readonly Title = 'Title';
@@ -56,4 +56,7 @@ export default class UIStrings {
     static readonly Cancel = 'Cancel';
 
     static readonly AreaFill = 'Area Fill';
+
+    static readonly SearchInstruction = "Start typing to search for a dataset";
+    static readonly DataIsProvidedBy = "Data is provided by Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis";
 }
