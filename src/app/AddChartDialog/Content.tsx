@@ -40,7 +40,7 @@ export default function Content(): JSX.Element {
                 <Stack direction="column">
                     <Typography variant="caption">{UIStrings.SearchInstruction}</Typography>
                     <Typography variant="caption">{`${UIStrings.DataIsProvidedBy}`}</Typography>
-                    <Link href={fredSiteUrl} target="_blank">
+                    <Link href={fredSiteUrl} target="_blank" style={{ width: 'fit-content' }}>
                         {fredSiteUrl}
                     </Link>
                 </Stack>
