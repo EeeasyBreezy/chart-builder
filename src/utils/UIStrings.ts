@@ -57,6 +57,6 @@ export default class UIStrings {
 
     static readonly AreaFill = 'Area Fill';
 
-    static readonly SearchInstruction = "Start typing to search for a dataset";
+    static readonly SearchInstruction = "Start typing to search for a dataset. Search start with 3 symbols minimum";
     static readonly DataIsProvidedBy = "Data is provided by Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis";
 }
