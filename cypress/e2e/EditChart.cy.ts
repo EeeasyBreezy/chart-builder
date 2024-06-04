@@ -10,6 +10,7 @@ describe('AddChart', () => {
     const shouldManipulateData = 'shouldManipulateData';
     const shouldDeleteChart = 'shouldDeleteChart';
     const shouldEditChartsConcurrently = 'shouldEditChartsConcurrently';
+    const shouldAddChartConcurrently = 'shouldAddChartConcurrently';
 
     beforeEach(() => {
         cy.intercept('GET', '/api/search?*', {
@@ -213,6 +214,7 @@ describe('AddChart', () => {
             cy.typeIntoInput('title', 'Chart 1');
             cy.buttonValidateAndClick('Apply Changes');
 
+            // simulate long request to load first chart
             cy.intercept('GET', '/api/observations?id=PSAVERT&*', {
                 fixture: 'observations/personalSavingRate.json',
                 delay: 4000,
@@ -223,8 +225,9 @@ describe('AddChart', () => {
 
             cy.wrap(charts[1]).click();
 
-            cy.getByDataCy('Chart 1').should('be.visible');
+            cy.getByDataCy('Chart 1').should('be.visible'); // check loading spinner
 
+            // edit 2nd chart while first one is loading
             cy.getByDataCy('Plot Color').click();
             cy.get('#rc-editable-input-2').click().clear().type('8898E7'); // change color to blue
             cy.get('body').click(10, 10); // close outside of color picker to apply changes
@@ -236,14 +239,36 @@ describe('AddChart', () => {
             cy.typeIntoInput('yLabel', 'y axis');
             cy.buttonValidateAndClick('Apply Changes');
 
-            cy.wait('@getObservations');
+            cy.wait('@getObservations'); // wait until request for the 1st chart is completed
+            cy.getByDataCy('Chart 1').should('not.exist'); // check loading spinner is gone
 
-            cy.wrap(charts[1]).click();
+            cy.wrap(charts[1]).click(); // validate changes for 2nd are intact
             cy.textInputShouldHaveValue('title', 'Chart 2');
             cy.textInputShouldHaveValue('xLabel', 'x axis');
             cy.textInputShouldHaveValue('yLabel', 'y axis');
             cy.getByDataCy('Plot Color').click();
             cy.get('#rc-editable-input-12').should('have.value', '8898E7');
         });
+    });
+
+    it(shouldAddChartConcurrently, () => {
+        addChart();
+
+        cy.get('canvas').click();
+        cy.intercept('GET', '/api/observations?id=PSAVERT&*', {
+            fixture: 'observations/personalSavingRate.json',
+            delay: 6000,
+        }).as('getObservations');
+
+        cy.findByText('Monthly').click();
+        cy.findByText('Annualy').click();
+
+        cy.getByDataCy('Personal Saving Rate').should('be.visible'); // check loading spinner
+
+        addChart(); // add 2nd chart while first 1 is loading
+        cy.wait('@getObservations'); // wait until request for the 1st chart is completed
+
+        cy.get('canvas').should('have.length', 2); // validate 2 charts on page
+
     });
 });
