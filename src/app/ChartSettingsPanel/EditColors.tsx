@@ -10,15 +10,17 @@ export default function EditColors(): JSX.Element {
     return (
         <Stack direction="column" spacing={theme.spacing(2)}>
             <Typography variant="body1">{UIStrings.EditColors}</Typography>
-            {pickers.map((item) => (
-                <ColorPicker
-                    label={item.label}
-                    color={item.selectedColor}
-                    onChange={item.onChange}
-                    key={item.label}
-                    data-cy={item.dataCy}
-                />
-            ))}
+            <Stack direction="row" columnGap={theme.spacing(2)} justifyContent="center">
+                {pickers.map((item) => (
+                    <ColorPicker
+                        label={item.label}
+                        color={item.selectedColor}
+                        onChange={item.onChange}
+                        key={item.label}
+                        data-cy={item.dataCy}
+                    />
+                ))}
+            </Stack>
         </Stack>
     );
 }

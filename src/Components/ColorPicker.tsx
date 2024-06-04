@@ -50,7 +50,7 @@ const ColorPicker = ({ label, color, onChange }: ColorPickerProps) => {
 
     return (
         <Box sx={{ display: 'flex' }}>
-            <Stack direction="row" spacing={2} flex={1}>
+            <Stack direction="row" spacing={2} flex={1} alignItems="center">
                 <Box className={classes.swatch} onClick={handleClick}>
                     <Box className={classes.colorBox} style={{ background: color }} />
                 </Box>
