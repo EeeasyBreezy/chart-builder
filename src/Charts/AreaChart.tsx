@@ -3,7 +3,7 @@ import { LineChartProps } from './LineChart';
 import { useLineData, usePlugins, useScales } from './ChartHooks';
 
 export interface AreaChartProps extends LineChartProps {
-    backgroundColor?: string;
+    fillColor?: string;
 }
 
 export default function AreaChart(props: AreaChartProps): JSX.Element {
@@ -21,7 +21,7 @@ export default function AreaChart(props: AreaChartProps): JSX.Element {
         xAxisColor,
         yAxisColor,
         onClick,
-        backgroundColor,
+        fillColor,
     } = props;
 
     const handleClick = () => {
@@ -34,7 +34,7 @@ export default function AreaChart(props: AreaChartProps): JSX.Element {
     const scales = useScales(xLabel, yLabel, hideXLabel, hideYLabel, xAxisColor, yAxisColor);
     const plugins = usePlugins();
 
-    data.datasets[0].backgroundColor = backgroundColor || 'red';
+    data.datasets[0].backgroundColor = fillColor || 'red';
     data.datasets[0].fill = true;
     scales.y.beginAtZero = true;
 

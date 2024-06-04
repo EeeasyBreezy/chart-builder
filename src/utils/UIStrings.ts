@@ -54,4 +54,6 @@ export default class UIStrings {
     static readonly AreYouSureYouWantToDeleteTheChart = 'Are you sure you want to delete the chart?';
     static readonly Yes = 'Yes';
     static readonly Cancel = 'Cancel';
+
+    static readonly AreaFill = 'Area Fill';
 }

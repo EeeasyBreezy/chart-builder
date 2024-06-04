@@ -29,7 +29,7 @@ export interface Chart {
     currentAggregation?: Aggregations;
     chartLoading?: boolean;
     areaColor?: string;
-    backgroundColor?: string;
+    fillColor?: string;
 }
 
 export const DefaultChart: Chart = {

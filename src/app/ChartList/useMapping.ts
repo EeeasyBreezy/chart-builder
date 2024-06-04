@@ -29,7 +29,7 @@ export default function useMapping(): ChartMapping {
 
     const convertToAreaChartProps = (chart: Chart): AreaChartProps => {
         const result: AreaChartProps = convertToProps(chart);
-        result.backgroundColor = chart.backgroundColor;
+        result.fillColor = chart.fillColor;
 
         return result;
     };
