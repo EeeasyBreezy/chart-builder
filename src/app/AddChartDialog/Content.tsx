@@ -11,6 +11,8 @@ import {
 import { ChangeEvent, SyntheticEvent } from 'react';
 import { ChartOption, useAddChartDialogContext } from './useAddChartDialogContext';
 import ChartLabelsEditWithBlock from './ChartLabelsEditWithBlock';
+import Link from 'next/link';
+import { fredSiteUrl } from '@/AppSettings';
 
 export default function Content(): JSX.Element {
     const theme = useTheme();
@@ -38,6 +40,9 @@ export default function Content(): JSX.Element {
                 <Stack direction="column">
                     <Typography variant="caption">{UIStrings.SearchInstruction}</Typography>
                     <Typography variant="caption">{`${UIStrings.DataIsProvidedBy}`}</Typography>
+                    <Link href={fredSiteUrl} target="_blank">
+                        {fredSiteUrl}
+                    </Link>
                 </Stack>
                 <Autocomplete
                     loading={searchLoading}
