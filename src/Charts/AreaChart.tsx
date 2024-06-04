@@ -30,19 +30,13 @@ export default function AreaChart(props: AreaChartProps): JSX.Element {
         }
     };
 
-    let data = useLineData(title, points, lineStyle, hidePoints, plotColor);
+    const data = useLineData(title, points, lineStyle, hidePoints, plotColor);
     const scales = useScales(xLabel, yLabel, hideXLabel, hideYLabel, xAxisColor, yAxisColor);
     const plugins = usePlugins();
 
-    data = {
-        ...data,
-        datasets: [
-            {
-                ...data.datasets[0],
-                backgroundColor: backgroundColor || 'red',
-            },
-        ],
-    };
+    data.datasets[0].backgroundColor = backgroundColor || 'red';
+    data.datasets[0].fill = true;
+    scales.y.beginAtZero = true;
 
     return (
         <Line

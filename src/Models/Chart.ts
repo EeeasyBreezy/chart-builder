@@ -29,7 +29,7 @@ export interface Chart {
     currentAggregation?: Aggregations;
     chartLoading?: boolean;
     areaColor?: string;
-    backgroundColor: string;
+    backgroundColor?: string;
 }
 
 export const DefaultChart: Chart = {
@@ -52,5 +52,4 @@ export const DefaultChart: Chart = {
     aggregations: [],
     currentFrequency: 'a',
     currentUnit: 'lin',
-    backgroundColor: 'transparent',
 };

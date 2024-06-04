@@ -1,7 +1,6 @@
 import { Box, CircularProgress } from '@mui/material';
 import ChartContainer from './ChartContainer';
-import LineChart from './LineChart';
-import { AreaChartProps } from './AreaChart';
+import AreaChart, { AreaChartProps } from './AreaChart';
 
 export default function LoadingAreaChart({ chartLoading, selected, ...props }: AreaChartProps): JSX.Element {
     return (
@@ -11,7 +10,7 @@ export default function LoadingAreaChart({ chartLoading, selected, ...props }: A
                     <CircularProgress />
                 </Box>
             ) : (
-                <LineChart {...props} />
+                <AreaChart {...props} />
             )}
         </ChartContainer>
     );

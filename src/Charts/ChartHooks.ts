@@ -30,7 +30,7 @@ export function useLineData(
                 ...dataset.datasets[0],
                 borderColor: plotColor || 'red',
                 pointRadius: !hidePoints ? 3 : 0,
-                borderDash: lineStyle === 'dashed' ? [5, 5] : [],
+                borderDash: lineStyle === 'dashed' ? [5, 5] : undefined,
             },
         ],
     };
