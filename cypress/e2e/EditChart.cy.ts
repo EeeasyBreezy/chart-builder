@@ -11,6 +11,7 @@ describe('AddChart', () => {
     const shouldDeleteChart = 'shouldDeleteChart';
     const shouldEditChartsConcurrently = 'shouldEditChartsConcurrently';
     const shouldAddChartConcurrently = 'shouldAddChartConcurrently';
+    const shouldHideAggregateWhenMinFreqSelected = 'shouldHideAggregateWhenMinFreqSelected';
 
     beforeEach(() => {
         cy.intercept('GET', '/api/search?*', {
@@ -28,6 +29,21 @@ describe('AddChart', () => {
         }).as('getObservations');
 
         cy.visit('http://localhost:3000');
+    });
+
+    it(shouldHideAggregateWhenMinFreqSelected, () => {
+        addChart();
+        cy.get('canvas').click();
+
+        cy.textShouldBeVisible('Data Manipulation');
+        cy.textShouldBeVisible('Units');
+        cy.textShouldBeVisible('Frequency');
+        cy.findByText('Aggregate').should('not.exist');
+
+        cy.findByText('Monthly').click();
+        cy.findByText('Annualy').click();
+        cy.textShouldBeVisible('Aggregate');
+        cy.textShouldBeVisible('End of period');
     });
 
     it(shouldChangeLabels, () => {
