@@ -26,7 +26,7 @@ describe('AddChart', () => {
         cy.visit('http://localhost:3000');
     });
 
-    it.only(shouldHightLightErrorOnSelection, () => {
+    it(shouldHightLightErrorOnSelection, () => {
         cy.intercept('GET', '/api/series?id=*', {
             fixture: 'series/producerPriceIndexByCommodity.json',
         }).as('getSeries');
@@ -48,6 +48,12 @@ describe('AddChart', () => {
         cy.findByText(
             'Producer Price Index by Commodity: Rubber and Plastic Products: All Other Consumer, Institutional, and Commercial Products & Producer Price Index by Commodity: Rubber and Plastic Products: All Other Consumer, Institutional, and Commercial Products',
         ).click();
+        cy.wait('@getSeries');
+
+        cy.findByRole('dialog').within(() => {
+            cy.buttonValidateAndClick('Save');
+            cy.textShouldBeVisible('Must be at most 128 characters');
+        });
     });
 
     it(shouldCloseDialog, () => {

@@ -23,8 +23,6 @@ export function validateInitialAddChartDialogState() {
         cy.textInputShouldBeDisabled('editTitle');
         cy.textInputShouldBeDisabled('editXLabel');
         cy.textInputShouldBeDisabled('editYLabel');
-
-        cy.buttonShouldBeDisabled('Save');
     });
 }
 
