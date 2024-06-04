@@ -100,6 +100,11 @@ describe('AddChart', () => {
                 expect(cleanedText).to.equal('Bar');
             });
         cy.getByDataCy('lineStyle').should('not.exist');
+
+        cy.getByDataCy('chartType').click();
+        cy.findByText('Area').click();
+        cy.getByDataCy('lineStyle').should('exist');
+        cy.getByDataCy('Area Fill').should('exist');
     });
 
     it(shouldChangeCheckboxes, () => {

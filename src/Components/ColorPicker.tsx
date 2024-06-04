@@ -35,6 +35,7 @@ const ColorPicker = ({ label, color, onChange }: ColorPickerProps) => {
                         cursor: 'pointer',
                         display: 'inline-block',
                     }}
+                    data-cy={label}
                 >
                     <Box
                         style={{
