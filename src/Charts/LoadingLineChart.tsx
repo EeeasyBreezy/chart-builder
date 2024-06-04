@@ -6,7 +6,7 @@ export default function LoadingLineChart({ chartLoading, selected, ...props }: L
     return (
         <ChartContainer selected={selected}>
             {chartLoading ? (
-                <Box sx={{ alignSelf: 'center' }}>
+                <Box sx={{ alignSelf: 'center' }} data-cy={props.title}>
                     <CircularProgress />
                 </Box>
             ) : (

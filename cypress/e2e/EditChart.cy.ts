@@ -9,6 +9,7 @@ describe('AddChart', () => {
     const shouldValidateColors = 'shouldValidateColors';
     const shouldManipulateData = 'shouldManipulateData';
     const shouldDeleteChart = 'shouldDeleteChart';
+    const shouldEditChartsConcurrently = 'shouldEditChartsConcurrently';
 
     beforeEach(() => {
         cy.intercept('GET', '/api/search?*', {
@@ -121,7 +122,7 @@ describe('AddChart', () => {
         cy.getByDataCy('Hide Y Label').within(() => cy.get('input').should('be.checked'));
     });
 
-    it.only(shouldValidateColors, () => {
+    it(shouldValidateColors, () => {
         addChart();
         cy.get('canvas').click();
 
@@ -197,5 +198,52 @@ describe('AddChart', () => {
         cy.getByDataCy('chartSettingsPanel').should('have.css', 'opacity', '0.5');
         cy.get('canvas').should('not.exist');
         cy.findByRole('dialog').should('not.exist');
+    });
+
+    it(shouldEditChartsConcurrently, () => {
+        // add 2 charts
+        addChart();
+        addChart();
+
+        cy.get('canvas').should('have.length', 2);
+
+        cy.get('canvas').then((charts) => {
+            cy.wrap(charts[0]).click();
+            cy.clearInput('title');
+            cy.typeIntoInput('title', 'Chart 1');
+            cy.buttonValidateAndClick('Apply Changes');
+
+            cy.intercept('GET', '/api/observations?id=PSAVERT&*', {
+                fixture: 'observations/personalSavingRate.json',
+                delay: 4000,
+            }).as('getObservations');
+
+            cy.findByText('Monthly').click();
+            cy.findByText('Annualy').click();
+
+            cy.wrap(charts[1]).click();
+
+            cy.getByDataCy('Chart 1').should('be.visible');
+
+            cy.getByDataCy('Plot Color').click();
+            cy.get('#rc-editable-input-2').click().clear().type('8898E7'); // change color to blue
+            cy.get('body').click(10, 10); // close outside of color picker to apply changes
+            cy.clearInput('title');
+            cy.typeIntoInput('title', 'Chart 2');
+            cy.clearInput('xLabel');
+            cy.typeIntoInput('xLabel', 'x axis');
+            cy.clearInput('yLabel');
+            cy.typeIntoInput('yLabel', 'y axis');
+            cy.buttonValidateAndClick('Apply Changes');
+
+            cy.wait('@getObservations');
+
+            cy.wrap(charts[1]).click();
+            cy.textInputShouldHaveValue('title', 'Chart 2');
+            cy.textInputShouldHaveValue('xLabel', 'x axis');
+            cy.textInputShouldHaveValue('yLabel', 'y axis');
+            cy.getByDataCy('Plot Color').click();
+            cy.get('#rc-editable-input-12').should('have.value', '8898E7');
+        });
     });
 });
