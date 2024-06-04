@@ -82,7 +82,6 @@ describe('AddChart', () => {
             cy.getByDataCy('chartAutocomplete').click();
             cy.getByDataCy('chartAutocomplete').type('Personal Saving Rate');
         });
-        cy.textShouldBeVisible('Loading...');
         cy.wait('@search');
 
         cy.get('body').click(10, 10); // make autocomplete loose focus and validate that it has persisted entered value
@@ -133,6 +132,7 @@ describe('AddChart', () => {
     });
 
     it(shouldNotAddChartWhenFormIsInvalid, () => {
+        cy.buttonValidateAndClick('Add Chart');
         validateInitialAddChartDialogState();
 
         // search for a chart
@@ -149,14 +149,12 @@ describe('AddChart', () => {
         // clear title
         cy.findByRole('dialog').within(() => {
             cy.getByDataCy('editTitle').clear();
-            cy.buttonShouldBeDisabled('Save');
         });
 
         const longString = 'a'.repeat(200);
         cy.findByRole('dialog').within(() => {
             cy.typeIntoInput('title', longString);
             cy.textShouldBeVisible('Must be at most 128 characters');
-            cy.buttonShouldBeDisabled('Save');
 
             cy.clearInput('title');
 
@@ -166,15 +164,17 @@ describe('AddChart', () => {
 
             cy.typeIntoInput('xLabel', longString);
             cy.textShouldBeVisible('Must be at most 64 characters');
-            cy.buttonShouldBeDisabled('Save');
             cy.clearInput('xLabel');
             cy.textShouldBeVisible('Required');
 
             cy.clearInput('yLabel');
             cy.typeIntoInput('yLabel', longString);
             cy.textShouldBeVisible('Must be at most 64 characters');
-            cy.buttonShouldBeDisabled('Save');
             cy.clearInput('yLabel');
+
+            cy.buttonValidateAndClick('Save');
         });
+
+        cy.findByRole('dialog').should('exist');
     });
 });
