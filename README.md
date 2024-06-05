@@ -10,7 +10,7 @@ Welcome to the Chart Builder application! This tool enables users to build and c
 
 This is a full-stack application with the following technologies:
 
-- **Backend:** Next.js functions for proxying FRED API calls, utilizing the CQRS pattern.
+- **Backend:** Next.js functions for proxying FRED API calls to avoid CORS issue.
 - **Frontend:** React Single Page Application (SPA) implemented with Next.js client components.
 - **Design System:** Material-UI for consistent and responsive design.
 - **Unit Testing:** Jest combined with React Testing Library.
