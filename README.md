@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chart Builder Application
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+Welcome to the Chart Builder application! This tool enables users to build and customize charts using datasets from the Federal Reserve System Data (FRED) website.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Live Demo:** [Chart Builder on Vercel](https://chart-builder.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technical Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This is a full-stack application with the following technologies:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Backend:** Next.js functions for proxying FRED API calls, utilizing the CQRS pattern.
+- **Frontend:** React Single Page Application (SPA) implemented with Next.js client components.
+- **Design System:** Material-UI for consistent and responsive design.
+- **Unit Testing:** Jest combined with React Testing Library.
+- **Integration Testing:** Cypress and Cypress Testing Library.
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Dynamic Chart Management:** Users can add multiple charts and customize them according to their preferences.
+- **Chart Configuration:** Options to select different chart types (line and bar), set titles, customize axes (intervals and labels), and style the charts (colors, line styles, bar styles).
+- **Data Integration:** Fetch and visualize data from the FRED API.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How to Use
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. **Access the Application:** Visit the app hosted on Vercel or run it locally.
+2. **Add a Chart:**
+   - Click the "Add Chart" button.
+   - Search for any dataset from the FRED website (minimum 3 characters required to start the search).
+   - Note: The FRED API response might take some time.
+3. **Select a Dataset:** Choose a dataset from the dropdown.
+4. **Submit the Chart:** Ensure all fields are filled properly and submit the dialog.
+5. **Customize the Chart:**
+   - Click on any chart to unlock the settings panel.
+   - Edit the chart settings as needed.
 
-## Deploy on Vercel
+You can add multiple charts to the application. Please note that data is not persisted; closing the browser or refreshing the page will result in data loss.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Local Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To run the project locally, follow these steps:
+
+1. **Install Dependencies:**
+   ```bash
+   npm install --legacy-peer-deps
+2. **Start the development server**
+    ```bash
+    npm run dev
+3. **Navigate to app**
+    Open your browser and navigate to http://localhost:3000
