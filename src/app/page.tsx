@@ -5,6 +5,7 @@ import { ChartContext } from '@/State/useChartContext';
 import useChartContextValue from '@/State/useChartContextValue';
 import PageLayout from './PageLayout';
 import { useEffect } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 Chart.register(...registerables, Filler);
 
@@ -21,9 +22,13 @@ export default function Home(): JSX.Element {
         };
     }, []);
 
+    const client = new QueryClient();
+
     return (
-        <ChartContext.Provider value={value}>
-            <PageLayout />
-        </ChartContext.Provider>
+        <QueryClientProvider client={client}>
+            <ChartContext.Provider value={value}>
+                <PageLayout />
+            </ChartContext.Provider>
+        </QueryClientProvider>
     );
 }

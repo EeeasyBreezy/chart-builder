@@ -16,7 +16,7 @@ interface UseContentAPI {
 
 function useContent(): UseContentAPI {
     const [searchText, setSearchText] = useState<string>('');
-    const { selectChart, searchLoading, cleanChart } = useAddChartDialogContext();
+    const { selectChart, cleanChart } = useAddChartDialogContext();
     const onTextChange = async (event: ChangeEvent<HTMLInputElement>) => setSearchText(event.target.value);
     const client = useApiClient();
 
@@ -32,6 +32,7 @@ function useContent(): UseContentAPI {
                 yLabel: x.units,
             }));
         },
+        enabled: searchText.length >= 3,
     });
     const options = query.data ?? [];
     const isLoading = query.isLoading;
