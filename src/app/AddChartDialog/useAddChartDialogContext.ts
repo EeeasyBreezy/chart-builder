@@ -23,7 +23,6 @@ export interface AddChartDialogContextData {
     searchLoading: boolean;
     chartLoading: boolean;
     selectedChart: ChartOption;
-    search: DebouncedFunc<(text: string) => Promise<void>>;
     selectChart: (id: string) => Promise<void>;
     cleanChart: () => void;
     dispose: () => void;
