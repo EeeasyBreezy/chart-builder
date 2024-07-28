@@ -1,38 +1,13 @@
 import UIStrings from '@/utils/UIStrings';
-import {
-    DialogContent,
-    Stack,
-    Autocomplete,
-    TextField,
-    useTheme,
-    AutocompleteInputChangeReason,
-    Typography,
-} from '@mui/material';
-import { ChangeEvent, SyntheticEvent } from 'react';
-import { ChartOption, useAddChartDialogContext } from './useAddChartDialogContext';
+import { DialogContent, Stack, Autocomplete, TextField, useTheme, Typography } from '@mui/material';
 import ChartLabelsEditWithBlock from './ChartLabelsEditWithBlock';
 import Link from 'next/link';
 import { fredSiteUrl } from '@/AppSettings';
+import useContent from './useContent';
 
 export default function Content(): JSX.Element {
     const theme = useTheme();
-    const { options, search, selectChart, searchLoading, cleanChart, dispose } = useAddChartDialogContext();
-
-    const onTextChange = async (event: ChangeEvent<HTMLInputElement>) => {
-        await search(event.target.value);
-    };
-    const onAutocompleteChange = async (event: SyntheticEvent, newValue: ChartOption | null) => {
-        if (newValue == null) {
-            cleanChart();
-            return;
-        }
-        await selectChart(newValue.id);
-    };
-    const onInputChange = async (event: SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
-        if (reason === 'clear' || reason === 'reset') {
-            dispose();
-        }
-    };
+    const { options, isLoading, onTextChange, onAutocompleteChange, onInputChange } = useContent();
 
     return (
         <DialogContent>
@@ -45,7 +20,7 @@ export default function Content(): JSX.Element {
                     </Link>
                 </Stack>
                 <Autocomplete
-                    loading={searchLoading}
+                    loading={isLoading}
                     renderInput={(props) => (
                         <TextField
                             data-cy="chartAutocomplete"
