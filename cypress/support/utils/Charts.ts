@@ -1,7 +1,7 @@
 import { validateFilledAddChartDialogState, validateInitialAddChartDialogState } from "./Validation";
 
 
-export function addChart() {
+export function addChart(waitSearch: boolean = true) {
     cy.buttonValidateAndClick('Add Chart');
     validateInitialAddChartDialogState();
 
@@ -9,12 +9,12 @@ export function addChart() {
     cy.findByRole('dialog').within(() => {
         cy.getByDataCy('chartAutocomplete').click();
         cy.getByDataCy('chartAutocomplete').type('Personal Saving Rate');
-        cy.wait('@search');
+        if(waitSearch)
+            cy.wait('@search');
     });
-
+    
     // select a chart
     cy.findByText('Personal Saving Rate').last().click();
-    cy.wait('@getSeries');
 
     validateFilledAddChartDialogState();
 

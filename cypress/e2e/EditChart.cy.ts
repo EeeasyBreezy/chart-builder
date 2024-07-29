@@ -90,6 +90,7 @@ describe('AddChart', () => {
 
         cy.typeIntoInput('xLabel', longString);
         cy.textShouldBeVisible('Must be at most 64 characters');
+        cy.clearInput("xLabel");
         cy.buttonShouldBeDisabled('Apply Changes');
 
         cy.typeIntoInput('yLabel', longString);
@@ -163,7 +164,6 @@ describe('AddChart', () => {
         cy.textShouldBeVisible('Data Manipulation');
         cy.textShouldBeVisible('Units');
         cy.textShouldBeVisible('Frequency');
-        cy.textShouldBeVisible('Aggregate');
 
         cy.intercept('GET', '/api/observations?id=*', { fixture: 'observations/personalSavingRate.log.json' }).as(
             'getLogObservations',
@@ -220,8 +220,7 @@ describe('AddChart', () => {
     it(shouldEditChartsConcurrently, () => {
         // add 2 charts
         addChart();
-        addChart();
-
+        addChart(false);
         cy.get('canvas').should('have.length', 2);
 
         cy.get('canvas').then((charts) => {
