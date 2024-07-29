@@ -280,7 +280,7 @@ describe('AddChart', () => {
 
         cy.getByDataCy('Personal Saving Rate').should('be.visible'); // check loading spinner
 
-        addChart(); // add 2nd chart while first 1 is loading
+        addChart(false); // add 2nd chart while first 1 is loading
         cy.wait('@getObservations'); // wait until request for the 1st chart is completed
 
         cy.get('canvas').should('have.length', 2); // validate 2 charts on page
