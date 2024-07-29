@@ -2,17 +2,30 @@ import { useApiClient } from "@/Clients/Hooks";
 import { Frequencies } from "@/Models/Chart";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { debounce } from "lodash";
-import { useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 export function useSearchQuery(search: string) {
     const client = useApiClient();
-    const queryClient = useQueryClient();
+    const [debouncedSearch, setDebouncedSearch] = useState(search);
 
-    // Create a debounced version of the query function
-    const debouncedQueryFn = useMemo(() => 
-        debounce(async (searchTerm: string) => {
-            queryClient.cancelQueries({ queryKey: ['search', searchTerm] });
-            const dto = await client.search(searchTerm, 10);
+    // Debounce the search input
+    useEffect(() => {
+        const handler = debounce(() => {
+            setDebouncedSearch(search);
+        }, 300); // Adjust the debounce delay as needed
+
+        handler();
+
+        return () => {
+            handler.cancel();
+        };
+    }, [search]);
+
+    return useQuery({
+        queryKey: ['search', debouncedSearch],
+        queryFn: async ({ queryKey, signal }) => {
+            const [, search] = queryKey;
+            const dto = await client.search(search as string, 10, { signal });
             return dto.data.map((x) => ({
                 id: x.id,
                 title: x.title,
@@ -20,24 +33,8 @@ export function useSearchQuery(search: string) {
                 xLabel: 'Date',
                 yLabel: x.units,
             }));
-        }, 300), [client, queryClient]);
-
-    useEffect(() => {
-        // Call the debounced function whenever the search term changes
-        if (search.length >= 3) {
-            debouncedQueryFn(search);
-        }
-
-        // Cleanup function to cancel the debounced call if the component unmounts or search term changes
-        return () => {
-            debouncedQueryFn.cancel();
-        };
-    }, [search, debouncedQueryFn]);
-
-    return useQuery({
-        queryKey: ['search', search],
-        queryFn: () => debouncedQueryFn(search),
-        enabled: false, // Disable automatic query execution
+        },
+        enabled: debouncedSearch.length >= 3,
     });
 }
 

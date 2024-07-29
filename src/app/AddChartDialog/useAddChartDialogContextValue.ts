@@ -2,10 +2,12 @@ import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { AddChartDialogContextData, ChartOption, DefaultChartOption } from './useAddChartDialogContext';
 import { useSearchQuery, useSelectChartMutation } from './Queries';
 import { AutocompleteInputChangeReason } from '@mui/material';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function useAddChartDialogContextValue(): AddChartDialogContextData {
     const [search, setSearch] = useState('');
 
+    const queryClient = useQueryClient();
     const searchQuery = useSearchQuery(search);
     const selectChartMutation = useSelectChartMutation();
 
@@ -19,7 +21,10 @@ export default function useAddChartDialogContextValue(): AddChartDialogContextDa
         selectChartMutation.reset();
     };
 
-    const onSearchChange = (event: ChangeEvent<HTMLInputElement>) => setSearch(event.target.value);
+    const onSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+        queryClient.cancelQueries({queryKey: "search" as any, exact: true});
+        setSearch(event.target.value);
+    }
 
     const onAutocompleteChange = async (event: SyntheticEvent, newValue: ChartOption | null) => {
         if (newValue == null) {

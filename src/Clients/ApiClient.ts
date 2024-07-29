@@ -36,9 +36,9 @@ export default class ApiClient {
         return observations;
     }
 
-    async search(text: string, limit: number): Promise<Page<SeriesDTO>> {
+    async search(text: string, limit: number, options?: { signal?: AbortSignal }): Promise<Page<SeriesDTO>> {
         const query = new SearchQueryStringBuilder().withSearch(text).withLimit(limit).build();
-        const response = await axios.get(`${this.baseUrl}/api/search?${query}`);
+        const response = await axios.get(`${this.baseUrl}/api/search?${query}`, { signal: options?.signal });
         return response.data;
     }
 }
