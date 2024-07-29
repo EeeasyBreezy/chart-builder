@@ -1,54 +1,45 @@
-import { useApiClient } from '@/Clients/Hooks';
-import { useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { AddChartDialogContextData, ChartOption, DefaultChartOption } from './useAddChartDialogContext';
-import { Frequencies } from '@/Models/Chart';
-
-interface UseAddChartDialogState {
-    options: Array<ChartOption>;
-    searchLoading: boolean;
-    chartLoading: boolean;
-    selectedChart: ChartOption;
-}
+import { useSearchQuery, useSelectChartMutation } from './Queries';
+import { AutocompleteInputChangeReason } from '@mui/material';
 
 export default function useAddChartDialogContextValue(): AddChartDialogContextData {
-    const [state, setState] = useState<UseAddChartDialogState>({
-        options: [],
-        searchLoading: false,
-        chartLoading: false,
-        selectedChart: DefaultChartOption,
-    });
-    const { options, searchLoading, chartLoading, selectedChart } = state;
-    const client = useApiClient();
+    const [search, setSearch] = useState('');
 
-    const selectChart = async (id: string): Promise<void> => {
-        setState((prev) => ({ ...prev, chartLoading: true }));
-        const series = await client.getSeries(id);
-        setState((prev) => ({
-            ...prev,
-            chartLoading: false,
-            selectedChart: {
-                id: series.id,
-                title: series.title,
-                minFrequency: series.frequency as Frequencies,
-                xLabel: 'Date',
-                yLabel: series.units,
-            },
-        }));
-    };
+    const searchQuery = useSearchQuery(search);
+    const selectChartMutation = useSelectChartMutation();
+
+    const selectChart = async (id: string): Promise<void> => { await selectChartMutation.mutateAsync(id) };
 
     const cleanChart = () => {
-        setState((prev) => ({ ...prev, selectedChart: DefaultChartOption }));
+        selectChartMutation.reset();
     };
 
     const dispose = () => {
-        setState((prev) => ({
-            ...prev,
-            options: [],
-            searchLoading: false,
-            chartLoading: false,
-            selectedChart: DefaultChartOption,
-        }));
+        selectChartMutation.reset();
     };
 
-    return { options, searchLoading, chartLoading, selectedChart, selectChart, cleanChart, dispose };
+    const onSearchChange = (event: ChangeEvent<HTMLInputElement>) => setSearch(event.target.value);
+
+    const onAutocompleteChange = async (event: SyntheticEvent, newValue: ChartOption | null) => {
+        if (newValue == null) {
+            cleanChart();
+            return;
+        }
+        selectChartMutation.mutate(newValue.id);
+    };
+
+    const onInputChange = async (event: SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
+        if (reason === 'clear' || reason === 'reset') {
+            setSearch('');
+        }
+    };
+
+    console.log(searchQuery.data);
+
+    return { options: searchQuery.data || [],
+            searchLoading: searchQuery.isLoading,
+            chartLoading: selectChartMutation.isPaused, selectedChart: selectChartMutation.data || DefaultChartOption,
+            selectChart, cleanChart, dispose, onSearchChange, onAutocompleteChange, onInputChange
+        };
 }

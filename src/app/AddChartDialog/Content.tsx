@@ -3,11 +3,11 @@ import { DialogContent, Stack, Autocomplete, TextField, useTheme, Typography } f
 import ChartLabelsEditWithBlock from './ChartLabelsEditWithBlock';
 import Link from 'next/link';
 import { fredSiteUrl } from '@/AppSettings';
-import useContent from './useContent';
+import { useAddChartDialogContext } from './useAddChartDialogContext';
 
 export default function Content(): JSX.Element {
     const theme = useTheme();
-    const { options, isLoading, onTextChange, onAutocompleteChange, onInputChange } = useContent();
+    const { searchLoading, options, onSearchChange, onAutocompleteChange, onInputChange } = useAddChartDialogContext();
 
     return (
         <DialogContent>
@@ -20,11 +20,11 @@ export default function Content(): JSX.Element {
                     </Link>
                 </Stack>
                 <Autocomplete
-                    loading={isLoading}
+                    loading={searchLoading}
                     renderInput={(props) => (
                         <TextField
                             data-cy="chartAutocomplete"
-                            onChange={onTextChange}
+                            onChange={onSearchChange}
                             label={`${UIStrings.Dataset}*`}
                             {...props}
                         />

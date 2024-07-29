@@ -10,7 +10,7 @@ export function validateInitialAddChartDialogState() {
     // inputs disabled
     cy.findByRole('dialog').within(() => {
         cy.textShouldBeVisible('Add Chart');
-        cy.textShouldBeVisible('Start typing to search for a dataset');
+        cy.textShouldBeVisible('Start typing to search for a dataset. Search starts with 3 symbols minimum');
         cy.textShouldBeVisible(
             'Data is provided by Federal Reserve Economic Data (FRED), Federal Reserve Bank of St. Louis',
         );

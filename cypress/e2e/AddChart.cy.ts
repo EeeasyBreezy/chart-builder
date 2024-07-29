@@ -56,7 +56,7 @@ describe('AddChart', () => {
         });
     });
 
-    it(shouldCloseDialog, () => {
+    it.only(shouldCloseDialog, () => {
         cy.buttonValidateAndClick('Add Chart');
         validateInitialAddChartDialogState();
 

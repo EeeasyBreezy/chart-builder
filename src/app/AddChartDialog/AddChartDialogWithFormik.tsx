@@ -17,7 +17,7 @@ interface ChartFormValues {
 export default function AddChartDialogWithFormik(): JSX.Element {
     const schema = useChartValidationSchema();
     const { closeDialog, addChart } = useChartContext();
-    const { selectedChart, dispose } = useAddChartDialogContext();
+    const { dispose, selectedChart } = useAddChartDialogContext();
 
     const submit = async (values: ChartFormValues, actions: FormikHelpers<ChartFormValues>) => {
         const frequencies: Array<Frequencies> = ['d', 'w', 'm', 'q', 'sa', 'a'];
@@ -50,9 +50,9 @@ export default function AddChartDialogWithFormik(): JSX.Element {
 
     const initialValues = {
         chartType: selectedChart,
-        title: selectedChart.title,
-        xLabel: selectedChart.xLabel,
-        yLabel: selectedChart.yLabel,
+        title: selectedChart?.title || '',
+        xLabel: selectedChart?.xLabel || '',
+        yLabel: selectedChart?.yLabel || '',
     };
 
     return (

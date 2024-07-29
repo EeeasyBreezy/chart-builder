@@ -1,6 +1,6 @@
 import { Frequencies } from '@/Models/Chart';
-import { DebouncedFunc } from 'lodash';
-import { createContext, useContext } from 'react';
+import { AutocompleteInputChangeReason } from '@mui/material';
+import { ChangeEvent, createContext, SyntheticEvent, useContext } from 'react';
 
 export interface ChartOption {
     id: string;
@@ -26,6 +26,9 @@ export interface AddChartDialogContextData {
     selectChart: (id: string) => Promise<void>;
     cleanChart: () => void;
     dispose: () => void;
+    onSearchChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onAutocompleteChange: (event: SyntheticEvent, newValue: ChartOption | null) => void;
+    onInputChange: (event: SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => void;
 }
 
 export const AddChartDialogContext = createContext<AddChartDialogContextData | undefined>(undefined);
