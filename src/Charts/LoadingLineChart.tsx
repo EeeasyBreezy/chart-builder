@@ -1,6 +1,7 @@
 import { Box, CircularProgress } from '@mui/material';
 import LineChart, { LineChartProps } from './LineChart';
 import ChartContainer from './ChartContainer';
+import LineEChart from './LineEchart';
 
 export default function LoadingLineChart({ chartLoading, selected, ...props }: LineChartProps): JSX.Element {
     return (
@@ -10,7 +11,7 @@ export default function LoadingLineChart({ chartLoading, selected, ...props }: L
                     <CircularProgress />
                 </Box>
             ) : (
-                <LineChart {...props} />
+                <LineEChart {...props} />
             )}
         </ChartContainer>
     );
