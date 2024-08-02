@@ -40,8 +40,6 @@ export default function useAddChartDialogContextValue(): AddChartDialogContextDa
         }
     };
 
-    console.log(searchQuery.data);
-
     return { options: searchQuery.data || [],
             searchLoading: searchQuery.isLoading,
             chartLoading: selectChartMutation.isPaused, selectedChart: selectChartMutation.data || DefaultChartOption,

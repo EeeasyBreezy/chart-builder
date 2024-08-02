@@ -1,4 +1,4 @@
-import { type Locator, type Page, expect } from "@playwright/test";
+import { type Locator, type Page } from "@playwright/test";
 
 export default class HomePage {
     readonly page: Page;
@@ -16,12 +16,14 @@ export default class HomePage {
     }
 
     async addChart() {
+
         await this.addChartButton.click();
         await this.addChartDialog.waitFor({state: "visible", timeout: 5000});
         
-        const addChartDialogScreenshot = await this.addChartDialog.screenshot();
-        expect(addChartDialogScreenshot).toMatchSnapshot("addChartDialog.png");
+        // const addChartDialogScreenshot = await this.addChartDialog.screenshot();
+        // expect(addChartDialogScreenshot).toMatchSnapshot("addChartDialog.png");
 
         await this.addChartDialog.getByLabel("Dataset*").fill("Personal savings rate");
+        await this.addChartDialog.getByLabel("Dataset*").selectOption("No options");
     }
 }

@@ -11,7 +11,6 @@ export default function DataManipulationPanel(): JSX.Element {
             <Typography variant="body1">{UIStrings.DataManipulation}</Typography>
             <Stack direction="column" spacing={theme.spacing(2)}>
                 {items.map((item) => {
-                    console.log(item);
                     if (item.options.length === 0 || !item.visible) return null;
                     return (
                         <>
