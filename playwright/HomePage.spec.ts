@@ -5,4 +5,5 @@ test("Should add chart", async ({ page }) => {
     const homePage = new HomePage(page);
 
     await homePage.goTo();
+    await homePage.addChart();
 })
