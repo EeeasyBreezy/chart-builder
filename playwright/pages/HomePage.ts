@@ -19,11 +19,14 @@ export default class HomePage {
 
         await this.addChartButton.click();
         await this.addChartDialog.waitFor({state: "visible", timeout: 5000});
-        
-        // const addChartDialogScreenshot = await this.addChartDialog.screenshot();
-        // expect(addChartDialogScreenshot).toMatchSnapshot("addChartDialog.png");
 
-        await this.addChartDialog.getByLabel("Dataset*").fill("Personal savings rate");
-        await this.addChartDialog.getByLabel("Dataset*").selectOption("No options");
+        await this.addChartDialog.getByLabel("Dataset*").fill("Personal saving rate");
+        await this.page.waitForResponse("http://localhost:3000/api/search?text=Personal+saving+rate&limit=10");
+
+        await this.page.getByRole('option', { name: 'Personal Saving Rate' }).click();
+
+        await this.page.waitForResponse("http://localhost:3000/api/series?id=PSAVERT");
+
+        await this.page.getByRole('button', { name: 'Save' }).click();
     }
 }
