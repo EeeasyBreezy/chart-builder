@@ -28,5 +28,7 @@ export default class HomePage {
         await this.page.waitForResponse("http://localhost:3000/api/series?id=PSAVERT");
 
         await this.page.getByRole('button', { name: 'Save' }).click();
+
+        await this.page.waitForResponse("http://localhost:3000/api/observations?id=PSAVERT*");
     }
 }

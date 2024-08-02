@@ -17,6 +17,14 @@ test.beforeEach(async ({page}) => {
             path: "playwright/stubs/series/personalSavingRate.json",
         });
     })
+
+    await page.route("http://localhost:3000/api/observations?id=PSAVERT", async route => {
+        await route.fulfill({
+            status: 200,
+            contentType: 'application/json',
+            path: "playwright/stubs/observations/personalSavingRate.json",
+        });
+    });
 })
 
 test("Should add chart", async ({ page }) => {
