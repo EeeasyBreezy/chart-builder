@@ -21,5 +21,7 @@ export default class HomePage {
         
         const addChartDialogScreenshot = await this.addChartDialog.screenshot();
         expect(addChartDialogScreenshot).toMatchSnapshot("addChartDialog.png");
+
+        await this.addChartDialog.getByLabel("Dataset*").fill("Personal savings rate");
     }
 }
